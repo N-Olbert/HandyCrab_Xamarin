@@ -12,10 +12,12 @@ namespace HandyCrab.Views
             InitializeComponent();
         }
 
-        private async void SignUpButton_Clicked(object sender, EventArgs e)
+        private void SignUpButton_Clicked(object sender, EventArgs e)
         {
-            //Go to next page
-            await Navigation.PushAsync(new SearchPage());
+            //TODO: send data to the backend for verification, only redirect to search page if successful
+            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
+            MasterPage.Detail = new NavigationPage(new SearchPage());
+            MasterPage.IsPresented = false;
         }
     }
 }

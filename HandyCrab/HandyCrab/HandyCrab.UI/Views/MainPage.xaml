@@ -15,7 +15,7 @@
         <!--Like a stack: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/navigation/hierarchical-->
         <NavigationPage>
             <x:Arguments>
-                <views:RegisterPage />
+                <views:LoginPage />
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

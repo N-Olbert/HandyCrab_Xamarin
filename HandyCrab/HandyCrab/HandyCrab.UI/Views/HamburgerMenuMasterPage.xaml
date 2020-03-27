@@ -4,11 +4,13 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             Padding="0,40,0,0"
              x:Class="HandyCrab.Views.HamburgerMenuMasterPage">
-  <ContentPage.Content>
-      <StackLayout>
-            <Label Text="TODO :)" />
-            <Button Text="About" Clicked="Button_OnClicked"></Button>
-        </StackLayout>
-  </ContentPage.Content>
+    <!--FIXME: Hamburger Menu overlaps status bar-->
+    <!--TODO: change Hamburger Menu if user is logged in-->
+    <StackLayout>
+        <Button Text="Login" Clicked="LoginButton_OnClicked"></Button>
+        <Button Text="Regisitrieren" Clicked="RegisterButton_OnClicked"></Button>
+        <Button Text="About" Clicked="AboutButton_OnClicked"></Button>
+    </StackLayout>
 </ContentPage>
