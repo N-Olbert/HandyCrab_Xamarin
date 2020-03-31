@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HandyCrab.Common.Interfaces;
@@ -58,7 +59,17 @@ namespace HandyCrab.Business.ViewModels
                 var loc = await locationTask;
                 if (loc != null)
                 {
-                    var placemarks = await Geocoding.GetPlacemarksAsync(loc);
+                    IEnumerable<Placemark> placemarks = null;
+                    try
+                    {
+                        placemarks = await Geocoding.GetPlacemarksAsync(loc);
+                    }
+                    catch
+                    {
+                        //Probably not cached and no connection or server down.
+                        //https://issuetracker.google.com/issues/64247769
+                        //https://stackoverflow.com/questions/16258898/does-android-geocoder-work-only-with-internet-connection
+                    }
 
                     var placemark = placemarks?.FirstOrDefault();
                     CurrentPlacemark = placemark ?? new Placemark { Location = loc };
