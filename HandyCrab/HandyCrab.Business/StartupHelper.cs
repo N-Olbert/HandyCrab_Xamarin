@@ -9,6 +9,7 @@ namespace HandyCrab.Business
         public static void Prepare()
         {
             ViewModelFactory.RegisterInstance<IAboutViewModel, AboutViewModel>();
+            ViewModelFactory.RegisterInstance<ISearchViewModel, SearchViewModel>();
         }
     }
 }

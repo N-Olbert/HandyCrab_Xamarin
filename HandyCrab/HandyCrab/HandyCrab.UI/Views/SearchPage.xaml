@@ -10,6 +10,18 @@
             <Label Text="Welcome to Xamarin.Forms!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+            <!--TODO: JZ schöner machen :)-->
+            <Label Text="Longitude"></Label>
+            <Label Text="{Binding CurrentPlacemark.Location.Longitude}"></Label>
+
+            <Label Text="Latitude"></Label>
+            <Label Text="{Binding CurrentPlacemark.Location.Latitude}"></Label>
+
+            <Label Text="PLZ"></Label>
+            <Label Text="{Binding CurrentPlacemark.PostalCode}"></Label>
+
+            <Label Text="City"></Label>
+            <Label Text="{Binding CurrentPlacemark.Locality}"></Label>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

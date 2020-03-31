@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using HandyCrab.Common;
+using HandyCrab.Common.Interfaces;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,9 +13,11 @@ namespace HandyCrab.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
+        private ISearchViewModel viewModel;
         public SearchPage()
         {
             InitializeComponent();
+            BindingContext = this.viewModel = ViewModelFactory.GetInstance<ISearchViewModel>();
         }
     }
 }

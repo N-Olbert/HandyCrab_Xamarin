@@ -1,10 +1,7 @@
-﻿using System;
-
+﻿using Android;
 using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 
 namespace HandyCrab.Droid
@@ -23,6 +20,17 @@ namespace HandyCrab.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
+
+        protected override void OnStart()
+        {
+            base.OnStart();
+
+            if (CheckSelfPermission(Manifest.Permission.AccessCoarseLocation) != Permission.Granted)
+            {
+                RequestPermissions(new[] { Manifest.Permission.AccessCoarseLocation, Manifest.Permission.AccessFineLocation }, (int)Permission.Granted);
+            }
+        }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
