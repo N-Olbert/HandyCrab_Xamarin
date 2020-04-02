@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:common="clr-namespace:HandyCrab.Common;assembly=HandyCrab.Common"
              xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
              mc:Ignorable="d"
-             BindingContext="{x:Static common:ModelViewLocator.AboutViewModel}"
+             BindingContext="{x:Static ui:ModelViewLocator.AboutViewModel}"
              x:DataType="{x:Type interfaces:IAboutViewModel}"
              x:Class="HandyCrab.UI.Views.AboutPage">
     <ContentPage.Content>

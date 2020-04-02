@@ -1,6 +1,7 @@
-﻿using HandyCrab.Common.Interfaces;
+﻿using HandyCrab.Common;
+using HandyCrab.Common.Interfaces;
 
-namespace HandyCrab.Common
+namespace HandyCrab.UI
 {
     /// <summary>
     /// Helper for enforcing "Model View Locator"-Pattern
