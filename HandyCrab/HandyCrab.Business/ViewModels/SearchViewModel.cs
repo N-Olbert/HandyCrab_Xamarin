@@ -10,7 +10,7 @@ namespace HandyCrab.Business.ViewModels
 {
     internal class SearchViewModel : BaseViewModel, ISearchViewModel
     {
-        public override string PageTitle => "Search";
+        public string PageTitle => "Search";
 
         private Placemark currentPlacemarkBackingField;
         public Placemark CurrentPlacemark

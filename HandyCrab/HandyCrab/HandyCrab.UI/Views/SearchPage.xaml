@@ -26,6 +26,13 @@
 
             <Label Text="City"></Label>
             <Label Text="{Binding CurrentPlacemark.Locality}"></Label>
+            <Button Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=TakeImageAsync}"
+                    CommandParameter="{x:Reference ImageView}"
+                    Text="Take Image"></Button>
+            <Button Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=SelectImageAsync}"
+                    CommandParameter="{x:Reference ImageView}"
+                    Text="Select Image"></Button>
+            <Image x:Name="ImageView"></Image>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

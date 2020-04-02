@@ -10,6 +10,7 @@ namespace HandyCrab.Business
         {
             ViewModelFactory.RegisterInstance<IAboutViewModel, AboutViewModel>();
             ViewModelFactory.RegisterInstance<ISearchViewModel, SearchViewModel>();
+            ViewModelFactory.RegisterInstance<IImagePickerViewModel, ImagePickerViewModel>();
         }
     }
 }

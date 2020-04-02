@@ -14,7 +14,7 @@ namespace HandyCrab.Business.ViewModels
 
         public ICommand OpenGitHubLinkCommand { get; }
 
-        public override string PageTitle => Strings.AboutPageTitle;
+        public string PageTitle => Strings.AboutPageTitle;
 
         public AboutViewModel()
         {
