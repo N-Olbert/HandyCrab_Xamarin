@@ -13,11 +13,9 @@ namespace HandyCrab.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        private ISearchViewModel viewModel;
         public SearchPage()
         {
             InitializeComponent();
-            BindingContext = this.viewModel = ViewModelFactory.GetInstance<ISearchViewModel>();
         }
     }
 }

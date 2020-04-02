@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:common="clr-namespace:HandyCrab.Common;assembly=HandyCrab.Common"
+             xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
              mc:Ignorable="d"
+             BindingContext="{x:Static common:ModelViewLocator.SearchViewModel}"
+             x:DataType="{x:Type interfaces:ISearchViewModel}"
              x:Class="HandyCrab.Views.SearchPage">
     <ContentPage.Content>
         <StackLayout>
