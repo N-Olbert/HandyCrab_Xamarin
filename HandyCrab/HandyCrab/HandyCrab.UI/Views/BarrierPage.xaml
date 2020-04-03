@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="HandyCrab.UI.Views.BarrierPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Label Text="Title" FontAttributes="Bold" />
+                <BoxView BackgroundColor="Chocolate" HeightRequest="200" />
+                <Label Text="Description" />
+                <Label Text="Solution 1" BackgroundColor="LightGray" HeightRequest="50"/>
+                <Label Text="Solution 2" BackgroundColor="LightGray" HeightRequest="50"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
