@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Interfaces;
@@ -32,6 +31,13 @@ namespace HandyCrab.Business.ViewModels
             {
                 this.takeImage = takeImage;
                 this.parentViewModel = parentViewModel;
+                this.parentViewModel.PropertyChanged += (sender, args) =>
+                                                        {
+                                                            if (args?.PropertyName == nameof(BaseViewModel.IsBusy))
+                                                            {
+                                                                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+                                                            }
+                                                        };
             }
 
             public bool CanExecute(object parameter)
@@ -44,7 +50,6 @@ namespace HandyCrab.Business.ViewModels
                 if (CanExecute(parameter))
                 {
                     this.parentViewModel.IsBusy = true;
-                    CanExecuteChanged?.Invoke(this, EventArgs.Empty);
                     try
                     {
                         var image = this.takeImage
@@ -58,8 +63,6 @@ namespace HandyCrab.Business.ViewModels
 
                     this.parentViewModel.IsBusy = false;
                 }
-
-                CanExecuteChanged?.Invoke(this, EventArgs.Empty);
             }
 
             public event EventHandler CanExecuteChanged;
