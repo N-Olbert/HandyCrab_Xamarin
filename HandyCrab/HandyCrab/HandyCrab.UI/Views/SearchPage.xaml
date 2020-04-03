@@ -10,29 +10,71 @@
              x:DataType="{x:Type interfaces:ISearchViewModel}"
              x:Class="HandyCrab.Views.SearchPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <Grid Margin="10" RowSpacing="20">
             <!--TODO: JZ schöner machen :)-->
-            <Label Text="Longitude"></Label>
-            <Label Text="{Binding CurrentPlacemark.Location.Longitude}"></Label>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0" Grid.Row="0">
+                <Label Text="Location to search:" FontAttributes="Bold"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Longitude: " FontAttributes="Bold"/>
+                            <Span Text="{Binding CurrentPlacemark.Location.Longitude}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-            <Label Text="Latitude"></Label>
-            <Label Text="{Binding CurrentPlacemark.Location.Latitude}"></Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Latitude: " FontAttributes="Bold"/>
+                            <Span Text="{Binding CurrentPlacemark.Location.Latitude}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-            <Label Text="PLZ"></Label>
-            <Label Text="{Binding CurrentPlacemark.PostalCode}"></Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="PLZ: " FontAttributes="Bold"/>
+                            <Span Text="{Binding CurrentPlacemark.PostalCode}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-            <Label Text="City"></Label>
-            <Label Text="{Binding CurrentPlacemark.Locality}"></Label>
-            <Button Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=TakeImageAsync}"
-                    CommandParameter="{x:Reference ImageView}"
-                    Text="Take Image"></Button>
-            <Button Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=SelectImageAsync}"
-                    CommandParameter="{x:Reference ImageView}"
-                    Text="Select Image"></Button>
-            <Image x:Name="ImageView"></Image>
-        </StackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="City: " FontAttributes="Bold"/>
+                            <Span Text="{Binding CurrentPlacemark.Locality}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
+            <Button Grid.Column="1" Grid.Row="0" x:Name="ChangeLocationButton" Text="Change Location" VerticalOptions="Center"
+                HorizontalOptions="Center"></Button>
+
+            <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                <Label Text="Pick a search radius" FontAttributes="Bold"/>
+                <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="Search Radius" SelectedIndex="0">
+                    <Picker.Items>
+                        <x:String>5m</x:String>
+                        <x:String>10m</x:String>
+                        <x:String>30m</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+
+            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="SearchButton" Text="Search"></Button>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
