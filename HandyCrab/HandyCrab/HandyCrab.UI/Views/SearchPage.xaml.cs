@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HandyCrab.Common;
 using HandyCrab.Common.Interfaces;
+using HandyCrab.UI.Views; //FIXME: adjust namespace
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +17,12 @@ namespace HandyCrab.Views
         public SearchPage()
         {
             InitializeComponent();
+        }
+
+        async private void SearchButton_Clicked(object sender, EventArgs e)
+        {
+            //TODO: send search Request to Backend and return Results
+            await Navigation.PushAsync(new SearchResultsPage());
         }
     }
 }
