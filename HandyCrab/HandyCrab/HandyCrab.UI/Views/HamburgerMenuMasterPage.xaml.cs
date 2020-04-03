@@ -15,28 +15,20 @@ namespace HandyCrab.Views
         public HamburgerMenuMasterPage()
         {
             InitializeComponent();
+            listView.ItemSelected += OnItemSelected;
             Title = "Hamburger";
         }
 
-        private void LoginButton_OnClicked(object sender, EventArgs e)
+        private void OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-            MasterPage.Detail = new NavigationPage(new LoginPage());
-            MasterPage.IsPresented = false;
-        }
-
-        private void RegisterButton_OnClicked(object sender, EventArgs e)
-        {
-            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-            MasterPage.Detail = new NavigationPage(new RegisterPage());
-            MasterPage.IsPresented = false;
-        }
-
-        private void AboutButton_OnClicked(object sender, EventArgs e)
-        {
-            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-            MasterPage.Detail = new NavigationPage(new AboutPage());
-            MasterPage.IsPresented = false;
+            var item = e.SelectedItem as MasterPageItem;
+            if (item != null)
+            {
+                MasterDetailPage masterPage = App.Current.MainPage as MasterDetailPage;
+                masterPage.Detail = new NavigationPage((Page)Activator.CreateInstance(item.TargetType));
+                listView.SelectedItem = null;
+                masterPage.IsPresented = false;
+            }
         }
     }
 }
