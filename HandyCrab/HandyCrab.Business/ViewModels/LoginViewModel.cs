@@ -3,6 +3,7 @@ using System.Windows.Input;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
+using JetBrains.Annotations;
 using Xamarin.Forms;
 
 namespace HandyCrab.Business.ViewModels
@@ -11,7 +12,8 @@ namespace HandyCrab.Business.ViewModels
     {
         private string userName;
         private string passWord;
-        private Command loginCommand;
+        [NotNull]
+        private readonly Command loginCommand;
 
         public event EventHandler LoginSucceeded;
 
@@ -37,6 +39,7 @@ namespace HandyCrab.Business.ViewModels
             }
         }
 
+        [NotNull]
         public ICommand LoginCommand
         {
             get => this.loginCommand;
@@ -79,7 +82,7 @@ namespace HandyCrab.Business.ViewModels
                 }
                 else
                 {
-                    LoginRejected?.Invoke(this, user.ThrownException.ToString());
+                    LoginRejected?.Invoke(this, user.ThrownException?.ToString());
                 }
             }
 

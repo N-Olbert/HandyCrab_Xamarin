@@ -6,7 +6,7 @@ namespace HandyCrab.Common.Entitys
     public class User
     {
         [JsonProperty("_id")]
-        public Guid Id { get; set; }
+        public string Id { get; set; }
 
         [JsonProperty("username")]
         public string Username { get; set; }

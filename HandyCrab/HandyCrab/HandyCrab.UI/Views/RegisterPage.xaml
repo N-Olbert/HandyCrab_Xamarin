@@ -3,14 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
              mc:Ignorable="d"
+             BindingContext="{x:Static ui:ModelViewLocator.RegisterViewModel}"
+             x:DataType="{x:Type interfaces:IRegisterViewModel}"
              x:Class="HandyCrab.Views.RegisterPage">
   <ContentPage.Content>
       <StackLayout>
-          <Entry Placeholder="E-Mail"></Entry>
-          <Entry Placeholder="Benutzername"></Entry>
-          <Entry Placeholder="Password" IsPassword="True"></Entry>
-          <Button x:Name="SignUpButton" Text="Sign Up" Clicked="SignUpButton_Clicked" ></Button>
+          <Entry Placeholder="E-Mail" Text="{Binding Email}"></Entry>
+          <Entry Placeholder="Benutzername" Text="{Binding UserName}"></Entry>
+          <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True"></Entry>
+          <Button x:Name="SignUpButton" Text="Sign Up" Command="{Binding RegisterCommand}" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

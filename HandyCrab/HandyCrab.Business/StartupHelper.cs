@@ -1,5 +1,4 @@
-﻿using HandyCrab.Business.Services;
-using HandyCrab.Business.ViewModels;
+﻿using HandyCrab.Business.ViewModels;
 using HandyCrab.Common;
 using HandyCrab.Common.Interfaces;
 
@@ -13,6 +12,7 @@ namespace HandyCrab.Business
             ViewModelFactory.RegisterInstance<ISearchViewModel, SearchViewModel>();
             ViewModelFactory.RegisterInstance<IImagePickerViewModel, ImagePickerViewModel>();
             ViewModelFactory.RegisterInstance<ILoginViewModel, LoginViewModel>();
+            ViewModelFactory.RegisterInstance<IRegisterViewModel, RegisterViewModel>();
         }
     }
 }

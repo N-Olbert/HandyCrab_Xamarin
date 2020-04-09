@@ -19,9 +19,14 @@ namespace HandyCrab.Business.Services.BusinessObjects
             {
                 var uri = AssemblyConfig<RegisterClient>.GetValue(settingsName);
 
-                var res = await Client.PostAsync(new Uri(uri), login.ToJsonContent());
-                await UpdateSessionCookieAsync(res);
-                return await HandleResponseAsync<User>(res);
+                var response = await Client.PostAsync(new Uri(uri), login.ToJsonContent());
+                var result = await HandleResponseAsync<User>(response);
+                if (result.IsSucceeded())
+                {
+                    await UpdateSessionCookieAsync(response);
+                }
+
+                return result;
             }
             catch (Exception e)
             {

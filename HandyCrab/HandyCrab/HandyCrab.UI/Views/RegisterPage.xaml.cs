@@ -1,4 +1,6 @@
 ﻿using System;
+using HandyCrab.Common.Interfaces;
+using HandyCrab.UI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,14 +12,11 @@ namespace HandyCrab.Views
         public RegisterPage()
         {
             InitializeComponent();
-        }
+            var vm = (IRegisterViewModel)BindingContext;
 
-        private void SignUpButton_Clicked(object sender, EventArgs e)
-        {
-            //TODO: send data to the backend for verification, only redirect to search page if successful
-            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-            MasterPage.Detail = new NavigationPage(new SearchPage());
-            MasterPage.IsPresented = false;
+            //Bind vm events
+            vm.RegisterSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
+            vm.RegisterRejected += (sender, s) => DisplayAlert("Alert", s, "OK");
         }
     }
 }

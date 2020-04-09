@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HandyCrab.Common.Interfaces;
+using HandyCrab.UI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,22 +13,15 @@ namespace HandyCrab.Views
         {
             InitializeComponent();
             var vm = (ILoginViewModel) BindingContext;
-            vm.LoginSucceeded += (sender, args) =>
-            {
-                MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-                MasterPage.Detail = new NavigationPage(new SearchPage());
-                MasterPage.IsPresented = false;
-            };
 
+            //Bind vm events
+            vm.LoginSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
             vm.LoginRejected += (sender, s) => DisplayAlert("Alert", s, "OK");
         }
 
         private void NoAccountButton_Clicked(object sender, EventArgs e)
         {
-            //TODO: send data to the backend for verification, only redirect to search page if successful
-            MasterDetailPage MasterPage = App.Current.MainPage as MasterDetailPage;
-            MasterPage.Detail = new NavigationPage(new RegisterPage());
-            MasterPage.IsPresented = false;
+            NagivationHelper.GoTo(new RegisterPage());
         }
     }
 }
