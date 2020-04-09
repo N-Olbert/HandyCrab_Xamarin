@@ -3,13 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
              mc:Ignorable="d"
+             BindingContext="{x:Static ui:ModelViewLocator.LoginViewModel}"
+             x:DataType="{x:Type interfaces:ILoginViewModel}"
              x:Class="HandyCrab.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="E-Mail oder Benutzername"></Entry>
-            <Entry Placeholder="Password" IsPassword="True"></Entry>
-            <Button x:Name="LoginButton" Text="Login" Clicked="LoginButton_Clicked" ></Button>
+            <Entry Placeholder="E-Mail oder Benutzername" Text="{Binding UserName}"></Entry>
+            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"></Entry>
+            <Button x:Name="LoginButton" Text="Login" Command="{Binding LoginCommand}" ></Button>
             <Button x:Name="NoAccountButton" Text="Ich habe noch keinen Account" Clicked="NoAccountButton_Clicked" ></Button>
         </StackLayout>
     </ContentPage.Content>

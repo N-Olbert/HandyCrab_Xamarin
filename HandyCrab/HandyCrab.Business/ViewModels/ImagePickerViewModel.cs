@@ -52,9 +52,10 @@ namespace HandyCrab.Business.ViewModels
                     this.parentViewModel.IsBusy = true;
                     try
                     {
+                        var imageService = Factory.Get<IImageService>();
                         var image = this.takeImage
-                            ? await ImageService.TakeImageAsync()
-                            : await ImageService.SelectImageAsync();
+                            ? await imageService.TakeImageAsync()
+                            : await imageService.SelectImageAsync();
                         ((Image)parameter).Source = image;
                     }
                     catch

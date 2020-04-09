@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
-using HandyCrab.Business.ViewModels;
-using HandyCrab.Common.Interfaces;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using Xamarin.Forms;
 
-namespace HandyCrab.Business.Services
+namespace HandyCrab.Business.Services.BusinessObjects
 {
-    internal static class ImageService
+    internal class ImageService : IImageService
     {
-        public static async Task<ImageSource> TakeImageAsync()
+        public async Task<ImageSource> TakeImageAsync()
         {
             var mediaProvider = CrossMedia.Current;
             if (mediaProvider != null)
@@ -27,7 +25,7 @@ namespace HandyCrab.Business.Services
             return null;
         }
 
-        public static async Task<ImageSource> SelectImageAsync()
+        public async Task<ImageSource> SelectImageAsync()
         {
             var mediaProvider = CrossMedia.Current;
             if (mediaProvider != null)

@@ -10,6 +10,7 @@ namespace HandyCrab
     {
         public App()
         {
+            StartupHelper.Prepare();
             InitializeComponent();
 
             MainPage = new MainPage();
@@ -17,7 +18,6 @@ namespace HandyCrab
 
         protected override void OnStart()
         {
-            StartupHelper.Prepare();
         }
 
         protected override void OnSleep()
