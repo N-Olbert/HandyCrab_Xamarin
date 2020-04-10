@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              BindingContext="{x:Static ui:ModelViewLocator.LoginViewModel}"
              x:DataType="{x:Type interfaces:ILoginViewModel}"
-             x:Class="HandyCrab.Views.LoginPage">
+             x:Class="HandyCrab.UI.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout>
             <Entry Placeholder="E-Mail oder Benutzername" Text="{Binding UserName}"></Entry>

@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              BindingContext="{x:Static ui:ModelViewLocator.SearchViewModel}"
              x:DataType="{x:Type interfaces:ISearchViewModel}"
-             x:Class="HandyCrab.Views.SearchPage">
+             x:Class="HandyCrab.UI.Views.SearchPage">
     <ContentPage.Content>
         <Grid Margin="10" RowSpacing="20">
             <Grid.RowDefinitions>

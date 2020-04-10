@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace HandyCrab.Views
+namespace HandyCrab.UI.Views
 {
     class MasterPageItem
     {

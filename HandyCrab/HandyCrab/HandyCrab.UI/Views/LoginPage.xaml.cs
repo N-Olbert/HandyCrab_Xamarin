@@ -4,7 +4,7 @@ using HandyCrab.UI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HandyCrab.Views
+namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage

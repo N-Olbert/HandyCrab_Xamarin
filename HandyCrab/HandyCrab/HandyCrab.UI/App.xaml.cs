@@ -1,4 +1,4 @@
-﻿using HandyCrab.Views;
+﻿using HandyCrab.UI.Views;
 using System;
 using HandyCrab.Business;
 using Xamarin.Forms;

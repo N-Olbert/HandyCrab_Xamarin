@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using HandyCrab.Common;
 using HandyCrab.Common.Interfaces;
-using HandyCrab.UI.Views; //FIXME: adjust namespace
+using HandyCrab.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace HandyCrab.Views
+namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage

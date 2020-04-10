@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              BindingContext="{x:Static ui:ModelViewLocator.RegisterViewModel}"
              x:DataType="{x:Type interfaces:IRegisterViewModel}"
-             x:Class="HandyCrab.Views.RegisterPage">
+             x:Class="HandyCrab.UI.Views.RegisterPage">
   <ContentPage.Content>
       <StackLayout>
           <Entry Placeholder="E-Mail" Text="{Binding Email}"></Entry>

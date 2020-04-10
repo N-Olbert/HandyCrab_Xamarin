@@ -4,8 +4,8 @@
                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   mc:Ignorable="d"
-                  xmlns:views="clr-namespace:HandyCrab.Views"
-                  x:Class="HandyCrab.Views.MainPage">
+                  xmlns:views="clr-namespace:HandyCrab.UI.Views"
+                  x:Class="HandyCrab.UI.Views.MainPage">
 
     <MasterDetailPage.Master>
         <views:HamburgerMenuMasterPage />
