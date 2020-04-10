@@ -8,7 +8,15 @@ namespace HandyCrab.Common.Interfaces
         event EventHandler LoginSucceeded;
 
         event EventHandler<string> LoginRejected;
-        
+
+        string UserNamePlaceholder { get; }
+
+        string PasswordPlaceholder { get; }
+
+        string LoginButtonText { get; }
+
+        string NoAccountButtonText { get; }
+
         string UserName { get; set; }
 
         string Password { get; set; }

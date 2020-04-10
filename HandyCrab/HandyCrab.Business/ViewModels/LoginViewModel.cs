@@ -10,6 +10,10 @@ namespace HandyCrab.Business.ViewModels
 {
     internal class LoginViewModel : BaseViewModel, ILoginViewModel
     {
+        public string UserNamePlaceholder => "E-Mail oder Benutzername";
+        public string PasswordPlaceholder => "Passwort";
+        public string LoginButtonText => "Login";
+        public string NoAccountButtonText => "Ich habe noch keinen Account";
         private string userName;
         private string passWord;
         [NotNull]
@@ -28,6 +32,16 @@ namespace HandyCrab.Business.ViewModels
                 this.loginCommand.ChangeCanExecute();
             }
         }
+
+        /*[System.ComponentModel.DefaultValue("Test")]
+        public string UserNamePlaceholder
+        {
+            get => "Test";
+            set
+            {
+                SetProperty(ref this.userNamePlaceholder, "E-Mail2 oder Benutzername");
+            }
+        }*/
 
         public string Password
         {

@@ -11,10 +11,10 @@
              x:Class="HandyCrab.UI.Views.LoginPage">
     <ContentPage.Content>
         <StackLayout>
-            <Entry Placeholder="E-Mail oder Benutzername" Text="{Binding UserName}"></Entry>
-            <Entry Placeholder="Password" IsPassword="True" Text="{Binding Password}"></Entry>
-            <Button x:Name="LoginButton" Text="Login" Command="{Binding LoginCommand}" ></Button>
-            <Button x:Name="NoAccountButton" Text="Ich habe noch keinen Account" Clicked="NoAccountButton_Clicked" ></Button>
+            <Entry Placeholder="{Binding UserNamePlaceholder}" Text="{Binding UserName}"></Entry>
+            <Entry Placeholder="{Binding PasswordPlaceholder}" IsPassword="True" Text="{Binding Password}"></Entry>
+            <Button x:Name="LoginButton" Text="{Binding LoginButtonText}" Command="{Binding LoginCommand}" ></Button>
+            <Button x:Name="NoAccountButton" Text="{Binding NoAccountButtonText}" Clicked="NoAccountButton_Clicked" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

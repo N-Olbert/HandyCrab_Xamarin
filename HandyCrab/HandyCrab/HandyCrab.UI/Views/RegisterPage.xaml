@@ -11,10 +11,10 @@
              x:Class="HandyCrab.UI.Views.RegisterPage">
   <ContentPage.Content>
       <StackLayout>
-          <Entry Placeholder="E-Mail" Text="{Binding Email}"></Entry>
-          <Entry Placeholder="Benutzername" Text="{Binding UserName}"></Entry>
-          <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True"></Entry>
-          <Button x:Name="SignUpButton" Text="Sign Up" Command="{Binding RegisterCommand}" ></Button>
+          <Entry Placeholder="{Binding EmailPlaceholder}" Text="{Binding Email}"></Entry>
+          <Entry Placeholder="{Binding UserNamePlaceholder}" Text="{Binding UserName}"></Entry>
+          <Entry Placeholder="{Binding PasswordPlaceholder}" Text="{Binding Password}" IsPassword="True"></Entry>
+          <Button x:Name="SignUpButton" Text="{Binding SignUpButtonText}" Command="{Binding RegisterCommand}" ></Button>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
