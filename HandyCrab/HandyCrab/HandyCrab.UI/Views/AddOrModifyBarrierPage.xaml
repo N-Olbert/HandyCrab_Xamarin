@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             mc:Ignorable="d"
+             x:Class="HandyCrab.UI.Views.AddOrModifyBarrierPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10">
+                <Entry Placeholder="Titel"></Entry>
+                <Label Text="Position:" FontAttributes="Bold"/>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Longitude: " FontAttributes="Bold"/>
+                            <Span Text="Longitude"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Latitude: " FontAttributes="Bold"/>
+                            <Span Text="Latitude"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="PLZ: " FontAttributes="Bold"/>
+                            <Span Text="PLZ"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="City: " FontAttributes="Bold"/>
+                            <Span Text="City"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Row="0" Grid.Column="0" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=TakeImageAsync}"
+                        CommandParameter="{x:Reference ImageView}"
+                        Text="Bild aufnehmen"></Button>
+                    <Button Grid.Row="0" Grid.Column="1" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=SelectImageAsync}"
+                        CommandParameter="{x:Reference ImageView}"
+                        Text="Bild auswählen"></Button>
+                </Grid>
+                <Image x:Name="ImageView"></Image>
+                <Editor Placeholder="Beschreibung" AutoSize="TextChanges"></Editor>
+                <Editor Placeholder="Lösung (optional)" AutoSize="TextChanges"></Editor>
+                <Button x:Name="SubmitButton" Text="Änderungen speichern"></Button>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

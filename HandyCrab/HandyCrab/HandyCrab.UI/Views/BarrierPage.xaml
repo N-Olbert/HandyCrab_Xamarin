@@ -7,7 +7,7 @@
              x:Class="HandyCrab.UI.Views.BarrierPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
+            <StackLayout Margin="10">
                 <Label Text="Title" FontAttributes="Bold" />
                 <BoxView BackgroundColor="Chocolate" HeightRequest="200" />
                 <Label Text="Description" />
