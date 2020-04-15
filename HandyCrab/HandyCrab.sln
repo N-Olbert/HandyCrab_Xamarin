@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandyCrab.Common", "HandyCr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HandyCrab.Business", "HandyCrab.Business\HandyCrab.Business.csproj", "{9288B03C-3CEB-4921-A0BC-5102D4A5A890}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyCrab.Business.Tests", "HandyCrab.Business.Tests\HandyCrab.Business.Tests.csproj", "{C02E0ED9-486F-4852-BC4A-6AE69752102F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,18 @@ Global
 		{9288B03C-3CEB-4921-A0BC-5102D4A5A890}.Release|iPhone.Build.0 = Release|Any CPU
 		{9288B03C-3CEB-4921-A0BC-5102D4A5A890}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{9288B03C-3CEB-4921-A0BC-5102D4A5A890}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|iPhone.Build.0 = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C02E0ED9-486F-4852-BC4A-6AE69752102F}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

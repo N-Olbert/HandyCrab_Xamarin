@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using HandyCrab.Business.Services.BusinessObjects;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,14 +9,9 @@ namespace HandyCrab.Business.Services
     internal static class Factory
     {
         private static readonly IServiceProvider Provider = GetProvider();
+        internal static AsyncLocal<IServiceProvider> FTO_TestDataProvider { get; } = new AsyncLocal<IServiceProvider>();
 
-        [NotNull]
-        public static T Get<T>()
-        {
-            return Provider.GetService<T>();
-        }
-
-        private static IServiceProvider GetProvider()
+        internal static ServiceCollection FTO_GetStandardServiceCollection()
         {
             var serviceCollection = new ServiceCollection();
             serviceCollection.AddHttpClient();
@@ -23,8 +19,19 @@ namespace HandyCrab.Business.Services
             serviceCollection.AddHttpClient<ILoginClient, LoginClient>();
             serviceCollection.AddSingleton<IImageService, ImageService>();
             serviceCollection.AddSingleton<ISecureStorage, SecureStorage>();
+            serviceCollection.AddSingleton<IGeolocationService, GeolocationService>();
+            return serviceCollection;
+        }
 
-            return serviceCollection.BuildServiceProvider();
+        [NotNull]
+        public static T Get<T>()
+        {
+            return (FTO_TestDataProvider?.Value ?? Provider).GetService<T>();
+        }
+
+        private static IServiceProvider GetProvider()
+        {
+            return FTO_GetStandardServiceCollection().BuildServiceProvider();
         }
     }
 }

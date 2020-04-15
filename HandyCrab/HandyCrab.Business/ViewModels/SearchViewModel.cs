@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HandyCrab.Business.Services;
+using HandyCrab.Business.Services.BusinessObjects;
 using HandyCrab.Common.Interfaces;
 using JetBrains.Annotations;
 using Xamarin.Essentials;
@@ -32,7 +34,7 @@ namespace HandyCrab.Business.ViewModels
                 {
                     IsBusy = true;
                     var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
-                    var locationTask = Geolocation.GetLocationAsync(request);
+                    var locationTask = Factory.Get<IGeolocationService>().GetLocationAsync(request);
                     await UpdatePlacemarkAsync(locationTask);
                 }
                 finally
@@ -45,7 +47,7 @@ namespace HandyCrab.Business.ViewModels
         private async Task ApproximateCurrentGeolocationAsync()
         {
             //Fast approximation
-            var locationTask = Geolocation.GetLastKnownLocationAsync();
+            var locationTask = Factory.Get<IGeolocationService>().GetLastKnownLocationAsync();
             await UpdatePlacemarkAsync(locationTask);
 
             //very accurate, but takes time
@@ -62,7 +64,7 @@ namespace HandyCrab.Business.ViewModels
                     IEnumerable<Placemark> placemarks = null;
                     try
                     {
-                        placemarks = await Geocoding.GetPlacemarksAsync(loc);
+                        placemarks = await Factory.Get<IGeolocationService>().GetPlacemarksAsync(loc);
                     }
                     catch
                     {
