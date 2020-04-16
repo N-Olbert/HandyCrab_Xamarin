@@ -7,7 +7,7 @@ namespace HandyCrab.Common.Interfaces
     {
         event EventHandler LoginSucceeded;
 
-        event EventHandler<string> LoginRejected;
+        event EventHandler<Exception> LoginRejected;
 
         string UserNamePlaceholder { get; }
 

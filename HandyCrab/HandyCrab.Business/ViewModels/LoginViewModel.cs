@@ -21,7 +21,7 @@ namespace HandyCrab.Business.ViewModels
 
         public event EventHandler LoginSucceeded;
 
-        public event EventHandler<string> LoginRejected;
+        public event EventHandler<Exception> LoginRejected;
 
         public string UserName
         {
@@ -96,7 +96,7 @@ namespace HandyCrab.Business.ViewModels
                 }
                 else
                 {
-                    LoginRejected?.Invoke(this, user.ThrownException?.ToString());
+                    LoginRejected?.Invoke(this, user.ThrownException);
                 }
             }
 

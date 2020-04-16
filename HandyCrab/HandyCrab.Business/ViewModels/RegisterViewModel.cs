@@ -19,7 +19,7 @@ namespace HandyCrab.Business.ViewModels
         private readonly Command registerCommand;
         public event EventHandler RegisterSucceeded;
 
-        public event EventHandler<string> RegisterRejected;
+        public event EventHandler<Exception> RegisterRejected;
 
         public string Email
         {
@@ -73,7 +73,7 @@ namespace HandyCrab.Business.ViewModels
                 }
                 else
                 {
-                    RegisterRejected?.Invoke(this, user.ThrownException?.ToString());
+                    RegisterRejected?.Invoke(this, user.ThrownException);
                 }
             }
 
