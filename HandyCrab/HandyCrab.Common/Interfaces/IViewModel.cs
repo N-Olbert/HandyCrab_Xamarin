@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 
 namespace HandyCrab.Common.Interfaces
 {
@@ -11,5 +12,10 @@ namespace HandyCrab.Common.Interfaces
         /// Gets a value indicating whether this instance is busy.
         /// </summary>
         bool IsBusy { get; }
+
+        /// <summary>
+        /// Occurs when an error occurs.
+        /// </summary>
+        event EventHandler<string> OnError;
     }
 }

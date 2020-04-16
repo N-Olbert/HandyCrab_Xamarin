@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using HandyCrab.Common.Interfaces;
@@ -15,6 +16,8 @@ namespace HandyCrab.Business.ViewModels
             get => this.isBusy;
             set => SetProperty(ref this.isBusy, value);
         }
+
+        public event EventHandler<string> OnError;
 
         protected void SetProperty<T>(ref T backingStore, T value,
                                       [CallerMemberName]string propertyName = "")
