@@ -28,7 +28,7 @@ namespace HandyCrab.Business.Tests
 
             var delayedUpdateFunc = Task.Run(async () =>
             {
-                await Task.Delay(100);
+                await Task.Delay(1000);
                 return exactCurrentLocation;
             });
             A.CallTo(() => fake.GetLocationAsync(A<GeolocationRequest>._)).Returns(delayedUpdateFunc);
@@ -48,7 +48,7 @@ namespace HandyCrab.Business.Tests
             //Assert
             Task.Delay(5).Wait();
             Assert.AreEqual(instance.CurrentPlacemark.Locality, NYC);
-            Task.Delay(105).Wait();
+            Task.Delay(1005).Wait();
             Assert.AreEqual(instance.CurrentPlacemark.Locality, Berlin);
         }
     }

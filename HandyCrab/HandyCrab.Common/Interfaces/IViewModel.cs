@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using HandyCrab.Common.Entitys;
 
 namespace HandyCrab.Common.Interfaces
 {
@@ -17,5 +18,10 @@ namespace HandyCrab.Common.Interfaces
         /// Occurs when an error occurs.
         /// </summary>
         event EventHandler<string> OnError;
+
+        /// <summary>
+        /// Gets the current user. May be null if no user logged in.
+        /// </summary>
+        User CurrentUser { get; }
     }
 }

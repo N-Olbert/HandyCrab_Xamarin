@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using HandyCrab.Business.Fundamentals;
 using HandyCrab.Business.Services.BusinessObjects;
 using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,6 +21,7 @@ namespace HandyCrab.Business.Services
             serviceCollection.AddSingleton<IImageService, ImageService>();
             serviceCollection.AddSingleton<ISecureStorage, SecureStorage>();
             serviceCollection.AddSingleton<IGeolocationService, GeolocationService>();
+            serviceCollection.AddSingleton<IInternalRuntimeDataStorageService, InternalRuntimeDataStorageService>();
             return serviceCollection;
         }
 

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 using System.Web;
 using HandyCrab.Common.Entitys;
 using JetBrains.Annotations;
+using Newtonsoft.Json;
 
 namespace HandyCrab.Business.Services.BusinessObjects
 {
     public class BaseClient
     {
-        private const string CookieKey = "Cookie";
-
         [NotNull]
         protected HttpClient Client { get; }
 
@@ -51,7 +50,13 @@ namespace HandyCrab.Business.Services.BusinessObjects
             }
 
             var storageProvider = Factory.Get<ISecureStorage>();
-            await storageProvider.StoreAsync(CookieKey, cookie);
+            await storageProvider.StoreAsync(nameof(StorageSlot.CurrentUserCookie), cookie);
+        }
+
+        protected async Task UpdateCurrentUserAsync(User user)
+        {
+            var storageProvider = Factory.Get<ISecureStorage>();
+            await storageProvider.StoreAsync(nameof(StorageSlot.CurrentUser), JsonConvert.SerializeObject(user));
         }
 
         private static string GetCookie(HttpResponseMessage message)

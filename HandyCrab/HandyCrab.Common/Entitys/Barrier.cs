@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 
 namespace HandyCrab.Common.Entitys
 {
-    class Barrier
+    public class Barrier : IReadOnlyBarrier
     {
         [JsonProperty("_id")]
         public string Id { get; set; }

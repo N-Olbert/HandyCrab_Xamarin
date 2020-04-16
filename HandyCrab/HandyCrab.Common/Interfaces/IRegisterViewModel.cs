@@ -7,7 +7,7 @@ namespace HandyCrab.Common.Interfaces
     {
         event EventHandler RegisterSucceeded;
 
-        event EventHandler<string> RegisterRejected;
+        event EventHandler<Exception> RegisterRejected;
 
         string EmailPlaceholder { get; }
 

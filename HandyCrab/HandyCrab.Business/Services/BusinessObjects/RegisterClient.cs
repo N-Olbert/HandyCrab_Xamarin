@@ -25,6 +25,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     await UpdateSessionCookieAsync(response);
                 }
 
+                await UpdateCurrentUserAsync(result.Value);
                 return result;
             }
             catch (Exception e)
