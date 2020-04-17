@@ -123,7 +123,52 @@
   <data name="AboutPageTitle" xml:space="preserve">
     <value>Über</value>
   </data>
+  <data name="ChangeLocationButtonText" xml:space="preserve">
+    <value>Suchposition anpassen</value>
+  </data>
+  <data name="CityLabel" xml:space="preserve">
+    <value>Stadt: </value>
+  </data>
+  <data name="EmailOrUsernamePlaceholder" xml:space="preserve">
+    <value>E-Mail oder Benutzername</value>
+  </data>
+  <data name="EmailPlaceholder" xml:space="preserve">
+    <value>E-Mail</value>
+  </data>
   <data name="GitHubProjectLink" xml:space="preserve">
     <value>https://www.github.com/</value>
+  </data>
+  <data name="LatitudeLabel" xml:space="preserve">
+    <value>Breitengrad: </value>
+  </data>
+  <data name="LocationToSearchLabel" xml:space="preserve">
+    <value>Suchposition:</value>
+  </data>
+  <data name="LoginButtonText" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="LongitudeLabel" xml:space="preserve">
+    <value>Längengrad: </value>
+  </data>
+  <data name="NoAccountButtonText" xml:space="preserve">
+    <value>Ich habe noch keinen Account</value>
+  </data>
+  <data name="PasswordPlaceholder" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
+  <data name="PostcodeLabel" xml:space="preserve">
+    <value>PLZ: </value>
+  </data>
+  <data name="SearchButtonText" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
+  <data name="SearchRadiusPickerTitle" xml:space="preserve">
+    <value>Suchradius</value>
+  </data>
+  <data name="SignUpButtonText" xml:space="preserve">
+    <value>Registrieren</value>
+  </data>
+  <data name="UsernamePlaceHolder" xml:space="preserve">
+    <value>Benutzername</value>
   </data>
 </root>

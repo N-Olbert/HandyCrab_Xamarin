@@ -11,10 +11,6 @@ namespace HandyCrab.Business.ViewModels
 {
     internal class LoginViewModel : BaseViewModel, ILoginViewModel
     {
-        public string UserNamePlaceholder => "E-Mail oder Benutzername";
-        public string PasswordPlaceholder => "Passwort";
-        public string LoginButtonText => "Login";
-        public string NoAccountButtonText => "Ich habe noch keinen Account";
         private string userName;
         private string passWord;
         [NotNull]

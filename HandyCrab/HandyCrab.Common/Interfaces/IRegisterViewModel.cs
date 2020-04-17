@@ -9,14 +9,6 @@ namespace HandyCrab.Common.Interfaces
 
         event EventHandler<Exception> RegisterRejected;
 
-        string EmailPlaceholder { get; }
-
-        string UserNamePlaceholder { get; }
-
-        string PasswordPlaceholder { get; }
-
-        string SignUpButtonText { get; }
-
         string UserName { get; set; }
 
         string UserNameValidationRegex { get; }
