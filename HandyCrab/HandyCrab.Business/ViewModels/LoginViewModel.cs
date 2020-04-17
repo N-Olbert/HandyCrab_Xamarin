@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
@@ -28,30 +29,33 @@ namespace HandyCrab.Business.ViewModels
             get => this.userName;
             set
             {
-                SetProperty(ref this.userName, value);
+                SetProperty(ref this.userName, value?.TrimEnd(' '));
+                RaisePropertyChanged(nameof(IsUserNameValid));
                 this.loginCommand.ChangeCanExecute();
             }
         }
 
-        /*[System.ComponentModel.DefaultValue("Test")]
-        public string UserNamePlaceholder
-        {
-            get => "Test";
-            set
-            {
-                SetProperty(ref this.userNamePlaceholder, "E-Mail2 oder Benutzername");
-            }
-        }*/
+        public virtual string UserNameValidationRegex => "(^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$)|([a-zA-Z0-9_]{4,16})";
 
+        public bool IsUserNameValid =>
+            !string.IsNullOrEmpty(UserName) &&
+            Regex.IsMatch(UserName, UserNameValidationRegex, RegexOptions.Compiled);
         public string Password
         {
             get => this.passWord;
             set
             {
                 SetProperty(ref this.passWord, value);
+                RaisePropertyChanged(nameof(IsPasswordValid));
                 this.loginCommand.ChangeCanExecute();
             }
         }
+
+        public string PasswordValidationRegex => "[a-zA-Z0-9\"!#$%&'()*+,\\-./:;<=>?@\\[\\]]{6,100}";
+
+        public bool IsPasswordValid =>
+            !string.IsNullOrEmpty(Password) &&
+            Regex.IsMatch(Password, PasswordValidationRegex, RegexOptions.Compiled);
 
         [NotNull]
         public ICommand LoginCommand
@@ -73,8 +77,7 @@ namespace HandyCrab.Business.ViewModels
 
         private bool CanExecuteLoginAction()
         {
-            //Todo: use same regex as backend
-            return !IsBusy && !string.IsNullOrEmpty(this.userName) && !string.IsNullOrEmpty(this.passWord);
+            return !IsBusy && IsUserNameValid && IsPasswordValid;
         }
 
         private async void LoginAction()

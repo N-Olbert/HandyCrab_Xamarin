@@ -37,8 +37,13 @@ namespace HandyCrab.Business.ViewModels
             if (!EqualityComparer<T>.Default.Equals(backingStore, value))
             {
                 backingStore = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+                RaisePropertyChanged(propertyName);
             }
+        }
+
+        protected void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

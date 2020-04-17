@@ -19,7 +19,15 @@ namespace HandyCrab.Common.Interfaces
 
         string UserName { get; set; }
 
+        string UserNameValidationRegex { get; }
+
+        bool IsUserNameValid { get; }
+
         string Password { get; set; }
+
+        string PasswordValidationRegex { get; }
+
+        bool IsPasswordValid { get; }
 
         ICommand LoginCommand { get; }
     }

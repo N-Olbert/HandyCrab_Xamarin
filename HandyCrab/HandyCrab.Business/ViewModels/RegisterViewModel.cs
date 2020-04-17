@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Windows.Input;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
@@ -26,10 +27,17 @@ namespace HandyCrab.Business.ViewModels
             get => this.email;
             set
             {
-                SetProperty(ref this.email, value);
+                SetProperty(ref this.email, value?.TrimEnd(' '));
+                RaisePropertyChanged(nameof(IsEmailValid));
                 this.registerCommand.ChangeCanExecute();
             }
         }
+
+        public string EmailValidationRegex => "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
+
+        public bool IsEmailValid => !string.IsNullOrEmpty(Email) && Regex.IsMatch(Email, EmailValidationRegex, RegexOptions.Compiled);
+
+        public override string UserNameValidationRegex => "[a-zA-Z0-9_]{4,16}";
 
         public ICommand RegisterCommand => this.registerCommand;
 

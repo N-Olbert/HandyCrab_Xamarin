@@ -11,7 +11,8 @@
              x:Class="HandyCrab.UI.Views.RegisterPage">
   <ContentPage.Content>
       <StackLayout>
-          <Entry Placeholder="{Binding EmailPlaceholder}" Text="{Binding Email}"></Entry>
+          <Entry Placeholder="{Binding EmailPlaceholder}" Text="{Binding Email}" ></Entry>
+            <Label Text="Fehler" IsVisible="{Binding IsEmailValid, Converter={x:Static ui:InverseBoolConverter.Converter}}"/>  
           <Entry Placeholder="{Binding UserNamePlaceholder}" Text="{Binding UserName}"></Entry>
           <Entry Placeholder="{Binding PasswordPlaceholder}" Text="{Binding Password}" IsPassword="True"></Entry>
           <Button x:Name="SignUpButton" Text="{Binding SignUpButtonText}" Command="{Binding RegisterCommand}" ></Button>
