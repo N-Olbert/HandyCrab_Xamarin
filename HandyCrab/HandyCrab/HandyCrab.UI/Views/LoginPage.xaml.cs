@@ -16,7 +16,7 @@ namespace HandyCrab.UI.Views
 
             //Bind vm events
             vm.LoginSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
-            vm.LoginRejected += (sender, s) => DisplayAlert("Alert", s, "OK");
+            vm.LoginRejected += (sender, s) => DisplayAlert("Alert", s.Message, "OK");
         }
 
         private void NoAccountButton_Clicked(object sender, EventArgs e)

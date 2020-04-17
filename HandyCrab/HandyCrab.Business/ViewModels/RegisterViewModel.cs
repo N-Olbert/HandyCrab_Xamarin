@@ -10,10 +10,6 @@ namespace HandyCrab.Business.ViewModels
 {
     internal class RegisterViewModel : LoginViewModel, IRegisterViewModel
     {
-        public string EmailPlaceholder => "E-Mail";
-        public new string UserNamePlaceholder => "Benutzername";
-        public new string PasswordPlaceholder => "Passwort";
-        public string SignUpButtonText => "Registrieren";
         private string email;
         [NotNull]
         private readonly Command registerCommand;

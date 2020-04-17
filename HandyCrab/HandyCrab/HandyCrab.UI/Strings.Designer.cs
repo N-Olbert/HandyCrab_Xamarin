@@ -79,11 +79,146 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchposition anpassen ähnelt.
+        /// </summary>
+        internal static string ChangeLocationButtonText {
+            get {
+                return ResourceManager.GetString("ChangeLocationButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Stadt:  ähnelt.
+        /// </summary>
+        internal static string CityLabel {
+            get {
+                return ResourceManager.GetString("CityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die E-Mail oder Benutzername ähnelt.
+        /// </summary>
+        internal static string EmailOrUsernamePlaceholder {
+            get {
+                return ResourceManager.GetString("EmailOrUsernamePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die E-Mail ähnelt.
+        /// </summary>
+        internal static string EmailPlaceholder {
+            get {
+                return ResourceManager.GetString("EmailPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die https://www.github.com/ ähnelt.
         /// </summary>
         internal static string GitHubProjectLink {
             get {
                 return ResourceManager.GetString("GitHubProjectLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Breitengrad:  ähnelt.
+        /// </summary>
+        internal static string LatitudeLabel {
+            get {
+                return ResourceManager.GetString("LatitudeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchposition: ähnelt.
+        /// </summary>
+        internal static string LocationToSearchLabel {
+            get {
+                return ResourceManager.GetString("LocationToSearchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Login ähnelt.
+        /// </summary>
+        internal static string LoginButtonText {
+            get {
+                return ResourceManager.GetString("LoginButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Längengrad:  ähnelt.
+        /// </summary>
+        internal static string LongitudeLabel {
+            get {
+                return ResourceManager.GetString("LongitudeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ich habe noch keinen Account ähnelt.
+        /// </summary>
+        internal static string NoAccountButtonText {
+            get {
+                return ResourceManager.GetString("NoAccountButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Passwort ähnelt.
+        /// </summary>
+        internal static string PasswordPlaceholder {
+            get {
+                return ResourceManager.GetString("PasswordPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PLZ:  ähnelt.
+        /// </summary>
+        internal static string PostcodeLabel {
+            get {
+                return ResourceManager.GetString("PostcodeLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchen ähnelt.
+        /// </summary>
+        internal static string SearchButtonText {
+            get {
+                return ResourceManager.GetString("SearchButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchradius ähnelt.
+        /// </summary>
+        internal static string SearchRadiusPickerTitle {
+            get {
+                return ResourceManager.GetString("SearchRadiusPickerTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Registrieren ähnelt.
+        /// </summary>
+        internal static string SignUpButtonText {
+            get {
+                return ResourceManager.GetString("SignUpButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Benutzername ähnelt.
+        /// </summary>
+        internal static string UsernamePlaceHolder {
+            get {
+                return ResourceManager.GetString("UsernamePlaceHolder", resourceCulture);
             }
         }
     }

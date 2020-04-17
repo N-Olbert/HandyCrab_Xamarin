@@ -11,8 +11,8 @@
              x:Class="HandyCrab.UI.Views.AboutPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding AboutText}"/>
-            <Button Margin="0,10,0,0" Text="{Binding GithubLink}"
+            <Label Text="{x:Static ui:Strings.AboutPageContentText}"/>
+            <Button Margin="0,10,0,0" Text="{x:Static ui:Strings.GitHubProjectLink}"
                     Command="{Binding OpenGitHubLinkCommand}" />
         </StackLayout>
     </ContentPage.Content>

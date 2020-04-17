@@ -21,11 +21,11 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <StackLayout Grid.Column="0" Grid.Row="0">
-                <Label Text="Location to search:" FontAttributes="Bold"/>
+                <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Longitude: " FontAttributes="Bold"/>
+                            <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
                             <Span Text="{Binding CurrentPlacemark.Location.Longitude}"/>
                         </FormattedString>
                     </Label.FormattedText>
@@ -34,7 +34,7 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Latitude: " FontAttributes="Bold"/>
+                            <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
                             <Span Text="{Binding CurrentPlacemark.Location.Latitude}"/>
                         </FormattedString>
                     </Label.FormattedText>
@@ -43,7 +43,7 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="PLZ: " FontAttributes="Bold"/>
+                            <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
                             <Span Text="{Binding CurrentPlacemark.PostalCode}"/>
                         </FormattedString>
                     </Label.FormattedText>
@@ -52,19 +52,19 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="City: " FontAttributes="Bold"/>
+                            <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
                             <Span Text="{Binding CurrentPlacemark.Locality}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
             </StackLayout>
 
-            <Button Grid.Column="1" Grid.Row="0" x:Name="ChangeLocationButton" Text="Change Location" VerticalOptions="Center"
+            <Button Grid.Column="1" Grid.Row="0" x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
                 HorizontalOptions="Center"></Button>
 
             <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                 <Label Text="Pick a search radius" FontAttributes="Bold"/>
-                <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="Search Radius" SelectedIndex="0">
+                <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" SelectedIndex="0">
                     <Picker.Items>
                         <x:String>5m</x:String>
                         <x:String>10m</x:String>
@@ -73,7 +73,7 @@
                 </Picker>
             </StackLayout>
 
-            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="SearchButton" Text="Search" Clicked="SearchButton_Clicked"></Button>
+            <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Clicked="SearchButton_Clicked"></Button>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

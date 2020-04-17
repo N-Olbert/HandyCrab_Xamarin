@@ -16,7 +16,7 @@ namespace HandyCrab.UI.Views
 
             //Bind vm events
             vm.RegisterSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
-            vm.RegisterRejected += (sender, s) => DisplayAlert("Alert", s, "OK");
+            vm.RegisterRejected += (sender, s) => DisplayAlert("Alert", s.Message, "OK");
         }
     }
 }
