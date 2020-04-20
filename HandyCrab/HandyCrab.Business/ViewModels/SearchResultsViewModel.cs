@@ -45,6 +45,7 @@ namespace HandyCrab.Business.ViewModels
                 case StorageSlot.BarrierSearchRadius:
                 case StorageSlot.BarrierSearchResults:
                 case StorageSlot.BarrierSearchPlacemark:
+                    UpdateSearchResults();
                     break;
             }
         }

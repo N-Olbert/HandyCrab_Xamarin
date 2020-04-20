@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
+using HandyCrab.Common.Entitys;
+using JetBrains.Annotations;
 
 namespace HandyCrab.Common.Interfaces
 {
@@ -7,22 +9,25 @@ namespace HandyCrab.Common.Interfaces
     {
         event EventHandler RegisterSucceeded;
 
-        event EventHandler<Exception> RegisterRejected;
+        event EventHandler<Failable> RegisterRejected;
 
         string UserName { get; set; }
 
+        [NotNull]
         string UserNameValidationRegex { get; }
 
         bool IsUserNameValid { get; }
 
         string Password { get; set; }
 
+        [NotNull]
         string PasswordValidationRegex { get; }
 
         bool IsPasswordValid { get; }
 
         string Email { get; set; }
-        
+
+        [NotNull]
         string EmailValidationRegex { get; }
 
         bool IsEmailValid { get; }

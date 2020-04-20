@@ -58,8 +58,9 @@ namespace HandyCrab.Business.ViewModels
                             : await imageService.SelectImageAsync();
                         ((Image)parameter).Source = image;
                     }
-                    catch
+                    catch(Exception error)
                     {
+                        this.parentViewModel.RaiseOnError(error);
                     }
 
                     this.parentViewModel.IsBusy = false;

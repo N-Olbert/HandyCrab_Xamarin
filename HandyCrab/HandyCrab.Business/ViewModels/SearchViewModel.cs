@@ -128,7 +128,7 @@ namespace HandyCrab.Business.ViewModels
             }
             catch (Exception e)
             {
-                //TODO: Implement Exception handling
+                RaiseOnError(e);
             }
         }
     }

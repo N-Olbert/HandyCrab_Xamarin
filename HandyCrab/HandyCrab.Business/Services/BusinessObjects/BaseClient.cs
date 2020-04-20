@@ -34,10 +34,19 @@ namespace HandyCrab.Business.Services.BusinessObjects
                         ? (await response.Content.ReadAsStringAsync()).DeserializeJson<T>()
                         : default;
                     return new Failable<T>(obj, response.StatusCode);
-
+                case HttpStatusCode.Unauthorized:
+                case HttpStatusCode.BadRequest:
+                case HttpStatusCode.InternalServerError:
+                case HttpStatusCode.NotFound:
+                    var errorCode = response.Content != null
+                        ? (await response.Content.ReadAsStringAsync()).DeserializeJson<ErrorResponse>()
+                        : default;
+                    return errorCode != null
+                        ? new Failable<T>(default, errorCode.ErrorCode, response.StatusCode)
+                        : new Failable<T>(default, response.StatusCode);
                 default:
-                    //TODO
-                    throw new ArgumentOutOfRangeException();
+                    var exception = new ArgumentOutOfRangeException(nameof(response.StatusCode), "Invalid status code form backend.");
+                    return new Failable<T>(default, response.StatusCode, exception);
             }
         }
 
@@ -78,6 +87,12 @@ namespace HandyCrab.Business.Services.BusinessObjects
             }
 
             return string.Empty;
+        }
+
+        private class ErrorResponse
+        {
+            [JsonProperty("errorCode")]
+            public int ErrorCode { get; set; }
         }
     }
 }

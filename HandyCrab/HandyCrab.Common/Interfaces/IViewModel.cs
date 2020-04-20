@@ -17,7 +17,7 @@ namespace HandyCrab.Common.Interfaces
         /// <summary>
         /// Occurs when an error occurs.
         /// </summary>
-        event EventHandler<string> OnError;
+        event EventHandler<Failable> OnError;
 
         /// <summary>
         /// Gets the current user. May be null if no user logged in.

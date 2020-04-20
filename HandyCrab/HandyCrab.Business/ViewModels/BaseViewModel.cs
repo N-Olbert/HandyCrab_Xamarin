@@ -14,20 +14,19 @@ namespace HandyCrab.Business.ViewModels
         private bool isBusy;
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public event EventHandler<Failable> OnError;
+
         public bool IsBusy
         {
             get => this.isBusy;
             set => SetProperty(ref this.isBusy, value);
         }
 
-        public event EventHandler<string> OnError;
-
         public User CurrentUser
         {
             get
             {
-                var jsonUser = Factory.Get<ISecureStorage>().GetAsync(nameof(StorageSlot.CurrentUser))?.GetAwaiter().GetResult();
-                return string.IsNullOrEmpty(jsonUser) ? null : JsonConvert.DeserializeObject<User>(jsonUser);
+                return GetCurrentUser();
             }
         }
 
@@ -44,6 +43,24 @@ namespace HandyCrab.Business.ViewModels
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void RaiseOnError(Exception exception)
+        {
+            OnError?.Invoke(this, new Failable(exception));
+        }
+
+        private static User GetCurrentUser()
+        {
+            try
+            {
+                var jsonUser = Factory.Get<ISecureStorage>().GetAsync(nameof(StorageSlot.CurrentUser))?.GetAwaiter().GetResult();
+                return string.IsNullOrEmpty(jsonUser) ? null : JsonConvert.DeserializeObject<User>(jsonUser);
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }
