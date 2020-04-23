@@ -14,6 +14,11 @@ namespace HandyCrab.UI
         public static ISearchViewModel SearchViewModel => ViewModelFactory.GetInstance<ISearchViewModel>();
 
         /// <summary>
+        /// Gets the search results view model.
+        /// </summary>
+        public static ISearchResultsViewModel SearchResultsViewModel => ViewModelFactory.GetInstance<ISearchResultsViewModel>();
+
+        /// <summary>
         /// Gets the about view model.
         /// </summary>
         public static IAboutViewModel AboutViewModel => ViewModelFactory.GetInstance<IAboutViewModel>();

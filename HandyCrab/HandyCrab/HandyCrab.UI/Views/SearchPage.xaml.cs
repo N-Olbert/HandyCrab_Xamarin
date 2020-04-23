@@ -17,12 +17,9 @@ namespace HandyCrab.UI.Views
         public SearchPage()
         {
             InitializeComponent();
-        }
+            var vm = (ISearchViewModel)BindingContext;
 
-        async private void SearchButton_Clicked(object sender, EventArgs e)
-        {
-            //TODO: send search Request to Backend and return Results
-            await Navigation.PushAsync(new SearchResultsPage());
+            vm.SearchSucceeded += (sender, args) => Navigation.PushAsync(new SearchResultsPage());
         }
     }
 }

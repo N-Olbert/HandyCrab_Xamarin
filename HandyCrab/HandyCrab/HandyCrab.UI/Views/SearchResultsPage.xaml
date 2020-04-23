@@ -3,7 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             xmlns:entities="clr-namespace:HandyCrab.Common.Entitys;assembly=HandyCrab.Common"
+             xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
              mc:Ignorable="d"
+             BindingContext="{x:Static ui:ModelViewLocator.SearchResultsViewModel}"
+             x:DataType="{x:Type interfaces:ISearchResultsViewModel}"
              x:Class="HandyCrab.UI.Views.SearchResultsPage">
     <ContentPage.Content>
         <ScrollView>
@@ -24,8 +29,32 @@
                     </Picker.Items>
                 </Picker>
                 <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+                    <ListView x:Name="BarrierView" ItemsSource="{Binding SearchResults}" RowHeight="130">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="entities:IReadOnlyBarrier">
+                                <ViewCell>
+                                    <ViewCell.View>
+                                        <Grid BackgroundColor="LightGray" Margin="2" Padding="2">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="20" />
+                                                <RowDefinition Height="100" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="100" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Column="0" Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold"/>
+                                            <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" />
+                                            <!--<BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />-->
+                                            <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Picture}"></Image>
+                                        </Grid>
+                                    </ViewCell.View>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                     <!--TODO: Use a Listview to build this with data from the backend-->
-                    <Grid BackgroundColor="LightGray" Padding="10">
+                    <!--<Grid BackgroundColor="LightGray" Padding="10">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="100" />
@@ -115,7 +144,7 @@
                         <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
                         <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
                         <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
+                    </Grid>-->
                 </StackLayout>
             </Grid>
         </ScrollView>
