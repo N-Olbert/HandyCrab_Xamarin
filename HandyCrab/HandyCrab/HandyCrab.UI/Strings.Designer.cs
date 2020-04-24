@@ -115,6 +115,78 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist keine gültige E-Mail Adresse. ähnelt.
+        /// </summary>
+        internal static string Error_InvalidMail {
+            get {
+                return ResourceManager.GetString("Error_InvalidMail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist kein gültiges Passwort. ähnelt.
+        /// </summary>
+        internal static string Error_InvalidPassword {
+            get {
+                return ResourceManager.GetString("Error_InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist kein gültiger Benutzername. ähnelt.
+        /// </summary>
+        internal static string Error_InvalidUsername {
+            get {
+                return ResourceManager.GetString("Error_InvalidUsername", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Diese E-Mail Adresse wird bereits verwendet. ähnelt.
+        /// </summary>
+        internal static string Error_MailAlreadyInUse {
+            get {
+                return ResourceManager.GetString("Error_MailAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die App konnte keine Verbindung zum Server aufbauen. Bitte stellen Sie sicher, dass eine Internetverbindung besteht. ähnelt.
+        /// </summary>
+        internal static string Error_NetworkTimeout {
+            get {
+                return ResourceManager.GetString("Error_NetworkTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler ähnelt.
+        /// </summary>
+        internal static string Error_UnknownError {
+            get {
+                return ResourceManager.GetString("Error_UnknownError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dieser Benutzername wird bereits verwendet. ähnelt.
+        /// </summary>
+        internal static string Error_UsernameAlreadyInUse {
+            get {
+                return ResourceManager.GetString("Error_UsernameAlreadyInUse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Der Benutzername oder das Passwort ist falsch. ähnelt.
+        /// </summary>
+        internal static string Error_WrongLogin {
+            get {
+                return ResourceManager.GetString("Error_WrongLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die https://www.github.com/ ähnelt.
         /// </summary>
         internal static string GitHubProjectLink {

@@ -45,7 +45,6 @@
                                             </Grid.ColumnDefinitions>
                                             <Label Grid.Column="0" Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold"/>
                                             <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" />
-                                            <!--<BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />-->
                                             <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Picture}"></Image>
                                         </Grid>
                                     </ViewCell.View>
@@ -53,98 +52,6 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <!--TODO: Use a Listview to build this with data from the backend-->
-                    <!--<Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>
-                    <Grid BackgroundColor="LightGray" Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="100" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="100" />
-                        </Grid.ColumnDefinitions>
-                        <Label Grid.Column="0" Grid.Row="0" Text="barrier title" FontAttributes="Bold"/>
-                        <Label Grid.Column="0" Grid.Row="1" Text="Barrier description" />
-                        <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Chocolate" />
-                    </Grid>-->
                 </StackLayout>
             </Grid>
         </ScrollView>
