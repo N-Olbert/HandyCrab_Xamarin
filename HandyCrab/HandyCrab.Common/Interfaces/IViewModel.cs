@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Input;
 using HandyCrab.Common.Entitys;
 
 namespace HandyCrab.Common.Interfaces
@@ -23,5 +24,10 @@ namespace HandyCrab.Common.Interfaces
         /// Gets the current user. May be null if no user logged in.
         /// </summary>
         User CurrentUser { get; }
+
+        /// <summary>
+        /// Gets the logout command.
+        /// </summary>
+        ICommand LogoutCommand { get; }
     }
 }

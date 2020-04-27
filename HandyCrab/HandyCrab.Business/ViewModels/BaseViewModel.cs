@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
@@ -11,23 +12,38 @@ namespace HandyCrab.Business.ViewModels
 {
     internal abstract class BaseViewModel : IViewModel
     {
+        private static readonly ICommand logoutCommand = new LogoutCommandImpl();
         private bool isBusy;
+
+        /// <summary>
+        /// Event which occurs when the singed in user was changed.
+        /// Note: It is possible (although unlikely) that the new user is the same user as the old one.
+        /// </summary>
+        protected static event EventHandler UserChanged;
+
+        /// <inheritdoc />
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <inheritdoc />
         public event EventHandler<Failable> OnError;
 
+        /// <inheritdoc />
         public bool IsBusy
         {
             get => this.isBusy;
             set => SetProperty(ref this.isBusy, value);
         }
 
+        /// <inheritdoc />
         public User CurrentUser
         {
-            get
-            {
-                return GetCurrentUser();
-            }
+            get => GetCurrentUser();
+        }
+
+        /// <inheritdoc />
+        public ICommand LogoutCommand
+        {
+            get => logoutCommand;
         }
 
         protected void SetProperty<T>(ref T backingStore, T value,
@@ -45,6 +61,11 @@ namespace HandyCrab.Business.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void RaiseUserChanged()
+        {
+            UserChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         public void RaiseOnError(Exception exception)
         {
             OnError?.Invoke(this, new Failable(exception));
@@ -54,7 +75,7 @@ namespace HandyCrab.Business.ViewModels
         {
             try
             {
-                var jsonUser = Factory.Get<ISecureStorage>().GetAsync(nameof(StorageSlot.CurrentUser))?.GetAwaiter().GetResult();
+                var jsonUser = Factory.Get<ISecureStorage>().GetAsync(nameof(SecureStorageSlot.CurrentUser))?.GetAwaiter().GetResult();
                 return string.IsNullOrEmpty(jsonUser) ? null : JsonConvert.DeserializeObject<User>(jsonUser);
             }
             catch
@@ -62,5 +83,43 @@ namespace HandyCrab.Business.ViewModels
                 return null;
             }
         }
+
+        #region LogoutCommandImpl
+        /// <summary>
+        /// Implementation of the logout command.
+        /// </summary>
+        private class LogoutCommandImpl : ICommand
+        {
+            /// <inheritdoc />
+            public event EventHandler CanExecuteChanged;
+
+            /// <summary>
+            /// Initializes a new instance of the <see cref="LogoutCommandImpl"/> class.
+            /// </summary>
+            internal LogoutCommandImpl()
+            {
+                UserChanged += (sender, args) => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+            }
+
+            /// <inheritdoc />
+            public bool CanExecute(object parameter) => GetCurrentUser() != null;
+
+            /// <inheritdoc />
+            public async void Execute(object parameter)
+            {
+                //async void is ok (event handler)
+                try
+                {
+                    await Factory.Get<ILogoutClient>().LogoutAsync();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+
+                UserChanged?.Invoke(this, EventArgs.Empty);
+            }
+        }
+        #endregion
     }
 }

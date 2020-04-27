@@ -97,6 +97,8 @@ namespace HandyCrab.Business.ViewModels
                 {
                     LoginRejected?.Invoke(this, user);
                 }
+
+                RaiseUserChanged();
             }
 
             this.loginCommand.ChangeCanExecute();

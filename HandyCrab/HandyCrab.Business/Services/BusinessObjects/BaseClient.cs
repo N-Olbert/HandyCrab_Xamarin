@@ -20,6 +20,14 @@ namespace HandyCrab.Business.Services.BusinessObjects
             this.Client = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
+        protected async Task<HttpRequestMessage> GetHttpMessageWithSessionCookie(string uri, HttpMethod httpMethod)
+        {
+            var cookie = await GetSessionCookieAsync();
+            var message = new HttpRequestMessage(httpMethod, uri);
+            message.Headers.Add("Cookie", cookie);
+            return message;
+        }
+
         protected async Task<Failable<T>> HandleResponseAsync<T>(HttpResponseMessage response)
         {
             if (response == null)
@@ -53,19 +61,20 @@ namespace HandyCrab.Business.Services.BusinessObjects
         protected async Task UpdateSessionCookieAsync(HttpResponseMessage message)
         {
             var cookie = GetCookie(message);
-            if (string.IsNullOrEmpty(cookie))
-            {
-                throw new InvalidOperationException("No cookie found");
-            }
-
             var storageProvider = Factory.Get<ISecureStorage>();
-            await storageProvider.StoreAsync(nameof(StorageSlot.CurrentUserCookie), cookie);
+            await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUserCookie), cookie);
         }
 
         protected async Task UpdateCurrentUserAsync(User user)
         {
             var storageProvider = Factory.Get<ISecureStorage>();
-            await storageProvider.StoreAsync(nameof(StorageSlot.CurrentUser), JsonConvert.SerializeObject(user));
+            await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUser), JsonConvert.SerializeObject(user));
+        }
+
+        protected async Task<string> GetSessionCookieAsync()
+        {
+            var storageProvider = Factory.Get<ISecureStorage>();
+            return $"JSESSIONID={await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserCookie))}";
         }
 
         private static string GetCookie(HttpResponseMessage message)

@@ -5,7 +5,5 @@
         BarrierSearchRadius,
         BarrierSearchResults,
         BarrierSearchPlacemark,
-        CurrentUser,
-        CurrentUserCookie,
     }
 }
