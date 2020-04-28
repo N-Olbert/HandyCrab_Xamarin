@@ -51,7 +51,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                         : default;
                     return errorCode != null
                         ? new Failable<T>(default, errorCode.ErrorCode, response.StatusCode)
-                        : new Failable<T>(default, response.StatusCode);
+                        : new Failable<T>(default, Failable.GenericErrorCode, response.StatusCode);
                 default:
                     var exception = new ArgumentOutOfRangeException(nameof(response.StatusCode), "Invalid status code form backend.");
                     return new Failable<T>(default, response.StatusCode, exception);
