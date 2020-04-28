@@ -5,7 +5,7 @@ namespace HandyCrab.Common.Entitys
 {
     public class Failable<T> : Failable
     {
-        public T Value { get; }
+        public T Value { get; private set; }
 
         public override bool IsSucceeded() => base.IsSucceeded() && Value != null;
 
@@ -33,6 +33,17 @@ namespace HandyCrab.Common.Entitys
         {
             ErrorCode = GenericErrorCode;
             ThrownException = exception;
+        }
+
+        public Failable<TNew>ConvertDown<TNew>()
+        {
+            return new Failable<TNew>(this.ThrownException)
+            {
+                ErrorCode = this.ErrorCode,
+                StatusCode = this.StatusCode,
+                ThrownException = this.ThrownException,
+                Value = (TNew)(object)this.Value
+            };
         }
     }
 

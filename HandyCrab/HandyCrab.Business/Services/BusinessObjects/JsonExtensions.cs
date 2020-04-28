@@ -7,9 +7,13 @@ namespace HandyCrab.Business.Services.BusinessObjects
 {
     public static class JsonExtensions
     {
-        public static StringContent ToJsonContent(this object obj)
+        private static readonly JsonSerializerSettings Settings = new JsonSerializerSettings
+                                                                      {
+                                                                          NullValueHandling = NullValueHandling.Ignore
+                                                                      };
+         public static StringContent ToJsonContent(this object obj)
         {
-            var myContent = JsonConvert.SerializeObject(obj);
+            var myContent = JsonConvert.SerializeObject(obj, Settings);
             return new StringContent(myContent, Encoding.UTF8, "application/json");
         }
 
@@ -17,7 +21,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
         {
             try
             {
-                return JsonConvert.DeserializeObject<T>(json);
+                return JsonConvert.DeserializeObject<T>(json, Settings);
             }
             catch (Exception e)
             {

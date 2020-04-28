@@ -19,6 +19,7 @@ namespace HandyCrab.Business.Services
             serviceCollection.AddHttpClient<IRegisterClient, RegisterClient>();
             serviceCollection.AddHttpClient<ILoginClient, LoginClient>();
             serviceCollection.AddHttpClient<ILogoutClient, LogoutClient>();
+            serviceCollection.AddHttpClient<IBarrierClient, BarrierClient>();
             serviceCollection.AddSingleton<IImageService, ImageService>();
             serviceCollection.AddSingleton<ISecureStorage, SecureStorage>();
             serviceCollection.AddSingleton<IGeolocationService, GeolocationService>();
