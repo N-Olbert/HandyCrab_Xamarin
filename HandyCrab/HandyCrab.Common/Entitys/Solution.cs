@@ -23,6 +23,6 @@ namespace HandyCrab.Common.Entitys
         public int Downvotes { get; set; }
 
         [JsonProperty("vote")]
-        public int Vote { get; set; }
+        public Vote Vote { get; set; }
     }
 }

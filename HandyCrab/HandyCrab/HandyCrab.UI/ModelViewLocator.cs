@@ -37,5 +37,10 @@ namespace HandyCrab.UI
         /// Gets the register view model.
         /// </summary>
         public static IRegisterViewModel RegisterViewModel => ViewModelFactory.GetInstance<IRegisterViewModel>();
+
+        /// <summary>
+        /// Gets the add or modify barrier view model.
+        /// </summary>
+        public static IAddOrModifyBarrierViewModel AddOrModifyBarrierViewModel => ViewModelFactory.GetInstance<IAddOrModifyBarrierViewModel>();
     }
 }

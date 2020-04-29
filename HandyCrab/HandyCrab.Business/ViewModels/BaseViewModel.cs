@@ -71,6 +71,11 @@ namespace HandyCrab.Business.ViewModels
             OnError?.Invoke(this, new Failable(exception));
         }
 
+        public void RaiseOnError(Failable failable)
+        {
+            OnError?.Invoke(this, failable);
+        }
+
         private static User GetCurrentUser()
         {
             try

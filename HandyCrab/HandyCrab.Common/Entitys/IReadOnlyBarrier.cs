@@ -24,6 +24,6 @@
 
         int Downvotes { get; }
 
-        int Vote { get; }
+        Vote Vote { get; }
     }
 }

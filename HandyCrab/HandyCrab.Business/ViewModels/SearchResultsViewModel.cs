@@ -54,7 +54,7 @@ namespace HandyCrab.Business.ViewModels
         {
             var storage = Factory.Get<IInternalRuntimeDataStorageService>();
             SelectedSearchRadius = storage.GetValue<int>(StorageSlot.BarrierSearchRadius);
-            SearchResults = storage.GetValue<IEnumerable<IReadOnlyBarrier>>(StorageSlot.BarrierSearchResults);
+            SearchResults = storage.GetValue<IEnumerable<Barrier>>(StorageSlot.BarrierSearchResults);
             CurrentPlacemark = storage.GetValue<Placemark>(StorageSlot.BarrierSearchPlacemark);
         }
     }

@@ -72,20 +72,26 @@ namespace HandyCrab.Business.ViewModels
             }
         }
 
-        private void ExecuteSearch()
+        private async void ExecuteSearch()
         {
-            //Fake values (until backend supports it)
-            var storage = Factory.Get<IInternalRuntimeDataStorageService>();
-            storage.StoreValue(StorageSlot.BarrierSearchPlacemark, CurrentPlacemark);
-            storage.StoreValue(StorageSlot.BarrierSearchRadius, SelectedSearchRadius);
-            storage.StoreValue(StorageSlot.BarrierSearchResults, new []
-            {
-                new Barrier { Description = "Test Desc 1", Title = "Barrier 1", Postcode = "70000"},
-                new Barrier { Description = "Test Desc 2", Title = "Barrier 2", Postcode = "70000", 
-                    Picture = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Adeliepinguine-Landgang.jpg/1024px-Adeliepinguine-Landgang.jpg"}
-            });
+            //async void is ok here (event handler)
+            var current = CurrentPlacemark;
+            var barriers = await Factory.Get<IBarrierClient>()
+                                        .GetBarriersAsync(current.Location.Longitude, current.Location.Latitude, 1000000);
 
-            SearchSucceeded?.Invoke(this, EventArgs.Empty);
+            var storage = Factory.Get<IInternalRuntimeDataStorageService>();
+            if (barriers.IsSucceeded())
+            {
+                storage.StoreValue(StorageSlot.BarrierSearchPlacemark, current);
+                storage.StoreValue(StorageSlot.BarrierSearchRadius, SelectedSearchRadius);
+                storage.StoreValue(StorageSlot.BarrierSearchResults, barriers.Value);
+                SearchSucceeded?.Invoke(this, EventArgs.Empty);
+            }
+            else
+            {
+                storage.StoreValue(StorageSlot.BarrierSearchResults, null);
+                RaiseOnError(barriers);
+            }
         }
 
         private bool CanExecuteSearch()
