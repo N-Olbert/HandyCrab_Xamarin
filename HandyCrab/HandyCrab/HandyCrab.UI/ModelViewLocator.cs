@@ -42,5 +42,10 @@ namespace HandyCrab.UI
         /// Gets the add or modify barrier view model.
         /// </summary>
         public static IAddOrModifyBarrierViewModel AddOrModifyBarrierViewModel => ViewModelFactory.GetInstance<IAddOrModifyBarrierViewModel>();
+
+        /// <summary>
+        /// Gets the hamburger menu view model.
+        /// </summary>
+        public static IHamburgerMenuMasterViewModel HamburgerMenuMasterViewModel => ViewModelFactory.GetInstance<IHamburgerMenuMasterViewModel>();
     }
 }

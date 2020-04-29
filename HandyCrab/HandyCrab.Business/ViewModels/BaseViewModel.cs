@@ -46,6 +46,16 @@ namespace HandyCrab.Business.ViewModels
             get => logoutCommand;
         }
 
+        protected BaseViewModel()
+        {
+            UserChanged += BaseViewModel_UserChanged;
+        }
+
+        private void BaseViewModel_UserChanged(object sender, EventArgs e)
+        {
+            RaisePropertyChanged(nameof(CurrentUser));
+        }
+
         protected void SetProperty<T>(ref T backingStore, T value,
                                       [CallerMemberName]string propertyName = "")
         {

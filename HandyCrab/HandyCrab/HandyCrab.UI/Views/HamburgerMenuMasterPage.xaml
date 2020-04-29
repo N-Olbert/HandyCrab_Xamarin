@@ -3,21 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:HandyCrab.UI.Views"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
              mc:Ignorable="d"
+             BindingContext="{x:Static ui:ModelViewLocator.HamburgerMenuMasterViewModel}"
              Padding="0,40,0,0"
              x:Class="HandyCrab.UI.Views.HamburgerMenuMasterPage">
     <!--FIXME: Hamburger Menu overlaps status bar-->
-    <!--TODO: change Hamburger Menu if user is logged in-->
     <StackLayout>
         <ListView x:Name="listView" x:FieldModifier="public">
-            <ListView.ItemsSource>
-                <x:Array Type="{x:Type local:MasterPageItem}">
-                    <local:MasterPageItem Title="Login" TargetType="{x:Type local:LoginPage}" />
-                    <local:MasterPageItem Title="Registrieren" TargetType="{x:Type local:RegisterPage}" />
-                    <local:MasterPageItem Title="About" TargetType="{x:Type local:AboutPage}" />
-                </x:Array>
-            </ListView.ItemsSource>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
