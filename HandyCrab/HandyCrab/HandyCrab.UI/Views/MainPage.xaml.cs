@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using HandyCrab.Common.Interfaces;
 
 namespace HandyCrab.UI.Views
 {
@@ -17,6 +18,14 @@ namespace HandyCrab.UI.Views
         {
             Title = "Super";
             InitializeComponent();
+            var vm = (IMainViewModel)BindingContext;
+            if (vm.CurrentUser == null)
+            {
+                this.Detail = new NavigationPage(new LoginPage());
+            } else
+            {
+                this.Detail = new NavigationPage(new SearchPage());
+            }
         }
     }
 }

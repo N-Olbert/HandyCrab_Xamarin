@@ -35,6 +35,18 @@ namespace HandyCrab.UI.Views
 
             listView.ItemsSource = vm.CurrentUser == null ? MenuWhileNotLoggedIn : MenuWhileLoggedIn;
 
+            vm.OnLoginStatusChanged += (sender, args) =>
+            {
+                if (vm.CurrentUser == null)
+                {
+                    NavigationHelper.GoTo(new LoginPage());
+                }
+                else
+                {
+                    NavigationHelper.GoTo(new SearchPage());
+                }
+            };
+
             vm.OnLoginStatusChanged += (sender, args) => listView.ItemsSource = vm.CurrentUser == null ? MenuWhileNotLoggedIn : MenuWhileLoggedIn;
         }
 

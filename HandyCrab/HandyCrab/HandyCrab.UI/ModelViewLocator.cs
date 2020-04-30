@@ -47,5 +47,10 @@ namespace HandyCrab.UI
         /// Gets the hamburger menu view model.
         /// </summary>
         public static IHamburgerMenuMasterViewModel HamburgerMenuMasterViewModel => ViewModelFactory.GetInstance<IHamburgerMenuMasterViewModel>();
+
+        /// <summary>
+        /// Gets the main view model.
+        /// </summary>
+        public static IMainViewModel MainViewModel => ViewModelFactory.GetInstance<IMainViewModel>();
     }
 }

@@ -16,7 +16,7 @@ namespace HandyCrab.UI.Views
             var vm = (IRegisterViewModel)BindingContext;
 
             //Bind vm events
-            vm.RegisterSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
+            vm.RegisterSucceeded += (sender, args) => NavigationHelper.GoTo(new SearchPage());
             vm.RegisterRejected += onRegisterRejected;
         }
 

@@ -3,7 +3,9 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                   xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
                   mc:Ignorable="d"
+                  BindingContext="{x:Static ui:ModelViewLocator.MainViewModel}"
                   xmlns:views="clr-namespace:HandyCrab.UI.Views"
                   x:Class="HandyCrab.UI.Views.MainPage">
 
@@ -11,12 +13,5 @@
         <views:HamburgerMenuMasterPage />
     </MasterDetailPage.Master>
 
-    <MasterDetailPage.Detail>
-        <!--Like a stack: https://docs.microsoft.com/en-us/xamarin/xamarin-forms/app-fundamentals/navigation/hierarchical-->
-        <NavigationPage>
-            <x:Arguments>
-                <views:LoginPage />
-            </x:Arguments>
-        </NavigationPage>
-    </MasterDetailPage.Detail>
+    
 </MasterDetailPage>

@@ -17,13 +17,13 @@ namespace HandyCrab.UI.Views
             var vm = (ILoginViewModel) BindingContext;
 
             //Bind vm events
-            vm.LoginSucceeded += (sender, args) => NagivationHelper.GoTo(new SearchPage());
+            vm.LoginSucceeded += (sender, args) => NavigationHelper.GoTo(new SearchPage());
             vm.LoginRejected += new EventHandler<Failable>(OnLoginRejected);
         }
 
         private void NoAccountButton_Clicked(object sender, EventArgs e)
         {
-            NagivationHelper.GoTo(new RegisterPage());
+            NavigationHelper.GoTo(new RegisterPage());
         }
 
         private void OnLoginRejected(object sender, Failable e)

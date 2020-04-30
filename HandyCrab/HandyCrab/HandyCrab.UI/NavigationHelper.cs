@@ -2,7 +2,7 @@
 
 namespace HandyCrab.UI
 {
-    public static class NagivationHelper
+    public static class NavigationHelper
     {
         public static void GoTo(Page page)
         {
