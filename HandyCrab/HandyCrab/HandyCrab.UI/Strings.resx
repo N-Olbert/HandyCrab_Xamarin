@@ -123,8 +123,20 @@
   <data name="AboutPageTitle" xml:space="preserve">
     <value>Über</value>
   </data>
+  <data name="BarrierDescriptionPlaceholder" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="BarrierInitialSolutionPlaceholder" xml:space="preserve">
+    <value>Lösung (optional)</value>
+  </data>
+  <data name="BarrierTitlePlaceholder" xml:space="preserve">
+    <value>Titel</value>
+  </data>
   <data name="ChangeLocationButtonText" xml:space="preserve">
     <value>Suchposition anpassen</value>
+  </data>
+  <data name="ChoosePictureButtonText" xml:space="preserve">
+    <value>Bild auswählen</value>
   </data>
   <data name="CityLabel" xml:space="preserve">
     <value>Stadt: </value>
@@ -191,6 +203,9 @@
   </data>
   <data name="SignUpButtonText" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="TakePictureButtonText" xml:space="preserve">
+    <value>Bild aufnehmen</value>
   </data>
   <data name="UsernamePlaceHolder" xml:space="preserve">
     <value>Benutzername</value>

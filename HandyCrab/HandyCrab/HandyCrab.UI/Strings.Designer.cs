@@ -79,11 +79,47 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Beschreibung ähnelt.
+        /// </summary>
+        internal static string BarrierDescriptionPlaceholder {
+            get {
+                return ResourceManager.GetString("BarrierDescriptionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lösung (optional) ähnelt.
+        /// </summary>
+        internal static string BarrierInitialSolutionPlaceholder {
+            get {
+                return ResourceManager.GetString("BarrierInitialSolutionPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Titel ähnelt.
+        /// </summary>
+        internal static string BarrierTitlePlaceholder {
+            get {
+                return ResourceManager.GetString("BarrierTitlePlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suchposition anpassen ähnelt.
         /// </summary>
         internal static string ChangeLocationButtonText {
             get {
                 return ResourceManager.GetString("ChangeLocationButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bild auswählen ähnelt.
+        /// </summary>
+        internal static string ChoosePictureButtonText {
+            get {
+                return ResourceManager.GetString("ChoosePictureButtonText", resourceCulture);
             }
         }
         
@@ -282,6 +318,15 @@ namespace HandyCrab.UI {
         internal static string SignUpButtonText {
             get {
                 return ResourceManager.GetString("SignUpButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bild aufnehmen ähnelt.
+        /// </summary>
+        internal static string TakePictureButtonText {
+            get {
+                return ResourceManager.GetString("TakePictureButtonText", resourceCulture);
             }
         }
         

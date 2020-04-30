@@ -4,18 +4,19 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             BindingContext="{x:Static ui:ModelViewLocator.AddOrModifyBarrierViewModel}"
              mc:Ignorable="d"
              x:Class="HandyCrab.UI.Views.AddOrModifyBarrierPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="10">
-                <Entry Placeholder="Titel"></Entry>
-                <Label Text="Position:" FontAttributes="Bold"/>
+                <Entry Placeholder="{x:Static ui:Strings.BarrierTitlePlaceholder}" Text="{Binding Title}"></Entry>
+                <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Longitude: " FontAttributes="Bold"/>
-                            <Span Text="Longitude"/>
+                            <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding Longitude}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -23,8 +24,8 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="Latitude: " FontAttributes="Bold"/>
-                            <Span Text="Latitude"/>
+                            <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding Latitude}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -32,8 +33,8 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="PLZ: " FontAttributes="Bold"/>
-                            <Span Text="PLZ"/>
+                            <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding Postcode}"/>
                         </FormattedString>
                     </Label.FormattedText>
                 </Label>
@@ -41,7 +42,7 @@
                 <Label>
                     <Label.FormattedText>
                         <FormattedString>
-                            <Span Text="City: " FontAttributes="Bold"/>
+                            <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
                             <Span Text="City"/>
                         </FormattedString>
                     </Label.FormattedText>
@@ -56,15 +57,15 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Row="0" Grid.Column="0" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=TakeImageAsync}"
                         CommandParameter="{x:Reference ImageView}"
-                        Text="Bild aufnehmen"></Button>
+                        Text="{x:Static ui:Strings.TakePictureButtonText}"></Button>
                     <Button Grid.Row="0" Grid.Column="1" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=SelectImageAsync}"
                         CommandParameter="{x:Reference ImageView}"
-                        Text="Bild auswählen"></Button>
+                        Text="{x:Static ui:Strings.ChoosePictureButtonText}"></Button>
                 </Grid>
-                <Image x:Name="ImageView"></Image>
-                <Editor Placeholder="Beschreibung" AutoSize="TextChanges"></Editor>
-                <Editor Placeholder="Lösung (optional)" AutoSize="TextChanges"></Editor>
-                <Button x:Name="SubmitButton" Text="Änderungen speichern"></Button>
+                <Image x:Name="ImageView" Source="{Binding Image}"></Image>
+                <Editor Placeholder="{x:Static ui:Strings.BarrierDescriptionPlaceholder}" AutoSize="TextChanges" Text="{Binding Description}"></Editor>
+                <Editor Placeholder="{x:Static ui:Strings.BarrierInitialSolutionPlaceholder}" AutoSize="TextChanges" Text="{Binding InitialSolutionText}"></Editor>
+                <Button x:Name="SubmitButton" Text="Änderungen speichern" Command="{Binding AddOrModifyBarrierCommand}"></Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

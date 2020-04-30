@@ -64,13 +64,8 @@
 
             <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                 <Label Text="Pick a search radius" FontAttributes="Bold"/>
-                <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" SelectedIndex="0">
-                    <Picker.Items>
-                        <x:String>5m</x:String>
-                        <x:String>10m</x:String>
-                        <x:String>30m</x:String>
-                    </Picker.Items>
-                </Picker>
+                <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" 
+                        SelectedItem="{Binding SelectedSearchRadius}" ItemsSource="{Binding SearchRadiusInMeters, Converter={x:Static ui:IntegerAsMeterConverter.Converter}}" />
             </StackLayout>
 
             <Button Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="2" x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>

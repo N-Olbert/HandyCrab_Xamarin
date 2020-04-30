@@ -16,5 +16,10 @@ namespace HandyCrab.UI.Views
         {
             InitializeComponent();
         }
+
+        void OnAddBarrierButtonClicked(object sender, EventArgs args)
+        {
+            NavigationHelper.GoTo(new AddOrModifyBarrierPage());
+        }
     }
 }
