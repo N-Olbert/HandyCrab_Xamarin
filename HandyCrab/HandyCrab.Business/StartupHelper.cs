@@ -17,6 +17,7 @@ namespace HandyCrab.Business
             ViewModelFactory.RegisterInstance<IAddOrModifyBarrierViewModel, AddOrModifyBarrierViewModel>();
             ViewModelFactory.RegisterInstance<IHamburgerMenuMasterViewModel, HamburgerMenuMasterViewModel>();
             ViewModelFactory.RegisterInstance<IMainViewModel, MainViewModel>();
+            ViewModelFactory.RegisterInstance<IBarrierViewModel, BarrierViewModel>();
         }
     }
 }

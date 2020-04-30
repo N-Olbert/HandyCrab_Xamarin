@@ -7,14 +7,19 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using HandyCrab.Common.Interfaces;
+
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class BarrierPage : ContentPage
     {
-        public BarrierPage()
+        public BarrierPage(string id)
         {
             InitializeComponent();
+
+            var vm = (IBarrierViewModel)BindingContext;
+            vm.BarrierId = id;
         }
     }
 }

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using HandyCrab.Common.Entitys;
+
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -19,7 +21,13 @@ namespace HandyCrab.UI.Views
 
         void OnAddBarrierButtonClicked(object sender, EventArgs args)
         {
-            NavigationHelper.GoTo(new AddOrModifyBarrierPage());
+            Navigation.PushAsync(new AddOrModifyBarrierPage());
+        }
+
+        void onItemTapped(object sender, EventArgs args)
+        {
+            string id = ((Barrier)((ListView)sender).SelectedItem).Id;
+            Navigation.PushAsync(new BarrierPage(id));
         }
     }
 }

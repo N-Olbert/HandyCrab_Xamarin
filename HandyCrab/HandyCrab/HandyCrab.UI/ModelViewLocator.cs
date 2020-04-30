@@ -52,5 +52,10 @@ namespace HandyCrab.UI
         /// Gets the main view model.
         /// </summary>
         public static IMainViewModel MainViewModel => ViewModelFactory.GetInstance<IMainViewModel>();
+
+        /// <summary>
+        /// Gets the barrier view model.
+        /// </summary>
+        public static IBarrierViewModel BarrierViewModel => ViewModelFactory.GetInstance<IBarrierViewModel>();
     }
 }
