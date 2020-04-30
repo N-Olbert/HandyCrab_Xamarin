@@ -16,7 +16,7 @@ namespace HandyCrab.Common.Interfaces
         /// Gets the Image of the barrier
         /// </summary>
         [NotNull]
-        Image Image { get; }
+        ImageSource Image { get; }
 
         /// <summary>
         /// Gets the barrier title.

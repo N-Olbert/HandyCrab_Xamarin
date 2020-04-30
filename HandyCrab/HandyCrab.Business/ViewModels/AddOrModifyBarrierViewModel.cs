@@ -11,6 +11,7 @@ using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
 using JetBrains.Annotations;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Barrier = HandyCrab.Common.Entitys.Barrier;
 using Exception = System.Exception;
@@ -26,7 +27,7 @@ namespace HandyCrab.Business.ViewModels
         private string description;
         private string postcode;
         private string initialSolutionText;
-        private Image image;
+        private ImageSource image;
         [NotNull]
         private readonly Command addOrModifyBarrierCommand;
 
@@ -59,7 +60,7 @@ namespace HandyCrab.Business.ViewModels
                             imageSource.Uri = new Uri(barrierToModify.Picture);
                         }
 
-                        Image.Source = imageSource;
+                        Image = imageSource;
                     }
                     else
                     {
@@ -74,7 +75,7 @@ namespace HandyCrab.Business.ViewModels
                     Description = string.Empty;
                     Postcode = string.Empty;
                     InitialSolutionText = string.Empty;
-                    Image.Source = new StreamImageSource();
+                    Image = new StreamImageSource();
                 }
 
                 this.addOrModifyBarrierCommand.ChangeCanExecute();
@@ -148,7 +149,7 @@ namespace HandyCrab.Business.ViewModels
         }
 
         /// <inheritdoc />
-        public Image Image
+        public ImageSource Image
         {
             get => this.image;
             set => SetProperty(ref this.image, value);
@@ -163,6 +164,18 @@ namespace HandyCrab.Business.ViewModels
         public AddOrModifyBarrierViewModel()
         {
             this.addOrModifyBarrierCommand = new Command(AddOrModifyBarrier, CanExecuteAddOrModifyCommand);
+            var storageService = Factory.Get<IInternalRuntimeDataStorageService>();
+            var placemark = storageService.GetValue<Placemark>(StorageSlot.BarrierSearchPlacemark);
+            if (placemark != null)
+            {
+                if (placemark.Location != null)
+                {
+                    Latitude = placemark.Location.Latitude;
+                    Longitude = placemark.Location.Longitude;
+                }
+
+                Postcode = placemark.PostalCode;
+            }
         }
 
         private bool CanExecuteAddOrModifyCommand()
@@ -172,7 +185,7 @@ namespace HandyCrab.Business.ViewModels
                 return !string.IsNullOrEmpty(Title);
             }
 
-            return !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Postcode) && Longitude != Latitude;
+            return !string.IsNullOrEmpty(Title) && !string.IsNullOrEmpty(Postcode) && Longitude != 0 && Latitude != 0;
         }
 
         private async void AddOrModifyBarrier()
@@ -188,7 +201,7 @@ namespace HandyCrab.Business.ViewModels
             //async void is ok here (event handler)
             var client = Factory.Get<IBarrierClient>();
             string picture = null;
-            if (Image.Source is StreamImageSource s)
+            if (Image is StreamImageSource s)
             {
                 picture = ConvertToBase64(await s.Stream(CancellationToken.None));
             }

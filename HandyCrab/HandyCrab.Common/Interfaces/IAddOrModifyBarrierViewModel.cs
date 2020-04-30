@@ -16,10 +16,9 @@ namespace HandyCrab.Common.Interfaces
         /// <summary>
         /// Gets or sets the image (control).
         /// Might not be null, but no Image must be present.
-        /// To be set by UI.
         /// </summary>
         [NotNull]
-        Image Image { get; set; }
+        ImageSource Image { get;}
 
         /// <summary>
         /// Gets or sets the modified barrier identifier.

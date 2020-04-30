@@ -19,7 +19,7 @@ namespace HandyCrab.Business.ViewModels
     class BarrierViewModel : BaseViewModel, IBarrierViewModel
     {
         private string barrierId;
-        private Image image;
+        private ImageSource image;
         private string title;
         private double longitude;
         private double latitude;
@@ -52,7 +52,7 @@ namespace HandyCrab.Business.ViewModels
                             imageSource.Uri = new Uri(barrierToShow.Picture);
                         }
 
-                        Image.Source = imageSource;
+                        Image = imageSource;
                     }
                     else
                     {
@@ -67,12 +67,12 @@ namespace HandyCrab.Business.ViewModels
                     Description = string.Empty;
                     Postcode = string.Empty;
                     Solutions = null;
-                    Image.Source = new StreamImageSource();
+                    Image = new StreamImageSource();
                 }
             }
         }
 
-        public Image Image
+        public ImageSource Image
         {
             get => this.image;
             set
