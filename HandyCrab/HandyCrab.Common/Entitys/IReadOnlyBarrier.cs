@@ -1,4 +1,6 @@
-﻿namespace HandyCrab.Common.Entitys
+﻿using System.Collections.Generic;
+
+namespace HandyCrab.Common.Entitys
 {
     public interface IReadOnlyBarrier
     {
@@ -18,7 +20,7 @@
 
         string Postcode { get; }
 
-        Solution[] Solution { get; }
+        List<Solution> Solutions { get; }
 
         int Upvotes { get; }
 

@@ -31,8 +31,8 @@ namespace HandyCrab.Common.Entitys
         [JsonProperty("postcode")]
         public string Postcode { get; set; }
 
-        [JsonProperty("solution")]
-        public Solution[] Solution { get; set; }
+        [JsonProperty("solutions")]
+        public List<Solution> Solutions { get; set; }
 
         [JsonProperty("upvotes")]
         public int Upvotes { get; set; }
