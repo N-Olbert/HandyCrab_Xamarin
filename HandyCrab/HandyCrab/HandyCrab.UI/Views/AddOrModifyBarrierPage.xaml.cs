@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
+using HandyCrab.Common.Interfaces;
+using HandyCrab.Common.Entitys;
+
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -15,6 +18,13 @@ namespace HandyCrab.UI.Views
         public AddOrModifyBarrierPage()
         {
             InitializeComponent();
+
+            var vm = (IAddOrModifyBarrierViewModel) BindingContext;
+
+            vm.OnSuccess += async (sender, args) =>
+            {
+                await Navigation.PopToRootAsync();
+            };
         }
     }
 }
