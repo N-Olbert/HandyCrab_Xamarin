@@ -20,6 +20,8 @@ namespace HandyCrab.UI.Views
             var vm = (ISearchViewModel)BindingContext;
 
             vm.SearchSucceeded += (sender, args) => Navigation.PushAsync(new SearchResultsPage());
+
+            IdToBoolConverter.userId = vm.CurrentUser.Id;
         }
     }
 }

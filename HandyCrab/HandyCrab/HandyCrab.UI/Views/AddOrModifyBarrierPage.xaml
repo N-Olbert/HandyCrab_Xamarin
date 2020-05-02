@@ -64,7 +64,8 @@
                 </Grid>
                 <Image x:Name="ImageView" Source="{Binding Image}"></Image>
                 <Editor Placeholder="{x:Static ui:Strings.BarrierDescriptionPlaceholder}" AutoSize="TextChanges" Text="{Binding Description}"></Editor>
-                <Editor Placeholder="{x:Static ui:Strings.BarrierInitialSolutionPlaceholder}" AutoSize="TextChanges" Text="{Binding InitialSolutionText}"></Editor>
+                <Editor Placeholder="{x:Static ui:Strings.BarrierInitialSolutionPlaceholder}" AutoSize="TextChanges" 
+                        Text="{Binding InitialSolutionText}" IsVisible="{Binding ModifiedBarrierId, Converter={x:Static ui:StringEmptyToBoolConverter.Converter}}"></Editor>
                 <Button x:Name="SubmitButton" Text="Änderungen speichern" Command="{Binding AddOrModifyBarrierCommand}"></Button>
             </StackLayout>
         </ScrollView>

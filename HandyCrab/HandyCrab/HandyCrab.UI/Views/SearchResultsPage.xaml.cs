@@ -24,6 +24,11 @@ namespace HandyCrab.UI.Views
             Navigation.PushAsync(new AddOrModifyBarrierPage());
         }
 
+        void OnModifyBarrierButtonClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new AddOrModifyBarrierPage(((IReadOnlyBarrier)((Button)sender).BindingContext).Id));
+        }
+
         void onItemTapped(object sender, EventArgs args)
         {
             string id = ((Barrier)((ListView)sender).SelectedItem).Id;
