@@ -45,7 +45,7 @@ namespace HandyCrab.Business.ViewModels
                         Latitude = barrierToShow.Latitude;
                         Description = barrierToShow.Description;
                         Postcode = barrierToShow.Postcode;
-                        Solutions = barrierToShow.Solution;
+                        Solutions = barrierToShow.Solutions;
                         var imageSource = new UriImageSource();
                         if (!string.IsNullOrEmpty(barrierToShow.Picture))
                         {

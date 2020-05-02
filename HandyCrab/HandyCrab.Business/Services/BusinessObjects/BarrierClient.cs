@@ -79,7 +79,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     Latitude = barrierToAdd.Latitude,
                     Picture = barrierToAdd.Picture,
                     Postcode = barrierToAdd.Postcode,
-                    Solution = barrierSolution,
+                    Solution = barrierSolution?.Text,
                     Title = barrierToAdd.Title
                 };
 
@@ -135,7 +135,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     throw new ArgumentNullException(nameof(solutionToAdd));
                 }
 
-                var requestData = new BarrierRequestData
+                var requestData = new AddSolutionRequestData
                 {
                     Id = barrierId,
                     Solution = solutionToAdd
@@ -239,6 +239,12 @@ namespace HandyCrab.Business.Services.BusinessObjects
             [JsonProperty("picture")] internal string Picture;
             [JsonProperty("description")] internal string Description;
             [JsonProperty("postcode")] internal string Postcode;
+            [JsonProperty("solution")] internal string Solution;
+        }
+
+        private struct AddSolutionRequestData
+        {
+            [JsonProperty("_id")] internal string Id;
             [JsonProperty("solution")] internal Solution Solution;
         }
 
