@@ -13,8 +13,45 @@
             <StackLayout Margin="10">
                 <Label Text="{Binding Title}" FontAttributes="Bold" />
                 <Image x:Name="ImageView" Source="{Binding Image}"></Image>
-                <Label Text="{Binding Description}" />
-                <ListView x:Name="SolutionsView" ItemsSource="{Binding Solutions}">
+                <Grid  Margin="0,0,20,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding Description}" BackgroundColor="LightGray" />
+                    <StackLayout Grid.Row="0" Grid.Column="1" IsClippedToBounds="True">
+                        <!--TODO: Use arrows instead of squares...-->
+                        <BoxView BackgroundColor="Green" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"
+                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <BoxView BackgroundColor="Green" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center"
+                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <Label Text="{Binding TotalVotes}" HorizontalOptions="Center"></Label>
+                        <BoxView BackgroundColor="Red" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"
+                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                        <BoxView BackgroundColor="Red" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center"
+                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
+                            <BoxView.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
+                            </BoxView.GestureRecognizers>
+                        </BoxView>
+                    </StackLayout>
+                </Grid>
+                <ListView x:Name="SolutionsView" Margin="20,0,0,0" ItemsSource="{Binding Solutions}">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="entities:Solution">
                             <ViewCell>

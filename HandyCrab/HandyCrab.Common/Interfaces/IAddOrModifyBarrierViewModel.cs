@@ -58,7 +58,7 @@ namespace HandyCrab.Common.Interfaces
         string InitialSolutionText { get; set; }
 
         /// <summary>
-        /// Gets or sets the add or modify barrier command.
+        /// Gets the add or modify barrier command.
         /// </summary>
         ICommand AddOrModifyBarrierCommand { get; }
     }

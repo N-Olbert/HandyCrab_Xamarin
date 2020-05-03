@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using JetBrains.Annotations;
 using Xamarin.Forms;
 using HandyCrab.Common.Entitys;
@@ -44,8 +45,28 @@ namespace HandyCrab.Common.Interfaces
         string Postcode { get; }
 
         /// <summary>
+        /// Gets the Value of the users´ vote for this barrier.
+        /// </summary>
+        Vote UserVote { get; }
+
+        /// <summary>
+        /// Gets the number of upvotes minus the number of downvotes.
+        /// </summary>
+        int TotalVotes { get; }
+
+        /// <summary>
         /// Gets the barriers solutions.
         /// </summary>
         IEnumerable<Solution> Solutions { get; }
+
+        /// <summary>
+        /// Gets the upvote command.
+        /// </summary>
+        ICommand UpVoteCommand { get; }
+
+        /// <summary>
+        /// Gets the downvote command.
+        /// </summary>
+        ICommand DownVoteCommand { get; }
     }
 }

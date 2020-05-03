@@ -25,7 +25,13 @@ namespace HandyCrab.Business.ViewModels
         private double latitude;
         private string description;
         private string postcode;
+        private Vote userVote;
+        int totalVotes;
         private IEnumerable<Solution> solutions;
+        private ICommand upVoteCommand;
+        private ICommand downVoteCommand;
+
+        public event EventHandler VoteSucceeded;
 
         public string BarrierId 
         { 
@@ -45,6 +51,8 @@ namespace HandyCrab.Business.ViewModels
                         Latitude = barrierToShow.Latitude;
                         Description = barrierToShow.Description;
                         Postcode = barrierToShow.Postcode;
+                        UserVote = barrierToShow.Vote;
+                        TotalVotes = barrierToShow.Upvotes - barrierToShow.Downvotes;
                         Solutions = barrierToShow.Solutions;
                         var imageSource = new UriImageSource();
                         if (!string.IsNullOrEmpty(barrierToShow.Picture))
@@ -132,6 +140,84 @@ namespace HandyCrab.Business.ViewModels
             set
             {
                 SetProperty(ref this.solutions, value);
+            }
+        }
+
+        public BarrierViewModel()
+        {
+            this.upVoteCommand = new Command<string>(UpVoteAction);
+            this.downVoteCommand = new Command<string>(DownVoteAction);
+        }
+
+        public ICommand UpVoteCommand => this.upVoteCommand;
+
+        public ICommand DownVoteCommand => this.downVoteCommand;
+
+        public Vote UserVote
+        {
+            get => this.userVote;
+            set
+            {
+                SetProperty(ref this.userVote, value);
+            }
+        }
+
+        public int TotalVotes
+        {
+            get => this.totalVotes;
+            set
+            {
+                SetProperty(ref this.totalVotes, value);
+            }
+        }
+
+        private void UpVoteAction(string id)
+        {
+            if (this.userVote == Vote.Up)
+            {
+                voteBarrier(Vote.None);
+            } else
+            {
+                voteBarrier(Vote.Up);
+            }
+        }
+
+        private void DownVoteAction(string id)
+        {
+            if (this.userVote == Vote.Down)
+            {
+                voteBarrier(Vote.None);
+            }
+            else
+            {
+                voteBarrier(Vote.Down);
+            }
+        }
+
+        private async void voteBarrier(Vote vote)
+        {
+            var client = Factory.Get<IBarrierClient>();
+            var task = await client.VoteBarrierAsync(this.BarrierId, vote);
+            if (task.IsSucceeded())
+            {
+                if (UserVote == Vote.Down && vote == Vote.Up)
+                {
+                    TotalVotes += 2;
+                } 
+                else if ((UserVote == Vote.Down && vote == Vote.None) || (UserVote == Vote.None && vote == Vote.Up))
+                {
+                    TotalVotes += 1;
+                } 
+                else if ((UserVote == Vote.Up && vote == Vote.None) || (UserVote == Vote.None && vote == Vote.Down))
+                {
+                    TotalVotes -= 1;
+                } 
+                else if (UserVote == Vote.Up && vote == Vote.Down)
+                {
+                    TotalVotes -= 2;
+                }
+                UserVote = vote;
+                VoteSucceeded?.Invoke(this, EventArgs.Empty);
             }
         }
     }
