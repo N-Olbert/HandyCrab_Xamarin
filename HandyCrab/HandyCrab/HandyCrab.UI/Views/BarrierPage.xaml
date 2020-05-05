@@ -24,31 +24,31 @@
                     <Label Grid.Row="0" Grid.Column="0" Text="{Binding Description}" BackgroundColor="LightGray" />
                     <StackLayout Grid.Row="0" Grid.Column="1" IsClippedToBounds="True">
                         <!--TODO: Use arrows instead of squares...-->
-                        <BoxView BackgroundColor="Green" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"
-                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
-                            <BoxView.GestureRecognizers>
+                        <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
-                            </BoxView.GestureRecognizers>
-                        </BoxView>
-                        <BoxView BackgroundColor="Green" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center"
-                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
-                            <BoxView.GestureRecognizers>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="hollowupvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
-                            </BoxView.GestureRecognizers>
-                        </BoxView>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <Label Text="{Binding TotalVotes}" HorizontalOptions="Center"></Label>
-                        <BoxView BackgroundColor="Red" WidthRequest="20" HeightRequest="20" HorizontalOptions="Center"
-                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
-                            <BoxView.GestureRecognizers>
+                        <Image Source="downvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
-                            </BoxView.GestureRecognizers>
-                        </BoxView>
-                        <BoxView BackgroundColor="Red" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center"
-                                 IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
-                            <BoxView.GestureRecognizers>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image Source="hollowdownvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
+                            <Image.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
-                            </BoxView.GestureRecognizers>
-                        </BoxView>
+                            </Image.GestureRecognizers>
+                        </Image>
                     </StackLayout>
                 </Grid>
                 <ListView x:Name="SolutionsView" Margin="20,0,0,0" ItemsSource="{Binding Solutions}">

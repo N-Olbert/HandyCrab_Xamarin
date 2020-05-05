@@ -132,4 +132,16 @@
       <Name>HandyCrab.UI</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\upvotearrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\downvotearrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hollowdownvotearrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hollowupvotearrow.png" />
+  </ItemGroup>
 </Project>
