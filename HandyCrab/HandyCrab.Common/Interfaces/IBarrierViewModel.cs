@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows.Input;
 using JetBrains.Annotations;
 using Xamarin.Forms;
@@ -8,6 +9,17 @@ namespace HandyCrab.Common.Interfaces
 {
     public interface IBarrierViewModel : IViewModel
     {
+        /// <summary>
+        /// This event fires when a solution was successfully added.
+        /// </summary>
+        event EventHandler AddSolutionSucceeded;
+
+        /// <summary>
+        /// This event fires when a barrier or solution was successfully voted.
+        /// </summary>
+        event EventHandler VoteSucceeded;
+
+
         /// <summary>
         /// Gets or sets the Id of the Barrier to be displayed
         /// </summary>
@@ -60,6 +72,12 @@ namespace HandyCrab.Common.Interfaces
         IEnumerable<Solution> Solutions { get; }
 
         /// <summary>
+        /// Gets or Sets the content of a new solution.
+        /// </summary>
+
+        string NewSolutionText { get; set; }
+
+        /// <summary>
         /// Gets the upvote command.
         /// </summary>
         ICommand UpVoteCommand { get; }
@@ -68,5 +86,10 @@ namespace HandyCrab.Common.Interfaces
         /// Gets the downvote command.
         /// </summary>
         ICommand DownVoteCommand { get; }
+
+        /// <summary>
+        /// Gets the addsolution command.
+        /// </summary>
+        ICommand AddSolutionCommand { get; }
     }
 }

@@ -20,6 +20,20 @@ namespace HandyCrab.UI.Views
 
             var vm = (IBarrierViewModel)BindingContext;
             vm.BarrierId = id;
+            vm.AddSolutionSucceeded += (sender, args) =>
+            {
+                addSolutionTextField.IsVisible = false;
+                confirmAddSolutionButton.IsVisible = false;
+                addSolutionButton.IsVisible = true;
+                vm.NewSolutionText = "";
+            };
+        }
+
+        void OnAddSolutionButtonClicked(object sender, EventArgs args)
+        {
+            addSolutionButton.IsVisible = false;
+            addSolutionTextField.IsVisible = true;
+            confirmAddSolutionButton.IsVisible = true;
         }
     }
 }

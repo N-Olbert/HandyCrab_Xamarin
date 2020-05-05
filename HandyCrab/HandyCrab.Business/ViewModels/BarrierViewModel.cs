@@ -28,10 +28,13 @@ namespace HandyCrab.Business.ViewModels
         private Vote userVote;
         int totalVotes;
         private IEnumerable<Solution> solutions;
+        private string newSolutionText;
         private ICommand upVoteCommand;
         private ICommand downVoteCommand;
+        private ICommand addSolutionCommand;
 
         public event EventHandler VoteSucceeded;
+        public event EventHandler AddSolutionSucceeded;
 
         public string BarrierId 
         { 
@@ -147,6 +150,7 @@ namespace HandyCrab.Business.ViewModels
         {
             this.upVoteCommand = new Command<string>(UpVoteAction);
             this.downVoteCommand = new Command<string>(DownVoteAction);
+            this.addSolutionCommand = new Command(AddSolutionAction);
         }
 
         public ICommand UpVoteCommand => this.upVoteCommand;
@@ -170,6 +174,17 @@ namespace HandyCrab.Business.ViewModels
                 SetProperty(ref this.totalVotes, value);
             }
         }
+
+        public string NewSolutionText 
+        { 
+            get => this.newSolutionText;
+            set
+            {
+                SetProperty(ref this.newSolutionText, value);
+            }
+        }
+
+        public ICommand AddSolutionCommand => this.addSolutionCommand;
 
         private void UpVoteAction(string id)
         {
@@ -218,6 +233,30 @@ namespace HandyCrab.Business.ViewModels
                 }
                 UserVote = vote;
                 VoteSucceeded?.Invoke(this, EventArgs.Empty);
+            }
+        }
+
+        private async void AddSolutionAction()
+        {
+            var client = Factory.Get<IBarrierClient>();
+            var solution = new Solution();
+            solution.Text = this.newSolutionText;
+            var barrier = await client.AddBarrierSolutionAsync(this.barrierId, solution);
+            if (barrier.IsSucceeded())
+            {
+                var storageService = Factory.Get<IInternalRuntimeDataStorageService>();
+                var barriers = storageService.GetValue<IEnumerable<Barrier>>(StorageSlot.BarrierSearchResults);
+                var barrierList = barriers.ToList<Barrier>();
+                for (int i = 0; i < barrierList.Count; i++)
+                {
+                    if (barrierList.ElementAt<Barrier>(i).Id == BarrierId)
+                    { 
+                        barrierList[i] = barrier.Value;
+                    }
+                }
+                storageService.StoreValue(StorageSlot.BarrierSearchResults, barrierList);
+                Solutions = barrier.Value.Solutions;
+                AddSolutionSucceeded?.Invoke(this, EventArgs.Empty);
             }
         }
     }

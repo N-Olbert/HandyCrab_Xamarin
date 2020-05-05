@@ -138,7 +138,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 var requestData = new AddSolutionRequestData
                 {
                     Id = barrierId,
-                    Solution = solutionToAdd
+                    Solution = solutionToAdd.Text
                 };
 
                 return await PerformBarrierRequest<Barrier>(settingsName, requestData, HttpMethod.Post);
@@ -245,7 +245,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
         private struct AddSolutionRequestData
         {
             [JsonProperty("_id")] internal string Id;
-            [JsonProperty("solution")] internal Solution Solution;
+            [JsonProperty("solution")] internal string Solution;
         }
 
         private struct VoteRequestData
