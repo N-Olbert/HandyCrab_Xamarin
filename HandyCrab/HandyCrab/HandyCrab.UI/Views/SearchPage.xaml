@@ -60,7 +60,7 @@
             </StackLayout>
 
             <Button Grid.Column="1" Grid.Row="0" x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
-                HorizontalOptions="Center"></Button>
+                HorizontalOptions="Center" Clicked="ChangeLocationButton_OnClicked"></Button>
 
             <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
                 <Label Text="Pick a search radius" FontAttributes="Bold"/>

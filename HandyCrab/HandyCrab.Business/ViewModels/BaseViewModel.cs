@@ -35,6 +35,18 @@ namespace HandyCrab.Business.ViewModels
         }
 
         /// <inheritdoc />
+        public virtual void OnViewShown(object sender, EventArgs e)
+        {
+            //Async void is ok here (event handler)
+        }
+
+        /// <inheritdoc />
+        public virtual void OnViewHidden(object sender, EventArgs e)
+        {
+            //Async void is ok here (event handler)
+        }
+
+        /// <inheritdoc />
         public User CurrentUser
         {
             get => GetCurrentUser();

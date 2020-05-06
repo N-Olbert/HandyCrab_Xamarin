@@ -132,6 +132,9 @@
   <data name="BarrierTitlePlaceholder" xml:space="preserve">
     <value>Titel</value>
   </data>
+  <data name="CancelButton" xml:space="preserve">
+    <value>Abbruch</value>
+  </data>
   <data name="ChangeLocationButtonText" xml:space="preserve">
     <value>Suchposition anpassen</value>
   </data>
@@ -189,6 +192,9 @@
   <data name="NoAccountButtonText" xml:space="preserve">
     <value>Ich habe noch keinen Account</value>
   </data>
+  <data name="OkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
   <data name="PasswordPlaceholder" xml:space="preserve">
     <value>Passwort</value>
   </data>
@@ -203,6 +209,9 @@
   </data>
   <data name="SignUpButtonText" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="StreetLabel" xml:space="preserve">
+    <value>Straße: </value>
   </data>
   <data name="TakePictureButtonText" xml:space="preserve">
     <value>Bild aufnehmen</value>

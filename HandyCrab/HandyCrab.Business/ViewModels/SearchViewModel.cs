@@ -39,19 +39,33 @@ namespace HandyCrab.Business.ViewModels
         public Placemark CurrentPlacemark
         {
             get => this.currentPlacemarkBackingField;
-            private set => SetProperty(ref this.currentPlacemarkBackingField, value);
+            private set
+            {
+                Factory.Get<IInternalRuntimeDataStorageService>().StoreValue(StorageSlot.LastPlacemark, value);
+                SetProperty(ref this.currentPlacemarkBackingField, value);
+            }
         }
 
         public ICommand PerformSearchCommand { get; }
 
         public SearchViewModel()
         {
-            ApproximateCurrentGeolocationAsync();
             SelectedSearchRadius = SearchRadiusInMeters.Last();
             this.executeSearchCommand = new Command(ExecuteSearch, CanExecuteSearch);
             PropertyChanged += (sender, args) => this.executeSearchCommand.ChangeCanExecute();
-
             PerformSearchCommand = this.executeSearchCommand;
+
+            var storageService = Factory.Get<IInternalRuntimeDataStorageService>();
+            var currentPlacemark = storageService.GetValue<Placemark>(StorageSlot.SelectedManualPlacemark);
+            if (currentPlacemark != null)
+            {
+                CurrentPlacemark = currentPlacemark;
+                storageService.StoreValue(StorageSlot.SelectedManualPlacemark, null);
+            }
+            else
+            {
+                ApproximateCurrentGeolocationAsync();
+            }
         }
         
         public async Task UpdateCurrentGeolocationAsync()

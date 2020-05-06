@@ -21,6 +21,20 @@ namespace HandyCrab.Common.Interfaces
         event EventHandler<Failable> OnError;
 
         /// <summary>
+        /// Called when the corresponding view is shown.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        void OnViewShown(object sender, EventArgs e);
+
+        /// <summary>
+        /// Called when the corresponding view is hidden.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="EventArgs"/> instance containing the event data.</param>
+        void OnViewHidden(object sender, EventArgs e);
+
+        /// <summary>
         /// Gets the current user. May be null if no user logged in.
         /// </summary>
         User CurrentUser { get; }

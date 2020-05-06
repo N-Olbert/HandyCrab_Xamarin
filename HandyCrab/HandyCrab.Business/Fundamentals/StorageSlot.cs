@@ -5,5 +5,7 @@
         BarrierSearchRadius,
         BarrierSearchResults,
         BarrierSearchPlacemark,
+        LastPlacemark,
+        SelectedManualPlacemark
     }
 }

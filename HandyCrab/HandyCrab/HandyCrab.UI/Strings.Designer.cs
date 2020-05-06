@@ -106,6 +106,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Abbruch ähnelt.
+        /// </summary>
+        internal static string CancelButton {
+            get {
+                return ResourceManager.GetString("CancelButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suchposition anpassen ähnelt.
         /// </summary>
         internal static string ChangeLocationButtonText {
@@ -277,6 +286,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die OK ähnelt.
+        /// </summary>
+        internal static string OkButton {
+            get {
+                return ResourceManager.GetString("OkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Passwort ähnelt.
         /// </summary>
         internal static string PasswordPlaceholder {
@@ -318,6 +336,15 @@ namespace HandyCrab.UI {
         internal static string SignUpButtonText {
             get {
                 return ResourceManager.GetString("SignUpButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Straße:  ähnelt.
+        /// </summary>
+        internal static string StreetLabel {
+            get {
+                return ResourceManager.GetString("StreetLabel", resourceCulture);
             }
         }
         

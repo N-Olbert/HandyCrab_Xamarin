@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:Mapsui.UI.Forms;assembly=Mapsui.UI.Forms"
+             xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
+             mc:Ignorable="d"
+             BindingContext="{x:Static ui:ModelViewLocator.LocationSelectionViewModel}"
+             x:DataType="{x:Type interfaces:ILocationSelectionViewModel}"
+             x:Class="HandyCrab.UI.Views.LocationMapPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <forms:MapView x:Name="mapView" 
+                           IsMyLocationButtonVisible="False"
+                           MyLocationEnabled="False"
+                           VerticalOptions="FillAndExpand"
+                           HorizontalOptions="Fill"
+                           BackgroundColor="Gray"/>
+            <StackLayout>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding SelectedLocation.PostalCode}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding SelectedLocation.Locality}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="{x:Static ui:Strings.StreetLabel}" FontAttributes="Bold"/>
+                            <Span Text="{Binding SelectedLocation.Thoroughfare}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Text="{x:Static ui:Strings.OkButton}" Command="{Binding ConfirmCommand}"></Button>
+                <Button Text="{x:Static ui:Strings.CancelButton}" Command="{Binding CancelCommand}"></Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

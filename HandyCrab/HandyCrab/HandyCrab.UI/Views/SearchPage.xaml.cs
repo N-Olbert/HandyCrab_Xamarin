@@ -21,7 +21,12 @@ namespace HandyCrab.UI.Views
 
             vm.SearchSucceeded += (sender, args) => Navigation.PushAsync(new SearchResultsPage());
 
-            IdToBoolConverter.userId = vm.CurrentUser.Id;
+            IdToBoolConverter.userId = vm.CurrentUser?.Id;
+        }
+
+        private void ChangeLocationButton_OnClicked(object sender, EventArgs e)
+        {
+            NavigationHelper.GoTo(new LocationMapPage());
         }
     }
 }

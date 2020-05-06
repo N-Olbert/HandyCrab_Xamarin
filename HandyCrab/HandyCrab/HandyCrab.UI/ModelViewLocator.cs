@@ -57,5 +57,10 @@ namespace HandyCrab.UI
         /// Gets the barrier view model.
         /// </summary>
         public static IBarrierViewModel BarrierViewModel => ViewModelFactory.GetInstance<IBarrierViewModel>();
+
+        /// <summary>
+        /// Gets the location selection view model.
+        /// </summary>
+        public static ILocationSelectionViewModel LocationSelectionViewModel => ViewModelFactory.GetInstance<ILocationSelectionViewModel>();
     }
 }
