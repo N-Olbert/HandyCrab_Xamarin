@@ -13,6 +13,8 @@ namespace HandyCrab.Business.ViewModels
         private int selectedSearchRadius;
         private Placemark currentPlacemark;
         private IEnumerable<IReadOnlyBarrier> searchResults;
+        private IEnumerable<string> sortOptions;
+        private string selectedSearchOption;
 
         public int SelectedSearchRadius
         {
@@ -32,10 +34,39 @@ namespace HandyCrab.Business.ViewModels
             set => SetProperty(ref this.searchResults, value?.ToList());
         }
 
+        public IEnumerable<string> SortOptions => new[] { "Distanz", "Datum", "Alphabetisch" };
+
+        public string SelectedSortOption
+        {
+            get => this.selectedSearchOption;
+            set
+            {
+                if (SortOptions.Contains(value))
+                {
+                    SetProperty(ref this.selectedSearchOption, value);
+                    switch(value)
+                    {
+                        case "Distanz":
+                            SearchResults = SearchResults.OrderBy(x => x.DistanceToLocation);
+                            break;
+                        case "Datum":
+                            SearchResults = SearchResults.OrderByDescending(x => x.Id);
+                            break;
+                        case "Alphabetisch":
+                            SearchResults = SearchResults.OrderBy(x => x.Title);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+
         public SearchResultsViewModel()
         {
             UpdateSearchResults();
             InternalRuntimeDataStorageService.StorageValueChanged += OnStorageValueChanged;
+            SelectedSortOption = SortOptions.First();
         }
 
         private void OnStorageValueChanged(object sender, StorageSlot slot)

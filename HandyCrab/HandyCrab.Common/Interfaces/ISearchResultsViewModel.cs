@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using HandyCrab.Common.Entitys;
+using JetBrains.Annotations;
 using Xamarin.Essentials;
 
 namespace HandyCrab.Common.Interfaces
@@ -11,5 +12,10 @@ namespace HandyCrab.Common.Interfaces
         Placemark CurrentPlacemark { get; }
 
         IEnumerable<IReadOnlyBarrier> SearchResults { get; }
+
+        [NotNull]
+        IEnumerable<string> SortOptions { get; }
+
+        string SelectedSortOption { get; set; }
     }
 }

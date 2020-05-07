@@ -21,13 +21,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Text="Sort by: "></Label>
-                <Picker Grid.Column="1" Grid.Row="0" Title="Sort by" SelectedIndex="0">
-                    <Picker.Items>
-                        <x:String>Option 1</x:String>
-                        <x:String>Option 2</x:String>
-                    </Picker.Items>
-                </Picker>
-                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+            <Picker Grid.Column="1" Grid.Row="0" Title="Sortierkriterium" ItemsSource="{Binding SortOptions}"
+                    SelectedItem="{Binding SelectedSortOption}" />
+            <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
                     <ListView x:Name="BarrierView" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" ItemTapped="onItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="entities:IReadOnlyBarrier">
