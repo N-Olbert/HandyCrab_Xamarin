@@ -18,8 +18,18 @@ namespace HandyCrab.Common.Interfaces
 
         Placemark CurrentPlacemark { get; }
 
+        IEnumerable<string> SearchOptions { get; }
+
+        string SelectedSearchOption { get; set; }
+
+        bool SearchWithPostcode { get; }
+
+        string Postcode { get; set; }
+
         [NotNull]
         ICommand PerformSearchCommand { get; }
+
+        ICommand SetCurrentLocationCommand { get; }
 
         [NotNull]
         Task UpdateCurrentGeolocationAsync();

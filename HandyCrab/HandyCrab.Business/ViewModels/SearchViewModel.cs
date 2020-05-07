@@ -19,6 +19,10 @@ namespace HandyCrab.Business.ViewModels
         private Command executeSearchCommand;
         private int selectedSearchRadiusBackingField;
         private Placemark currentPlacemarkBackingField;
+        private Command setCurrentLocationCommand;
+        private string selectedSearchOption;
+        private bool searchWithPostcode;
+        private string postcode;
 
         public event EventHandler SearchSucceeded;
 
@@ -48,12 +52,58 @@ namespace HandyCrab.Business.ViewModels
 
         public ICommand PerformSearchCommand { get; }
 
+        public ICommand SetCurrentLocationCommand => this.setCurrentLocationCommand;
+
+        public IEnumerable<string> SearchOptions => new string[] { "Positionsangabe", "Postleitzahl" };
+
+        public string SelectedSearchOption
+        { 
+            get => this.selectedSearchOption;
+            set
+            {
+                if (SearchOptions.Contains(value))
+                {
+                    if (value == "Positionsangabe")
+                    {
+                        SearchWithPostcode = false;
+                    } else
+                    {
+                        SearchWithPostcode = true;
+                        ApproximateCurrentGeolocationAsync();
+                    }
+                    SetProperty(ref this.selectedSearchOption, value);
+                }
+            }
+        }
+
+        public bool SearchWithPostcode
+        {
+            get => this.searchWithPostcode;
+            private set
+            {
+                SetProperty(ref this.searchWithPostcode, value);
+                this.executeSearchCommand.ChangeCanExecute();
+            }
+        }
+
+        public string Postcode 
+        { 
+            get => this.postcode;
+            set
+            {
+                SetProperty(ref this.postcode, value);
+                this.executeSearchCommand.ChangeCanExecute();
+            }
+        }
+
         public SearchViewModel()
         {
             SelectedSearchRadius = SearchRadiusInMeters.Last();
             this.executeSearchCommand = new Command(ExecuteSearch, CanExecuteSearch);
             PropertyChanged += (sender, args) => this.executeSearchCommand.ChangeCanExecute();
             PerformSearchCommand = this.executeSearchCommand;
+            this.setCurrentLocationCommand = new Command(SetCurrentLocation);
+            SelectedSearchOption = SearchOptions.First();
 
             var storageService = Factory.Get<IInternalRuntimeDataStorageService>();
             var currentPlacemark = storageService.GetValue<Placemark>(StorageSlot.SelectedManualPlacemark);
@@ -88,22 +138,29 @@ namespace HandyCrab.Business.ViewModels
 
         private async void ExecuteSearch()
         {
-            //async void is ok here (event handler)
-            var current = CurrentPlacemark;
-            var barriers = await Factory.Get<IBarrierClient>()
-                                        .GetBarriersAsync(current.Location.Longitude, current.Location.Latitude, 1000000);
-
+            Failable<IEnumerable<Barrier>> barriers;
             var storage = Factory.Get<IInternalRuntimeDataStorageService>();
+            if (SearchWithPostcode == false)
+            {
+                //async void is ok here (event handler)
+                var current = CurrentPlacemark;
+                barriers = await Factory.Get<IBarrierClient>()
+                                            .GetBarriersAsync(current.Location.Longitude, current.Location.Latitude, 1000000);
+            } else
+            {
+                barriers = await Factory.Get<IBarrierClient>()
+                                            .GetBarriersAsync(Postcode);
+            }
             if (barriers.IsSucceeded())
             {
                 var barriersList = barriers.Value.ToList();
                 for (int i = 0; i < barriersList.Count; i++)
                 {
-                    var distanceInKm = current.Location.CalculateDistance(barriersList[i].Latitude, 
+                    var distanceInKm = CurrentPlacemark.Location.CalculateDistance(barriersList[i].Latitude, 
                         barriersList[i].Longitude, DistanceUnits.Kilometers);
                     barriersList[i].DistanceToLocation = (int)(distanceInKm * 1000);
                 }
-                storage.StoreValue(StorageSlot.BarrierSearchPlacemark, current);
+                storage.StoreValue(StorageSlot.BarrierSearchPlacemark, CurrentPlacemark);
                 storage.StoreValue(StorageSlot.BarrierSearchRadius, SelectedSearchRadius);
                 storage.StoreValue(StorageSlot.BarrierSearchResults, barriers.Value);
                 SearchSucceeded?.Invoke(this, EventArgs.Empty);
@@ -117,7 +174,8 @@ namespace HandyCrab.Business.ViewModels
 
         private bool CanExecuteSearch()
         {
-            return !IsBusy && SearchRadiusInMeters.Contains(SelectedSearchRadius) && CurrentPlacemark != null;
+            return !IsBusy && ((SearchRadiusInMeters.Contains(SelectedSearchRadius) && CurrentPlacemark != null && SearchWithPostcode == false) ||
+                (!String.IsNullOrEmpty(Postcode) && SearchWithPostcode == true));
         }
 
         private async Task ApproximateCurrentGeolocationAsync()
@@ -157,6 +215,11 @@ namespace HandyCrab.Business.ViewModels
             {
                 RaiseOnError(e);
             }
+        }
+
+        private void SetCurrentLocation()
+        {
+            ApproximateCurrentGeolocationAsync();
         }
     }
 }
