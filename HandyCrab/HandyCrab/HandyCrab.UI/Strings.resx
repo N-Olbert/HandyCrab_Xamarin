@@ -156,6 +156,9 @@
   <data name="Error_InvalidPassword" xml:space="preserve">
     <value>Dies ist kein gültiges Passwort.</value>
   </data>
+  <data name="Error_InvalidPostcode" xml:space="preserve">
+    <value>Dies ist keine gültige Postleitzahl</value>
+  </data>
   <data name="Error_InvalidUsername" xml:space="preserve">
     <value>Dies ist kein gültiger Benutzername.</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="Error_NetworkTimeout" xml:space="preserve">
     <value>Die App konnte keine Verbindung zum Server aufbauen. Bitte stellen Sie sicher, dass eine Internetverbindung besteht.</value>
+  </data>
+  <data name="Error_NotLoggedIn" xml:space="preserve">
+    <value>Sie sind nicht eingeloggt</value>
   </data>
   <data name="Error_UnknownError" xml:space="preserve">
     <value>Unbekannter Fehler</value>

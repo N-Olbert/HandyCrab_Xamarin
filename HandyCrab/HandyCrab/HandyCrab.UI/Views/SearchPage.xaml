@@ -12,7 +12,7 @@
     <ContentPage.Content>
         <StackLayout Margin="10">
             <Label Text="Suchmodus auswählen" FontAttributes="Bold"/>
-            <Picker Title="Suchmodus" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
+            <Picker x:Name="searchModePicker" Title="Suchmodus" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
             <Grid RowSpacing="20" IsVisible="{Binding SearchWithPostcode, Converter={x:Static ui:InverseBoolConverter.Converter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />

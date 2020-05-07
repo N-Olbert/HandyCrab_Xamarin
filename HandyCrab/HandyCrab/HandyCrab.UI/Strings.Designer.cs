@@ -178,6 +178,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist keine gültige Postleitzahl ähnelt.
+        /// </summary>
+        internal static string Error_InvalidPostcode {
+            get {
+                return ResourceManager.GetString("Error_InvalidPostcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist kein gültiger Benutzername. ähnelt.
         /// </summary>
         internal static string Error_InvalidUsername {
@@ -201,6 +210,15 @@ namespace HandyCrab.UI {
         internal static string Error_NetworkTimeout {
             get {
                 return ResourceManager.GetString("Error_NetworkTimeout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sie sind nicht eingeloggt ähnelt.
+        /// </summary>
+        internal static string Error_NotLoggedIn {
+            get {
+                return ResourceManager.GetString("Error_NotLoggedIn", resourceCulture);
             }
         }
         
