@@ -42,5 +42,8 @@ namespace HandyCrab.Common.Entitys
 
         [JsonProperty("vote")]
         public Vote Vote { get; set; }
+
+        [JsonIgnore]
+        public int DistanceToLocation { get; set; }
     }
 }

@@ -96,6 +96,13 @@ namespace HandyCrab.Business.ViewModels
             var storage = Factory.Get<IInternalRuntimeDataStorageService>();
             if (barriers.IsSucceeded())
             {
+                var barriersList = barriers.Value.ToList();
+                for (int i = 0; i < barriersList.Count; i++)
+                {
+                    var distanceInKm = current.Location.CalculateDistance(barriersList[i].Latitude, 
+                        barriersList[i].Longitude, DistanceUnits.Kilometers);
+                    barriersList[i].DistanceToLocation = (int)(distanceInKm * 1000);
+                }
                 storage.StoreValue(StorageSlot.BarrierSearchPlacemark, current);
                 storage.StoreValue(StorageSlot.BarrierSearchRadius, SelectedSearchRadius);
                 storage.StoreValue(StorageSlot.BarrierSearchResults, barriers.Value);
