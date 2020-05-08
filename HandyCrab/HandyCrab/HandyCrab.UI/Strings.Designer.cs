@@ -178,6 +178,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das Format des ausgewählten Bildes wird nicht unterstützt. Bitte wählen sie ein anderes. ähnelt.
+        /// </summary>
+        internal static string Error_InvalidPictureFormat {
+            get {
+                return ResourceManager.GetString("Error_InvalidPictureFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist keine gültige Postleitzahl ähnelt.
         /// </summary>
         internal static string Error_InvalidPostcode {
@@ -219,6 +228,15 @@ namespace HandyCrab.UI {
         internal static string Error_NotLoggedIn {
             get {
                 return ResourceManager.GetString("Error_NotLoggedIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Das ausgewählte Bild ist zu groß. Bitte wählen Sie ein kleineres. ähnelt.
+        /// </summary>
+        internal static string Error_PictureTooBig {
+            get {
+                return ResourceManager.GetString("Error_PictureTooBig", resourceCulture);
             }
         }
         

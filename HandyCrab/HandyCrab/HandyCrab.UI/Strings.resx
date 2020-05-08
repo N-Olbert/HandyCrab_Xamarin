@@ -156,6 +156,9 @@
   <data name="Error_InvalidPassword" xml:space="preserve">
     <value>Dies ist kein gültiges Passwort.</value>
   </data>
+  <data name="Error_InvalidPictureFormat" xml:space="preserve">
+    <value>Das Format des ausgewählten Bildes wird nicht unterstützt. Bitte wählen sie ein anderes.</value>
+  </data>
   <data name="Error_InvalidPostcode" xml:space="preserve">
     <value>Dies ist keine gültige Postleitzahl</value>
   </data>
@@ -170,6 +173,9 @@
   </data>
   <data name="Error_NotLoggedIn" xml:space="preserve">
     <value>Sie sind nicht eingeloggt</value>
+  </data>
+  <data name="Error_PictureTooBig" xml:space="preserve">
+    <value>Das ausgewählte Bild ist zu groß. Bitte wählen Sie ein kleineres.</value>
   </data>
   <data name="Error_UnknownError" xml:space="preserve">
     <value>Unbekannter Fehler</value>
