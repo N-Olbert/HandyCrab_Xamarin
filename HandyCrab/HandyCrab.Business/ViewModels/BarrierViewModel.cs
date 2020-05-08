@@ -233,6 +233,10 @@ namespace HandyCrab.Business.ViewModels
                 saveBarrier();
                 VoteSucceeded?.Invoke(this, EventArgs.Empty);
             }
+            else
+            {
+                RaiseOnError(task);
+            }
         }
 
         private async void voteSolution(Vote vote, String id)
@@ -268,6 +272,9 @@ namespace HandyCrab.Business.ViewModels
                         break;
                     }
                 }
+            } else
+            {
+                RaiseOnError(task);
             }
         }
 
@@ -282,6 +289,9 @@ namespace HandyCrab.Business.ViewModels
                 Solutions = barrier.Value.Solutions;
                 saveBarrier();
                 AddSolutionSucceeded?.Invoke(this, EventArgs.Empty);
+            } else
+            {
+                RaiseOnError(barrier);
             }
         }
 

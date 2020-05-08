@@ -150,6 +150,9 @@
   <data name="EmailPlaceholder" xml:space="preserve">
     <value>E-Mail</value>
   </data>
+  <data name="Error_BarrierNotFound" xml:space="preserve">
+    <value>Die Barriere konnte nicht gefunden werden.</value>
+  </data>
   <data name="Error_InvalidMail" xml:space="preserve">
     <value>Dies ist keine gültige E-Mail Adresse.</value>
   </data>
@@ -176,6 +179,9 @@
   </data>
   <data name="Error_PictureTooBig" xml:space="preserve">
     <value>Das ausgewählte Bild ist zu groß. Bitte wählen Sie ein kleineres.</value>
+  </data>
+  <data name="Error_SolutionNotFound" xml:space="preserve">
+    <value>Die Lösung konnte nicht gefunden werden.</value>
   </data>
   <data name="Error_UnknownError" xml:space="preserve">
     <value>Unbekannter Fehler</value>

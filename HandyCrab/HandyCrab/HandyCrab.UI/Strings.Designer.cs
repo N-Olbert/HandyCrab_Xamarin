@@ -160,6 +160,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Barriere konnte nicht gefunden werden. ähnelt.
+        /// </summary>
+        internal static string Error_BarrierNotFound {
+            get {
+                return ResourceManager.GetString("Error_BarrierNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Dies ist keine gültige E-Mail Adresse. ähnelt.
         /// </summary>
         internal static string Error_InvalidMail {
@@ -237,6 +246,15 @@ namespace HandyCrab.UI {
         internal static string Error_PictureTooBig {
             get {
                 return ResourceManager.GetString("Error_PictureTooBig", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Lösung konnte nicht gefunden werden. ähnelt.
+        /// </summary>
+        internal static string Error_SolutionNotFound {
+            get {
+                return ResourceManager.GetString("Error_SolutionNotFound", resourceCulture);
             }
         }
         
