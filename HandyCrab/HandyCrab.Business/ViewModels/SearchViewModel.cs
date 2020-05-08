@@ -26,7 +26,7 @@ namespace HandyCrab.Business.ViewModels
 
         public event EventHandler SearchSucceeded;
 
-        public IEnumerable<int> SearchRadiusInMeters => new[] {10, 25, 50, 100, 1000};
+        public IEnumerable<int> SearchRadiusInMeters => new[] {10, 25, 50, 100, 1000, 10000000};
 
         public int SelectedSearchRadius
         {

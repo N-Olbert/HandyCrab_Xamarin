@@ -46,6 +46,22 @@ namespace HandyCrab.Business.Services.BusinessObjects
         }
 
         /// <inheritdoc />
+        public async Task<Failable<IEnumerable<Barrier>>> GetBarriersOfCurrentUserAsync()
+        {
+            const string settingsName = "BarrierClientBaseAddressGet";
+            try
+            {
+                var requestData = new object();
+                var result = await PerformBarrierRequest<List<Barrier>>(settingsName, requestData, HttpMethod.Get);
+                return result.ConvertDown<IEnumerable<Barrier>>();
+            }
+            catch (Exception e)
+            {
+                return new Failable<IEnumerable<Barrier>>(e);
+            }
+        }
+
+        /// <inheritdoc />
         public async Task<Failable<Barrier>> GetBarrierAsync(string id)
         {
             const string settingsName = "BarrierClientBaseAddressGet";
@@ -112,6 +128,20 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 };
 
                 return await PerformBarrierRequest<Barrier>(settingsName, requestData, HttpMethod.Put);
+            }
+            catch (Exception e)
+            {
+                return new Failable<Barrier>(e);
+            }
+        }
+
+        public async Task<Failable> DeleteBarrierAsync(string barrierId)
+        {
+            const string settingsName = "BarrierClientBaseAddressDelete";
+            try
+            {
+                var requestData = new IdRequestData { Id = barrierId };
+                return await PerformBarrierRequest<Barrier>(settingsName, requestData, HttpMethod.Get);
             }
             catch (Exception e)
             {

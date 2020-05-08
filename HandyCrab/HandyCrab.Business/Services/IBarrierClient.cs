@@ -26,6 +26,12 @@ namespace HandyCrab.Business.Services
         Task<Failable<IEnumerable<Barrier>>> GetBarriersAsync(string postCode);
 
         /// <summary>
+        /// Gets the barriers of the current user.
+        /// </summary>
+        /// <returns>IEnumberable of returned barriers (might be empty).</returns>
+        Task<Failable<IEnumerable<Barrier>>> GetBarriersOfCurrentUserAsync();
+
+        /// <summary>
         /// Gets the barrier by its id.
         /// </summary>
         /// <param name="id">The identifier of the id.</param>
@@ -50,6 +56,13 @@ namespace HandyCrab.Business.Services
         /// <param name="description">Optional: The modified description.</param>
         /// <returns>The modified barrier.</returns>
         Task<Failable<Barrier>> ModifyBarrierAsync(string barrierId, string title, string base64Picture, string description);
+
+        /// <summary>
+        /// Modifies an exiting barrier.
+        /// </summary>
+        /// <param name="barrierId">The identifier of the barrier to delete.</param>
+        /// <returns>Failable, indicating success</returns>
+        Task<Failable> DeleteBarrierAsync(string barrierId);
 
         /// <summary>
         /// Adds a new solution to an existing barrier.
