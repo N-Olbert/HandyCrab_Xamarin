@@ -18,5 +18,10 @@ namespace HandyCrab.Common.Interfaces
         /// Gets a command which selects an image asynchronous.
         /// </summary>
         ICommand SelectImageAsync { get; }
+
+        /// <summary>
+        /// Gets the image.
+        /// </summary>
+        ImageSource Image { get; }
     }
 }

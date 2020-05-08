@@ -55,12 +55,8 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=TakeImageAsync}"
-                        CommandParameter="{x:Reference ImageView}"
-                        Text="{x:Static ui:Strings.TakePictureButtonText}"></Button>
-                    <Button Grid.Row="0" Grid.Column="1" Command="{Binding Source={x:Static ui:ModelViewLocator.ImagePickerViewModel}, Path=SelectImageAsync}"
-                        CommandParameter="{x:Reference ImageView}"
-                        Text="{x:Static ui:Strings.ChoosePictureButtonText}"></Button>
+                    <Button Grid.Row="0" Grid.Column="0" Command="{Binding TakeImageAsync}" Text="{x:Static ui:Strings.TakePictureButtonText}"></Button>
+                    <Button Grid.Row="0" Grid.Column="1" Command="{Binding SelectImageAsync}" Text="{x:Static ui:Strings.ChoosePictureButtonText}"></Button>
                 </Grid>
                 <Image x:Name="ImageView" Source="{Binding Image}"></Image>
                 <Editor Placeholder="{x:Static ui:Strings.BarrierDescriptionPlaceholder}" AutoSize="TextChanges" Text="{Binding Description}"></Editor>

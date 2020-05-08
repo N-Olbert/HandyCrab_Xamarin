@@ -22,7 +22,7 @@ namespace HandyCrab.Common.Entitys
         [JsonProperty("latitude")]
         public double Latitude { get; set; }
 
-        [JsonProperty("picture")]
+        [JsonProperty("picturePath")]
         public string Picture { get; set; }
 
         [JsonProperty("description")]

@@ -77,7 +77,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     Description = barrierToAdd.Description,
                     Longitude = barrierToAdd.Longitude,
                     Latitude = barrierToAdd.Latitude,
-                    Picture = barrierToAdd.Picture,
+                    Picture = base64Picture,
                     Postcode = barrierToAdd.Postcode,
                     Solution = barrierSolution?.Text,
                     Title = barrierToAdd.Title

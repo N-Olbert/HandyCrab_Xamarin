@@ -1,24 +1,15 @@
 ﻿using System;
 using System.Windows.Input;
 using HandyCrab.Common.Entitys;
-using JetBrains.Annotations;
-using Xamarin.Forms;
 
 namespace HandyCrab.Common.Interfaces
 {
-    public interface IAddOrModifyBarrierViewModel : IViewModel
+    public interface IAddOrModifyBarrierViewModel : IImagePickerViewModel
     {
         /// <summary>
         /// Occurs when adding/modifying succeeds
         /// </summary>
         event EventHandler<IReadOnlyBarrier> OnSuccess;
-
-        /// <summary>
-        /// Gets or sets the image (control).
-        /// Might not be null, but no Image must be present.
-        /// </summary>
-        [NotNull]
-        ImageSource Image { get;}
 
         /// <summary>
         /// Gets or sets the modified barrier identifier.

@@ -18,7 +18,7 @@ using Exception = System.Exception;
 
 namespace HandyCrab.Business.ViewModels
 {
-    internal class AddOrModifyBarrierViewModel : BaseViewModel, IAddOrModifyBarrierViewModel
+    internal class AddOrModifyBarrierViewModel : ImagePickerViewModel, IAddOrModifyBarrierViewModel
     {
         private string modifiedBarrierId;
         private string title;
@@ -27,7 +27,6 @@ namespace HandyCrab.Business.ViewModels
         private string description;
         private string postcode;
         private string initialSolutionText;
-        private ImageSource image;
         [NotNull]
         private readonly Command addOrModifyBarrierCommand;
 
@@ -146,13 +145,6 @@ namespace HandyCrab.Business.ViewModels
                 SetProperty(ref this.initialSolutionText, value);
                 this.addOrModifyBarrierCommand.ChangeCanExecute();
             }
-        }
-
-        /// <inheritdoc />
-        public ImageSource Image
-        {
-            get => this.image;
-            set => SetProperty(ref this.image, value);
         }
 
         /// <inheritdoc />

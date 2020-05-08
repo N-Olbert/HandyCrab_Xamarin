@@ -7,15 +7,24 @@ using Xamarin.Forms;
 
 namespace HandyCrab.Business.ViewModels
 {
-    internal class ImagePickerViewModel : BaseViewModel, IImagePickerViewModel
+    internal abstract class ImagePickerViewModel : BaseViewModel, IImagePickerViewModel
     {
         private readonly ImageCommand takeImageCommand;
         private readonly ImageCommand selectImageCommand;
+        private ImageSource image;
+
         public ICommand TakeImageAsync => this.takeImageCommand;
 
         public ICommand SelectImageAsync => this.selectImageCommand;
 
-        public ImagePickerViewModel()
+        /// <inheritdoc />
+        public ImageSource Image
+        {
+            get => this.image;
+            set => SetProperty(ref this.image, value);
+        }
+
+        protected ImagePickerViewModel()
         {
             this.takeImageCommand = new ImageCommand(true, this);
             this.selectImageCommand = new ImageCommand(false, this);
@@ -25,9 +34,9 @@ namespace HandyCrab.Business.ViewModels
         {
             private readonly bool takeImage;
             [NotNull]
-            private readonly BaseViewModel parentViewModel;
+            private readonly ImagePickerViewModel parentViewModel;
 
-            internal ImageCommand(bool takeImage, [NotNull]BaseViewModel parentViewModel)
+            internal ImageCommand(bool takeImage, [NotNull]ImagePickerViewModel parentViewModel)
             {
                 this.takeImage = takeImage;
                 this.parentViewModel = parentViewModel;
@@ -42,7 +51,7 @@ namespace HandyCrab.Business.ViewModels
 
             public bool CanExecute(object parameter)
             {
-                return !this.parentViewModel.IsBusy && parameter is Image;
+                return !this.parentViewModel.IsBusy;
             }
 
             public async void Execute(object parameter)
@@ -56,7 +65,7 @@ namespace HandyCrab.Business.ViewModels
                         var image = this.takeImage
                             ? await imageService.TakeImageAsync()
                             : await imageService.SelectImageAsync();
-                        ((Image)parameter).Source = image;
+                        this.parentViewModel.Image = image;
                     }
                     catch(Exception error)
                     {

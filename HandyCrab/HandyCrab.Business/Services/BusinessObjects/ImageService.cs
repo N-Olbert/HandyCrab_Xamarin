@@ -15,7 +15,15 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 await mediaProvider.Initialize();
                 if (mediaProvider.IsTakePhotoSupported)
                 {
-                    var options = new StoreCameraMediaOptions() {SaveToAlbum = false};
+                    var options = new StoreCameraMediaOptions()
+                    {
+                        SaveToAlbum = false,
+                        
+                        //Autosize too large images for backend
+                        PhotoSize = PhotoSize.MaxWidthHeight,
+                        MaxWidthHeight = 1500,
+                        CompressionQuality = 90
+                    };
                     var pic = await mediaProvider.TakePhotoAsync(options);
 
                     return pic == null ? null : ImageSource.FromStream(pic.GetStream);
@@ -33,7 +41,13 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 await mediaProvider.Initialize();
                 if (mediaProvider.IsPickPhotoSupported)
                 {
-                    var options = new PickMediaOptions();
+                    var options = new PickMediaOptions
+                    {
+                        //Autosize too large images for backend
+                        PhotoSize = PhotoSize.MaxWidthHeight, 
+                        MaxWidthHeight = 1500, 
+                        CompressionQuality = 90
+                    };
                     var pic = await mediaProvider.PickPhotoAsync(options);
 
                     return pic == null ? null : ImageSource.FromStream(pic.GetStream);
