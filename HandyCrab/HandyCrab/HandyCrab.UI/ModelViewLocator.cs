@@ -24,11 +24,6 @@ namespace HandyCrab.UI
         public static IAboutViewModel AboutViewModel => ViewModelFactory.GetInstance<IAboutViewModel>();
 
         /// <summary>
-        /// Gets the image picker view model.
-        /// </summary>
-        public static IImagePickerViewModel ImagePickerViewModel => ViewModelFactory.GetInstance<IImagePickerViewModel>();
-
-        /// <summary>
         /// Gets the login view model.
         /// </summary>
         public static ILoginViewModel LoginViewModel => ViewModelFactory.GetInstance<ILoginViewModel>();
