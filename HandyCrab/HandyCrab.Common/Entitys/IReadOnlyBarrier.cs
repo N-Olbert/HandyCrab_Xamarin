@@ -27,5 +27,7 @@ namespace HandyCrab.Common.Entitys
         int Downvotes { get; }
 
         Vote Vote { get; }
+
+        int DistanceToLocation { get; }
     }
 }

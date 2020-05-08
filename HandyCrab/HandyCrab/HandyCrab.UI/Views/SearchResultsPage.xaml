@@ -21,13 +21,9 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" Grid.Row="0" Text="Sort by: "></Label>
-                <Picker Grid.Column="1" Grid.Row="0" Title="Sort by" SelectedIndex="0">
-                    <Picker.Items>
-                        <x:String>Option 1</x:String>
-                        <x:String>Option 2</x:String>
-                    </Picker.Items>
-                </Picker>
-                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
+            <Picker Grid.Column="1" Grid.Row="0" Title="Sortierkriterium" ItemsSource="{Binding SortOptions}"
+                    SelectedItem="{Binding SelectedSortOption}" />
+            <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
                     <ListView x:Name="BarrierView" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" ItemTapped="onItemTapped">
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="entities:IReadOnlyBarrier">
@@ -38,6 +34,7 @@
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="20" />
                                                     <RowDefinition Height="100" />
+                                                    <RowDefinition Height="Auto" />
                                                 </Grid.RowDefinitions>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" />
@@ -45,9 +42,18 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Label Grid.Column="0" Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold"/>
                                                 <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" />
-                                                <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" Source="{Binding Picture}"></Image>
+                                                <Label Grid.Column="0" Grid.Row="2">
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Distanz: " FontAttributes="Bold" />
+                                                            <Span Text="{Binding DistanceToLocation}" />
+                                                            <Span Text="m" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                                <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Picture}"></Image>
                                             </Grid>
-                                            <Button Grid.Row="0" Grid.Column="0" FontSize="Small" Text="Bearbeiten" Clicked="OnModifyBarrierButtonClicked" 
+                                            <Button FontSize="Small" Text="Bearbeiten" Clicked="OnModifyBarrierButtonClicked" 
                                                         IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
                                         </StackLayout>
                                     </ViewCell.View>
