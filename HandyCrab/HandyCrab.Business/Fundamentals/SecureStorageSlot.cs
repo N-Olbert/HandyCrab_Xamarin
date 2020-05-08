@@ -13,8 +13,13 @@ namespace HandyCrab.Business
         CurrentUser,
 
         /// <summary>
-        /// Storage slot of the current user cookie
+        /// Storage slot of the current users session cookie
         /// </summary>
-        CurrentUserCookie,
+        CurrentUserSessionCookie,
+
+        /// <summary>
+        /// Storage slot of the current users token cookie
+        /// </summary>
+        CurrentUserTokenCookie,
     }
 }

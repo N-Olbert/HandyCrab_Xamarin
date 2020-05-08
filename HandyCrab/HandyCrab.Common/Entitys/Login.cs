@@ -9,5 +9,8 @@ namespace HandyCrab.Common.Entitys
 
         [JsonProperty("password")]
         public string Password { get; set; }
+
+        [JsonProperty("createToken")]
+        public bool CreateToken { get; set; } = true;
     }
 }

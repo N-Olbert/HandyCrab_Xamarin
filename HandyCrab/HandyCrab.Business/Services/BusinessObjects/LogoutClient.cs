@@ -23,7 +23,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 var result = await HandleResponseAsync<object>(response);
 
                 //Delete anyways -- even if result failed
-                await UpdateSessionCookieAsync(null);
+                await UpdateCookiesAsync(null);
                 await UpdateCurrentUserAsync(null);
                 if (!result.IsSucceeded())
                 {

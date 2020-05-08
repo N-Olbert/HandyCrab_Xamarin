@@ -22,7 +22,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
 
         protected async Task<HttpRequestMessage> GetHttpMessageWithSessionCookie(string uri, HttpMethod httpMethod)
         {
-            var cookie = await GetSessionCookieAsync();
+            var cookie = await GetHttpMessageCookiesAsync();
             var message = new HttpRequestMessage(httpMethod, uri);
             message.Headers.Add("Cookie", cookie);
             return message;
@@ -38,6 +38,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
             switch (response.StatusCode)
             {
                 case HttpStatusCode.OK:
+                    await UpdateCookieAsync(response, CookieType.Session, true);
                     var obj = response.Content != null
                         ? (await response.Content.ReadAsStringAsync()).DeserializeJson<T>()
                         : default;
@@ -58,11 +59,10 @@ namespace HandyCrab.Business.Services.BusinessObjects
             }
         }
 
-        protected async Task UpdateSessionCookieAsync(HttpResponseMessage message)
+        protected async Task UpdateCookiesAsync(HttpResponseMessage message)
         {
-            var cookie = GetCookie(message);
-            var storageProvider = Factory.Get<ISecureStorage>();
-            await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUserCookie), cookie);
+            await UpdateCookieAsync(message, CookieType.Session, false);
+            await UpdateCookieAsync(message, CookieType.Token, false);
         }
 
         protected async Task UpdateCurrentUserAsync(User user)
@@ -71,19 +71,59 @@ namespace HandyCrab.Business.Services.BusinessObjects
             await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUser), JsonConvert.SerializeObject(user));
         }
 
-        protected async Task<string> GetSessionCookieAsync()
+        protected async Task<string> GetHttpMessageCookiesAsync()
         {
             var storageProvider = Factory.Get<ISecureStorage>();
-            return $"JSESSIONID={await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserCookie))}";
+            var cookie = $"JSESSIONID={await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserSessionCookie))}";
+            var tokenCookie = await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserTokenCookie));
+            if (!string.IsNullOrEmpty(tokenCookie))
+            {
+                cookie = $"{cookie};TOKEN={tokenCookie}";
+            }
+
+            return cookie;
         }
 
-        private static string GetCookie(HttpResponseMessage message)
+        private async Task UpdateCookieAsync(HttpResponseMessage message, CookieType type, bool storeOnlyNonNull)
+        {
+            var cookie = GetCookie(message, type);
+            if (storeOnlyNonNull && string.IsNullOrEmpty(cookie))
+            {
+                return;
+            }
+
+            var storageProvider = Factory.Get<ISecureStorage>();
+            switch (type)
+            {
+                case CookieType.Session:
+                    await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUserSessionCookie), cookie);
+                    break;
+                case CookieType.Token:
+                    await storageProvider.StoreAsync(nameof(SecureStorageSlot.CurrentUserTokenCookie), cookie);
+                    break;
+                default: return;
+            }
+        }
+
+        private static string GetCookie(HttpResponseMessage message, CookieType type)
         {
             //based on: https://stackoverflow.com/a/58947897/1676819
             if (message?.Headers != null &&
                 message.Headers.TryGetValues("Set-Cookie", out var setCookie))
             {
-                var setCookieString = setCookie.SingleOrDefault();
+                string cookieName;
+                switch (type)
+                {
+                    case CookieType.Session:
+                        cookieName = "JSESSION";
+                        break;
+                    case CookieType.Token:
+                        cookieName = "TOKEN";
+                        break;
+                    default: return null;
+                }
+
+                var setCookieString = setCookie.SingleOrDefault(x => x != null && x.StartsWith(cookieName));
                 var cookieTokens = setCookieString?.Split(';');
                 var firstCookie = cookieTokens?.FirstOrDefault();
                 var keyValueTokens = firstCookie?.Split('=');
@@ -102,6 +142,12 @@ namespace HandyCrab.Business.Services.BusinessObjects
         {
             [JsonProperty("errorCode")]
             public int ErrorCode { get; set; }
+        }
+
+        private enum CookieType
+        {
+            Session,
+            Token
         }
     }
 }

@@ -23,7 +23,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 var result = await HandleResponseAsync<User>(response);
                 if (result.IsSucceeded())
                 {
-                    await UpdateSessionCookieAsync(response);
+                    await UpdateCookiesAsync(response);
                 }
 
                 await UpdateCurrentUserAsync(result.Value);
