@@ -26,7 +26,7 @@ namespace HandyCrab.Business.ViewModels
 
         public event EventHandler SearchSucceeded;
 
-        public IEnumerable<int> SearchRadiusInMeters => new[] {5, 15, 30};
+        public IEnumerable<int> SearchRadiusInMeters => new[] {10, 25, 50, 100, 1000};
 
         public int SelectedSearchRadius
         {
@@ -145,7 +145,7 @@ namespace HandyCrab.Business.ViewModels
                 //async void is ok here (event handler)
                 var current = CurrentPlacemark;
                 barriers = await Factory.Get<IBarrierClient>()
-                                            .GetBarriersAsync(current.Location.Longitude, current.Location.Latitude, 1000000);
+                                            .GetBarriersAsync(current.Location.Longitude, current.Location.Latitude, SelectedSearchRadius);
             } else
             {
                 barriers = await Factory.Get<IBarrierClient>()
