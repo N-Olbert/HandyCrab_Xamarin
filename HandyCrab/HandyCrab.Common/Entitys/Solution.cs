@@ -1,28 +1,51 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
 using Newtonsoft.Json;
 
 namespace HandyCrab.Common.Entitys
 {
-    public class Solution
+    public class Solution : SolutionBase, INotifyPropertyChanged
     {
-        [JsonProperty("_id")]
-        public string Id { get; set; }
+        private string userName;
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonIgnore]
+        public string UserName
+        {
+            get
+            {
+                if (this.userName == default)
+                {
+                    GetUserName();
+                }
 
-        [JsonProperty("userId")]
-        public string UserId { get; set; }
+                return this.userName;
+            }
+        }
 
-        [JsonProperty("upvotes")]
-        public int Upvotes { get; set; }
+        private async void GetUserName()
+        {
+            //async void is ok 
+            try
+            {
+                var name = await UsernameResolverSingletonHolder.Instance.GetUserNameAsync(UserId);
+                SetProperty(ref this.userName, name, nameof(UserName));
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
-        [JsonProperty("downvotes")]
-        public int Downvotes { get; set; }
-
-        [JsonProperty("vote")]
-        public Vote Vote { get; set; }
+        protected void SetProperty<T>(ref T backingStore, T value, string propertyName)
+        {
+            if (!EqualityComparer<T>.Default.Equals(backingStore, value))
+            {
+                backingStore = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

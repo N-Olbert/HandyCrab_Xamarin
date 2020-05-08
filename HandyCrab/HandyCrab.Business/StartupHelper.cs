@@ -1,5 +1,7 @@
-﻿using HandyCrab.Business.ViewModels;
+﻿using HandyCrab.Business.Services;
+using HandyCrab.Business.ViewModels;
 using HandyCrab.Common;
+using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
 
 namespace HandyCrab.Business
@@ -18,6 +20,7 @@ namespace HandyCrab.Business
             ViewModelFactory.RegisterInstance<IMainViewModel, MainViewModel>();
             ViewModelFactory.RegisterInstance<IBarrierViewModel, BarrierViewModel>();
             ViewModelFactory.RegisterInstance<ILocationSelectionViewModel, LocationSelectionViewModel>();
+            UsernameResolverSingletonHolder.SetInstance(Factory.Get<IUserClient>());
         }
     }
 }

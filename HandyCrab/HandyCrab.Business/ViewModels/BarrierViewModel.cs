@@ -58,7 +58,7 @@ namespace HandyCrab.Business.ViewModels
                         UserVote = barrierToShow.Vote;
                         this.upVotes = barrierToShow.Upvotes;
                         this.downVotes = barrierToShow.Downvotes;
-                        RaisePropertyChanged("TotalVotes");
+                        RaisePropertyChanged(nameof(TotalVotes));
                         Solutions = barrierToShow.Solutions.OrderByDescending(x => x.Upvotes - x.Downvotes);
                         var imageSource = new UriImageSource();
                         if (!string.IsNullOrEmpty(barrierToShow.Picture))
