@@ -74,11 +74,11 @@ namespace HandyCrab.Business.Services.BusinessObjects
         protected async Task<string> GetHttpMessageCookiesAsync()
         {
             var storageProvider = Factory.Get<ISecureStorage>();
-            var cookie = $"JSESSIONID={await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserSessionCookie))}";
+            var cookie = $"{await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserSessionCookie))}";
             var tokenCookie = await storageProvider.GetAsync(nameof(SecureStorageSlot.CurrentUserTokenCookie));
             if (!string.IsNullOrEmpty(tokenCookie))
             {
-                cookie = $"{cookie};TOKEN={tokenCookie}";
+                cookie = $"{cookie}; {tokenCookie}";
             }
 
             return cookie;
@@ -125,14 +125,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
 
                 var setCookieString = setCookie.SingleOrDefault(x => x != null && x.StartsWith(cookieName));
                 var cookieTokens = setCookieString?.Split(';');
-                var firstCookie = cookieTokens?.FirstOrDefault();
-                var keyValueTokens = firstCookie?.Split('=');
-                if (keyValueTokens != null && keyValueTokens.Length > 0)
-                {
-                    var valueString = keyValueTokens[1];
-                    var cookieValue = HttpUtility.UrlDecode(valueString);
-                    return cookieValue;
-                }
+                return cookieTokens?.FirstOrDefault();
             }
 
             return string.Empty;
