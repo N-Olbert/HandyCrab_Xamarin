@@ -20,7 +20,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                 var uri = AssemblyConfig<RegisterClient>.GetValue(settingsName);
                 var message = await GetHttpMessageWithSessionCookie(uri, HttpMethod.Get);
                 var response = await Client.SendAsync(message);
-                var result = await HandleResponseAsync<object>(response);
+                var result = await HandleResponseAsync<NoReturnValue>(response);
 
                 //Delete anyways -- even if result failed
                 await UpdateCookiesAsync(null);

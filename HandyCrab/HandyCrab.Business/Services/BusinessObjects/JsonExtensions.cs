@@ -21,7 +21,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
         {
             try
             {
-                return typeof(T) == typeof(object) ? default : JsonConvert.DeserializeObject<T>(json, Settings);
+                return JsonConvert.DeserializeObject<T>(json, Settings);
             }
             catch (Exception e)
             {

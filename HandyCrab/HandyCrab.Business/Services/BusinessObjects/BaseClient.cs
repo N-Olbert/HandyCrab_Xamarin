@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -20,6 +21,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
             this.Client = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
+        [DebuggerStepThrough]
         protected async Task<HttpRequestMessage> GetHttpMessageWithSessionCookie(string uri, HttpMethod httpMethod)
         {
             var cookie = await GetHttpMessageCookiesAsync();
@@ -129,6 +131,11 @@ namespace HandyCrab.Business.Services.BusinessObjects
             }
 
             return string.Empty;
+        }
+
+        protected struct NoReturnValue
+        {
+            //(Only purpose is to be not null)
         }
 
         private class ErrorResponse

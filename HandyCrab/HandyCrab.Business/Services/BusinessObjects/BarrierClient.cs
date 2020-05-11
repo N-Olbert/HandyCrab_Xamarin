@@ -141,7 +141,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
             try
             {
                 var requestData = new IdRequestData { Id = barrierId };
-                return await PerformBarrierRequest<Barrier>(settingsName, requestData, HttpMethod.Get);
+                return await PerformBarrierRequest<Barrier>(settingsName, requestData, HttpMethod.Delete);
             }
             catch (Exception e)
             {
@@ -196,7 +196,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     Vote = vote
                 };
 
-                return await PerformBarrierRequest<object>(settingsName, requestData, HttpMethod.Put);
+                return await PerformBarrierRequest<NoReturnValue>(settingsName, requestData, HttpMethod.Put);
             }
             catch (Exception e)
             {
@@ -221,7 +221,7 @@ namespace HandyCrab.Business.Services.BusinessObjects
                     Vote = vote
                 };
 
-                return await PerformBarrierRequest<object>(settingsName, requestData, HttpMethod.Put);
+                return await PerformBarrierRequest<NoReturnValue>(settingsName, requestData, HttpMethod.Put);
             }
             catch (Exception e)
             {

@@ -1,22 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using HandyCrab.Business.Fundamentals;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
-using JetBrains.Annotations;
 using Xamarin.Forms;
 using Barrier = HandyCrab.Common.Entitys.Barrier;
 
 namespace HandyCrab.Business.ViewModels
 {
-    class BarrierViewModel : BaseViewModel, IBarrierViewModel
+    internal class BarrierViewModel : BaseViewModel, IBarrierViewModel
     {
         private string barrierId;
         private ImageSource image;
@@ -27,13 +23,10 @@ namespace HandyCrab.Business.ViewModels
         private string author;
         private string postcode;
         private Vote userVote;
-        int upVotes;
-        int downVotes;
+        private int upVotes;
+        private int downVotes;
         private IEnumerable<Solution> solutions;
         private string newSolutionText;
-        private ICommand upVoteCommand;
-        private ICommand downVoteCommand;
-        private ICommand addSolutionCommand;
 
         public event EventHandler VoteSucceeded;
         public event EventHandler AddSolutionSucceeded;
@@ -61,7 +54,7 @@ namespace HandyCrab.Business.ViewModels
                         this.upVotes = barrierToShow.Upvotes;
                         this.downVotes = barrierToShow.Downvotes;
                         RaisePropertyChanged(nameof(TotalVotes));
-                        Solutions = barrierToShow.Solutions.OrderByDescending(x => x.Upvotes - x.Downvotes);
+                        Solutions = barrierToShow.Solutions?.OrderByDescending(x => x.Upvotes - x.Downvotes);
                         var imageSource = new UriImageSource();
                         if (!string.IsNullOrEmpty(barrierToShow.Picture))
                         {
@@ -90,85 +83,61 @@ namespace HandyCrab.Business.ViewModels
 
         public ImageSource Image
         {
-            get => this.image;
-            set
-            {
-                SetProperty(ref this.image, value);
-            }
+            get => this.image ?? new StreamImageSource();
+            set => SetProperty(ref this.image, value);
         }
 
         public string Title
         {
             get => this.title;
-            set
-            {
-                SetProperty(ref this.title, value);
-            }
+            set => SetProperty(ref this.title, value);
         }
 
         public double Longitude
         {
             get => this.longitude;
-            set
-            {
-                SetProperty(ref this.longitude, value);
-            }
+            set => SetProperty(ref this.longitude, value);
         }
 
         public double Latitude
         {
             get => this.latitude;
-            set
-            {
-                SetProperty(ref this.latitude, value);
-            }
+            set => SetProperty(ref this.latitude, value);
         }
 
         public string Description
         {
             get => this.description;
-            set
-            {
-                SetProperty(ref this.description, value);
-            }
+            set => SetProperty(ref this.description, value);
         }
 
         public string Postcode
         {
             get => this.postcode;
-            set
-            {
-                SetProperty(ref this.postcode, value);
-            }
+            set => SetProperty(ref this.postcode, value);
         }
 
         public IEnumerable<Solution> Solutions
         {
             get => this.solutions;
-            set
-            {
-                SetProperty(ref this.solutions, value);
-            }
+            set => SetProperty(ref this.solutions, value);
         }
 
         public BarrierViewModel()
         {
-            this.upVoteCommand = new Command<string>(UpVoteAction);
-            this.downVoteCommand = new Command<string>(DownVoteAction);
-            this.addSolutionCommand = new Command(AddSolutionAction);
+            UpVoteCommand = new Command<string>(UpVoteAction);
+            DownVoteCommand = new Command<string>(DownVoteAction);
+            AddSolutionCommand = new Command(AddSolutionAction);
         }
 
-        public ICommand UpVoteCommand => this.upVoteCommand;
+        public ICommand UpVoteCommand { get; }
 
-        public ICommand DownVoteCommand => this.downVoteCommand;
+        public ICommand DownVoteCommand { get; }
 
         public Vote UserVote
         {
             get => this.userVote;
-            set
-            {
-                SetProperty(ref this.userVote, value);
-            }
+            set => SetProperty(ref this.userVote, value);
         }
 
         public int TotalVotes => this.upVotes - this.downVotes;
@@ -176,51 +145,64 @@ namespace HandyCrab.Business.ViewModels
         public string NewSolutionText 
         { 
             get => this.newSolutionText;
-            set
-            {
-                SetProperty(ref this.newSolutionText, value);
-            }
+            set => SetProperty(ref this.newSolutionText, value);
         }
 
-        public ICommand AddSolutionCommand => this.addSolutionCommand;
+        public ICommand AddSolutionCommand { get; }
 
         public string Author
         {
             get => this.author;
-            set
+            set => SetProperty(ref this.author, value);
+        }
+
+        private async void UpVoteAction(string id)
+        {
+            //async void is ok (event handler)
+            try
             {
-                SetProperty(ref this.author, value);
+                if (string.IsNullOrEmpty(id))
+                {
+                    await VoteBarrier(Vote.Up);
+                }
+                else
+                {
+                    await VoteSolution(Vote.Up, id);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                RaiseOnError(e);
             }
         }
 
-        private void UpVoteAction(string id)
+        private async void DownVoteAction(string id)
         {
-            if (String.IsNullOrEmpty(id))
+            //async void is ok (event handler)
+            try
             {
-                voteBarrier(Vote.Up);
-            } else
+                if (string.IsNullOrEmpty(id))
+                {
+                    await VoteBarrier(Vote.Down);
+                }
+                else
+                {
+                    await VoteSolution(Vote.Down, id);
+                }
+            }
+            catch (Exception e)
             {
-                voteSolution(Vote.Up, id);
+                Console.WriteLine(e);
+                RaiseOnError(e);
             }
         }
 
-        private void DownVoteAction(string id)
+        private async Task VoteBarrier(Vote vote)
         {
-            if (String.IsNullOrEmpty(id))
-            {
-                voteBarrier(Vote.Down);
-            }
-            else
-            {
-                voteSolution(Vote.Down, id);
-            }
-        }
-
-        private async void voteBarrier(Vote vote)
-        {
-            vote = this.UserVote == vote ? Vote.None : vote;
+            vote = UserVote == vote ? Vote.None : vote;
             var client = Factory.Get<IBarrierClient>();
-            var task = await client.VoteBarrierAsync(this.BarrierId, vote);
+            var task = await client.VoteBarrierAsync(BarrierId, vote);
             if (task.IsSucceeded())
             {
                 if (vote == Vote.Up)
@@ -231,6 +213,7 @@ namespace HandyCrab.Business.ViewModels
                 {
                     this.downVotes += 1;
                 }
+
                 if (UserVote == Vote.Up)
                 {
                     this.upVotes -= 1;
@@ -239,9 +222,10 @@ namespace HandyCrab.Business.ViewModels
                 {
                     this.downVotes -= 1;
                 }
-                RaisePropertyChanged("TotalVotes");
+
+                RaisePropertyChanged(nameof(TotalVotes));
                 UserVote = vote;
-                saveBarrier();
+                SaveBarrier();
                 VoteSucceeded?.Invoke(this, EventArgs.Empty);
             }
             else
@@ -250,40 +234,48 @@ namespace HandyCrab.Business.ViewModels
             }
         }
 
-        private async void voteSolution(Vote vote, String id)
+        private async Task VoteSolution(Vote vote, string id)
         {
             var client = Factory.Get<IBarrierClient>();
             var task = await client.VoteSolutionAsync(id, vote);
-            if(task.IsSucceeded())
+            if (task.IsSucceeded())
             {
-                var solutions = Solutions.ToList();
-                for (int i = 0; i < solutions.Count; i++)
+                var currentSolutions = Solutions?.ToList();
+                if (currentSolutions != null)
                 {
-                    if(solutions[i].Id == id)
+                    for (int i = 0; i < currentSolutions.Count; i++)
                     {
-                        vote = solutions[i].Vote == vote ? Vote.None : vote;
-                        if (vote == Vote.Up)
+                        if (currentSolutions[i] != null && currentSolutions[i].Id == id)
                         {
-                            solutions[i].Upvotes += 1;
-                        } else if (vote == Vote.Down)
-                        {
-                            solutions[i].Downvotes += 1;
+                            vote = currentSolutions[i].Vote == vote ? Vote.None : vote;
+                            if (vote == Vote.Up)
+                            {
+                                currentSolutions[i].Upvotes += 1;
+                            }
+                            else if (vote == Vote.Down)
+                            {
+                                currentSolutions[i].Downvotes += 1;
+                            }
+
+                            if (currentSolutions[i].Vote == Vote.Up)
+                            {
+                                currentSolutions[i].Upvotes -= 1;
+                            }
+                            else if (currentSolutions[i].Vote == Vote.Down)
+                            {
+                                currentSolutions[i].Downvotes -= 1;
+                            }
+
+                            currentSolutions[i].Vote = vote;
+                            Solutions = currentSolutions;
+                            SaveBarrier();
+                            VoteSucceeded?.Invoke(this, EventArgs.Empty);
+                            break;
                         }
-                        if (solutions[i].Vote == Vote.Up)
-                        {
-                            solutions[i].Upvotes -= 1;
-                        } else if (solutions[i].Vote == Vote.Down)
-                        {
-                            solutions[i].Downvotes -= 1;
-                        }
-                        solutions[i].Vote = vote;
-                        Solutions = solutions;
-                        saveBarrier();
-                        VoteSucceeded?.Invoke(this, EventArgs.Empty);
-                        break;
                     }
                 }
-            } else
+            }
+            else
             {
                 RaiseOnError(task);
             }
@@ -291,29 +283,39 @@ namespace HandyCrab.Business.ViewModels
 
         private async void AddSolutionAction()
         {
-            var client = Factory.Get<IBarrierClient>();
-            var solution = new Solution();
-            solution.Text = this.newSolutionText;
-            var barrier = await client.AddBarrierSolutionAsync(this.barrierId, solution);
-            if (barrier.IsSucceeded())
+            //async void is ok (event handler)
+            try
             {
-                Solutions = barrier.Value.Solutions;
-                saveBarrier();
-                AddSolutionSucceeded?.Invoke(this, EventArgs.Empty);
-            } else
+                var client = Factory.Get<IBarrierClient>();
+                var solution = new Solution();
+                solution.Text = this.newSolutionText;
+                var barrier = await client.AddBarrierSolutionAsync(this.barrierId, solution);
+                if (barrier.IsSucceeded())
+                {
+                    Solutions = barrier.Value.Solutions;
+                    SaveBarrier();
+                    AddSolutionSucceeded?.Invoke(this, EventArgs.Empty);
+                }
+                else
+                {
+                    RaiseOnError(barrier);
+                }
+            }
+            catch (Exception e)
             {
-                RaiseOnError(barrier);
+                Console.WriteLine(e);
+                RaiseOnError(e);
             }
         }
 
-        private void saveBarrier()
+        private void SaveBarrier()
         {
             var storageService = Factory.Get<IInternalRuntimeDataStorageService>();
             var barriers = storageService.GetValue<IEnumerable<Barrier>>(StorageSlot.BarrierSearchResults);
-            var barrierList = barriers.ToList<Barrier>();
+            var barrierList = barriers.ToList();
             for (int i = 0; i < barrierList.Count; i++)
             {
-                if (barrierList.ElementAt<Barrier>(i).Id == BarrierId)
+                if (barrierList.ElementAt(i).Id == BarrierId)
                 {
                     barrierList[i].Solutions = Solutions.ToList();
                     barrierList[i].Upvotes = this.upVotes;
@@ -322,6 +324,7 @@ namespace HandyCrab.Business.ViewModels
                     break;
                 }
             }
+
             storageService.StoreValue(StorageSlot.BarrierSearchResults, barrierList);
         }
     }
