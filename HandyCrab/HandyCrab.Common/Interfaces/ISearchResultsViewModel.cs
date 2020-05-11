@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Input;
 using HandyCrab.Common.Entitys;
 using JetBrains.Annotations;
 using Xamarin.Essentials;
@@ -17,5 +18,7 @@ namespace HandyCrab.Common.Interfaces
         IEnumerable<string> SortOptions { get; }
 
         string SelectedSortOption { get; set; }
+
+        ICommand DeleteBarrierCommand { get; }
     }
 }

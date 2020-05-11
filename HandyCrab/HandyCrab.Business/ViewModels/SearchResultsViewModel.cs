@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
 using HandyCrab.Business.Fundamentals;
 using HandyCrab.Business.Services;
 using HandyCrab.Common.Entitys;
 using HandyCrab.Common.Interfaces;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace HandyCrab.Business.ViewModels
 {
@@ -15,6 +17,7 @@ namespace HandyCrab.Business.ViewModels
         private IEnumerable<IReadOnlyBarrier> searchResults;
         private IEnumerable<string> sortOptions;
         private string selectedSearchOption;
+        private Command deleteBarrierCommand;
 
         public int SelectedSearchRadius
         {
@@ -62,11 +65,14 @@ namespace HandyCrab.Business.ViewModels
             }
         }
 
+        public ICommand DeleteBarrierCommand => this.deleteBarrierCommand;
+
         public SearchResultsViewModel()
         {
             UpdateSearchResults();
             InternalRuntimeDataStorageService.StorageValueChanged += OnStorageValueChanged;
             SelectedSortOption = SortOptions.First();
+            this.deleteBarrierCommand = new Command<string>(deleteBarrierAction);
         }
 
         private void OnStorageValueChanged(object sender, StorageSlot slot)
@@ -87,6 +93,28 @@ namespace HandyCrab.Business.ViewModels
             SelectedSearchRadius = storage.GetValue<int>(StorageSlot.BarrierSearchRadius);
             SearchResults = storage.GetValue<IEnumerable<Barrier>>(StorageSlot.BarrierSearchResults);
             CurrentPlacemark = storage.GetValue<Placemark>(StorageSlot.BarrierSearchPlacemark);
+        }
+
+        private async void deleteBarrierAction(string barrierId)
+        {
+            var client = Factory.Get<IBarrierClient>();
+            var task = await client.DeleteBarrierAsync(barrierId);
+            if (task.IsSucceeded())
+            {
+                var barriersList = SearchResults.ToList();
+                for (int i = 0; i < barriersList.Count; i++)
+                {
+                    if (barriersList[i].Id == barrierId)
+                    {
+                        barriersList.RemoveAt(i);
+                        SearchResults = barriersList;
+                        break;
+                    }
+                }
+            } else
+            {
+                RaiseOnError(task);
+            }
         }
     }
 }
