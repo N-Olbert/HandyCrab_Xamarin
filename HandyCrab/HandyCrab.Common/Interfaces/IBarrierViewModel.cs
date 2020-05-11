@@ -52,6 +52,11 @@ namespace HandyCrab.Common.Interfaces
         string Description { get; }
 
         /// <summary>
+        /// Gets the author of the barrier.
+        /// </summary>
+        string Author { get; }
+
+        /// <summary>
         /// Gets the barriers postcode.
         /// </summary>
         string Postcode { get; }

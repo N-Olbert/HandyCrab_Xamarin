@@ -24,6 +24,7 @@ namespace HandyCrab.Business.ViewModels
         private double longitude;
         private double latitude;
         private string description;
+        private string author;
         private string postcode;
         private Vote userVote;
         int upVotes;
@@ -54,6 +55,7 @@ namespace HandyCrab.Business.ViewModels
                         Longitude = barrierToShow.Longitude;
                         Latitude = barrierToShow.Latitude;
                         Description = barrierToShow.Description;
+                        Author = barrierToShow.UserName;
                         Postcode = barrierToShow.Postcode;
                         UserVote = barrierToShow.Vote;
                         this.upVotes = barrierToShow.Upvotes;
@@ -181,6 +183,15 @@ namespace HandyCrab.Business.ViewModels
         }
 
         public ICommand AddSolutionCommand => this.addSolutionCommand;
+
+        public string Author
+        {
+            get => this.author;
+            set
+            {
+                SetProperty(ref this.author, value);
+            }
+        }
 
         private void UpVoteAction(string id)
         {
