@@ -292,7 +292,7 @@ namespace HandyCrab.Business.ViewModels
                 var barrier = await client.AddBarrierSolutionAsync(this.barrierId, solution);
                 if (barrier.IsSucceeded())
                 {
-                    Solutions = barrier.Value.Solutions;
+                    Solutions = barrier.Value.Solutions?.OrderByDescending(x => x.Upvotes - x.Downvotes);
                     SaveBarrier();
                     AddSolutionSucceeded?.Invoke(this, EventArgs.Empty);
                 }

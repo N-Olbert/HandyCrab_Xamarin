@@ -10,121 +10,131 @@
              x:Class="HandyCrab.UI.Views.BarrierPage"
              x:Name="Root">
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="{Binding Title}" FontAttributes="Bold" Padding="2" />
-            <Image x:Name="ImageView" Source="{Binding Image}"></Image>
-            <Grid  Margin="0,0,20,0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" Padding="2">
-                    <Label Text="{Binding Description}" VerticalOptions="FillAndExpand"/>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
-                                <Span Text="{Binding Author}" />
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="1">
-                    <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
-                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="hollowupvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
-                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Label Text="{Binding TotalVotes}" HorizontalOptions="Center"></Label>
-                    <Image Source="downvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
-                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                    <Image Source="hollowdownvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
-                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
-                        </Image.GestureRecognizers>
-                    </Image>
-                </StackLayout>
-            </Grid>
-            <ListView x:Name="SolutionsView" Margin="20,0,0,0" ItemsSource="{Binding Solutions}" HasUnevenRows="True" SelectionMode="None">
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="entities:Solution">
-                        <ViewCell>
-                            <ViewCell.View>
-                                <StackLayout Margin="2" Padding="2">
-                                    <Grid>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray">
-                                            <Label Text="{Binding Text}" Padding="2" VerticalOptions="FillAndExpand" />
-                                            <Label>
-                                                <Label.FormattedText>
-                                                    <FormattedString>
-                                                        <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
-                                                        <Span Text="{Binding UserName}" />
-                                                    </FormattedString>
-                                                </Label.FormattedText>
-                                            </Label>
-                                        </StackLayout>
-                                        <StackLayout Grid.Row="0" Grid.Column="1">
-                                            <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
-                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
-                                                <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding BindingContext.UpVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
-                                                </Image.GestureRecognizers>
-                                            </Image>
-                                            <Image Source="hollowupvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
-                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
-                                                <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding BindingContext.UpVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
-                                                </Image.GestureRecognizers>
-                                            </Image>
-                                            <!--Ugly Hack because you can´t pass the value of a Binding to a Converter Parameter
-                                            See: https://forums.xamarin.com/discussion/71810/pass-binding-to-converterparameter-->
-                                            <Label x:Name="NumberOfDownVotes" IsVisible="false" Text="{Binding Downvotes}" />
-                                            <Label Text="{Binding Upvotes, Converter={x:Static ui:NumberOfVotesToTotalConverter.Converter}, ConverterParameter={x:Reference NumberOfDownVotes}}" HorizontalOptions="Center"></Label>
-                                            <Image Source="downvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
-                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
-                                                <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding BindingContext.DownVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
-                                                </Image.GestureRecognizers>
-                                            </Image>
-                                            <Image Source="hollowdownvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
-                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
-                                                <Image.GestureRecognizers>
-                                                    <TapGestureRecognizer Command="{Binding BindingContext.DownVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
-                                                </Image.GestureRecognizers>
-                                            </Image>
-                                        </StackLayout>
-                                    </Grid>
+        <ScrollView>
+            <StackLayout Margin="10" x:Name="PageContent">
+                <ListView x:Name="SolutionsView" ItemsSource="{Binding Solutions}" HasUnevenRows="True" SelectionMode="None">
+                    <ListView.Header>
+                        <StackLayout>
+                            <Label Text="{Binding Title}" FontAttributes="Bold" Padding="2" />
+                            <Image x:Name="ImageView" Source="{Binding Image}"></Image>
+                            <Grid  Margin="0,0,20,0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" Padding="2">
+                                    <Label Text="{Binding Description}" VerticalOptions="FillAndExpand"/>
+                                    <Label>
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
+                                                <Span Text="{Binding Author}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
                                 </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <Button x:Name="addSolutionButton" Text="Lösung hinzufügen" Clicked="OnAddSolutionButtonClicked"></Button>
-            <Editor x:Name="addSolutionTextField" Text="{Binding NewSolutionText}" AutoSize="TextChanges" IsVisible="False"/>
-            <Button x:Name="confirmAddSolutionButton" Text="Bestätigen" IsVisible="False" Command="{Binding AddSolutionCommand}" />
-        </StackLayout>
+                                <StackLayout Grid.Row="0" Grid.Column="1">
+                                    <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Image Source="hollowupvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding UpVoteCommand}" CommandParameter="" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Label Text="{Binding TotalVotes}" HorizontalOptions="Center"></Label>
+                                    <Image Source="downvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Image Source="hollowdownvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                               IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding DownVoteCommand}" CommandParameter="" />
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                </StackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </ListView.Header>
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="entities:Solution">
+                            <ViewCell>
+                                <ViewCell.View>
+                                    <StackLayout Margin="22, 2, 2, 2" Padding="2">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray">
+                                                <Label Text="{Binding Text}" Padding="2" VerticalOptions="FillAndExpand" />
+                                                <Label>
+                                                    <Label.FormattedText>
+                                                        <FormattedString>
+                                                            <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
+                                                            <Span Text="{Binding UserName}" />
+                                                        </FormattedString>
+                                                    </Label.FormattedText>
+                                                </Label>
+                                            </StackLayout>
+                                            <StackLayout Grid.Row="0" Grid.Column="1">
+                                                <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.UpVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="hollowupvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
+                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowUpArrow}">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.UpVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <!--Ugly Hack because you can´t pass the value of a Binding to a Converter Parameter
+                                            See: https://forums.xamarin.com/discussion/71810/pass-binding-to-converterparameter-->
+                                                <Label x:Name="NumberOfDownVotes" IsVisible="false" Text="{Binding Downvotes}" />
+                                                <Label Text="{Binding Upvotes, Converter={x:Static ui:NumberOfVotesToTotalConverter.Converter}, ConverterParameter={x:Reference NumberOfDownVotes}}" HorizontalOptions="Center"></Label>
+                                                <Image Source="downvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=DownArrow}">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.DownVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Image Source="hollowdownvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center" Rotation="180"
+                                                   IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=HollowDownArrow}">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding BindingContext.DownVoteCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}" />
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                            </StackLayout>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell.View>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Footer>
+                        <StackLayout>
+                            <Button x:Name="addSolutionButton" Text="Lösung hinzufügen" Clicked="OnAddSolutionButtonClicked"></Button>
+                            <Editor x:Name="addSolutionTextField" Text="{Binding NewSolutionText}" AutoSize="TextChanges" IsVisible="False"/>
+                            <Button x:Name="confirmAddSolutionButton" Text="Bestätigen" IsVisible="False" Command="{Binding AddSolutionCommand}" />
+                        </StackLayout>
+                    </ListView.Footer>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
