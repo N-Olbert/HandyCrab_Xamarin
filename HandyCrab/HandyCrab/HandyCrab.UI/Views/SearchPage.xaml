@@ -72,7 +72,7 @@
                             ItemDisplayBinding="{Binding StringFormat='{0}m'}"/>
                 </StackLayout>
             </Grid>
-            <Entry Placeholder="Postleitzahl" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}"  Keyboard="Numeric" />
+            <Entry Placeholder="Postleitzahl" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
             <Button x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>
