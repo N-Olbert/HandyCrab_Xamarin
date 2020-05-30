@@ -30,7 +30,7 @@
                                     <Label>
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
+                                                <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
                                                 <Span Text="{Binding Author}" />
                                             </FormattedString>
                                         </Label.FormattedText>
@@ -84,7 +84,7 @@
                                                 <Label>
                                                     <Label.FormattedText>
                                                         <FormattedString>
-                                                            <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
+                                                            <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
                                                             <Span Text="{Binding UserName}" />
                                                         </FormattedString>
                                                     </Label.FormattedText>
@@ -128,9 +128,9 @@
                     </ListView.ItemTemplate>
                     <ListView.Footer>
                         <StackLayout>
-                            <Button x:Name="addSolutionButton" Text="Lösung hinzufügen" Clicked="OnAddSolutionButtonClicked"></Button>
+                            <Button x:Name="addSolutionButton" Text="{x:Static ui:Strings.AddSolution}" Clicked="OnAddSolutionButtonClicked"></Button>
                             <Editor x:Name="addSolutionTextField" Text="{Binding NewSolutionText}" AutoSize="TextChanges" IsVisible="False"/>
-                            <Button x:Name="confirmAddSolutionButton" Text="Bestätigen" IsVisible="False" Command="{Binding AddSolutionCommand}" />
+                            <Button x:Name="confirmAddSolutionButton" Text="{x:Static ui:Strings.Confirm}" IsVisible="False" Command="{Binding AddSolutionCommand}" />
                         </StackLayout>
                     </ListView.Footer>
                 </ListView>

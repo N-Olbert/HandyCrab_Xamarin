@@ -61,7 +61,7 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Lorem Ipsum ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Diese App ist im Rahmen einer Prüfungsleistung an der DHBW Stuttgart Campus Horb entstanden. Der Quellcode ist unter folgender URL verfügbar. ähnelt.
         /// </summary>
         internal static string AboutPageContentText {
             get {
@@ -75,6 +75,33 @@ namespace HandyCrab.UI {
         internal static string AboutPageTitle {
             get {
                 return ResourceManager.GetString("AboutPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Barriere hinzufügen ähnelt.
+        /// </summary>
+        internal static string AddBarrier {
+            get {
+                return ResourceManager.GetString("AddBarrier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hinzugefügt von:  ähnelt.
+        /// </summary>
+        internal static string AddedBy {
+            get {
+                return ResourceManager.GetString("AddedBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lösung hinzufügen ähnelt.
+        /// </summary>
+        internal static string AddSolution {
+            get {
+                return ResourceManager.GetString("AddSolution", resourceCulture);
             }
         }
         
@@ -138,6 +165,51 @@ namespace HandyCrab.UI {
         internal static string CityLabel {
             get {
                 return ResourceManager.GetString("CityLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bestätigen ähnelt.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Aktuelle Position ähnelt.
+        /// </summary>
+        internal static string CurrentPosition {
+            get {
+                return ResourceManager.GetString("CurrentPosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Löschen ähnelt.
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Distanz:  ähnelt.
+        /// </summary>
+        internal static string Distance {
+            get {
+                return ResourceManager.GetString("Distance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bearbeiten ähnelt.
+        /// </summary>
+        internal static string Edit {
+            get {
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
@@ -286,7 +358,16 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die https://www.github.com/ ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Github Projekt ähnelt.
+        /// </summary>
+        internal static string GitHubButtonLabel {
+            get {
+                return ResourceManager.GetString("GitHubButtonLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die https://github.com/N-Olbert/HandyCrab_Xamarin ähnelt.
         /// </summary>
         internal static string GitHubProjectLink {
             get {
@@ -318,6 +399,15 @@ namespace HandyCrab.UI {
         internal static string LoginButtonText {
             get {
                 return ResourceManager.GetString("LoginButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ausloggen ähnelt.
+        /// </summary>
+        internal static string Logout {
+            get {
+                return ResourceManager.GetString("Logout", resourceCulture);
             }
         }
         
@@ -358,6 +448,33 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchmodus auswählen ähnelt.
+        /// </summary>
+        internal static string PickSearchMode {
+            get {
+                return ResourceManager.GetString("PickSearchMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchradius auswählen ähnelt.
+        /// </summary>
+        internal static string PickSearchRadius {
+            get {
+                return ResourceManager.GetString("PickSearchRadius", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Postleitzahl ähnelt.
+        /// </summary>
+        internal static string Postcode {
+            get {
+                return ResourceManager.GetString("Postcode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die PLZ:  ähnelt.
         /// </summary>
         internal static string PostcodeLabel {
@@ -367,11 +484,29 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Änderungen speichern ähnelt.
+        /// </summary>
+        internal static string SaveChanges {
+            get {
+                return ResourceManager.GetString("SaveChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suchen ähnelt.
         /// </summary>
         internal static string SearchButtonText {
             get {
                 return ResourceManager.GetString("SearchButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suchmodus ähnelt.
+        /// </summary>
+        internal static string SearchMode {
+            get {
+                return ResourceManager.GetString("SearchMode", resourceCulture);
             }
         }
         
@@ -390,6 +525,24 @@ namespace HandyCrab.UI {
         internal static string SignUpButtonText {
             get {
                 return ResourceManager.GetString("SignUpButtonText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sortierkriterium:  ähnelt.
+        /// </summary>
+        internal static string SortMode {
+            get {
+                return ResourceManager.GetString("SortMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sortierkriterium ähnelt.
+        /// </summary>
+        internal static string SortModePickerTitle {
+            get {
+                return ResourceManager.GetString("SortModePickerTitle", resourceCulture);
             }
         }
         

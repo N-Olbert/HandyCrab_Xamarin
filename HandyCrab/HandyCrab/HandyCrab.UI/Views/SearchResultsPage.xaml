@@ -21,8 +21,8 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="Sort by: "></Label>
-            <Picker Grid.Column="1" Grid.Row="0" Title="Sortierkriterium" ItemsSource="{Binding SortOptions}"
+                <Label Grid.Column="0" Grid.Row="0" Text="{x:Static ui:Strings.SortMode}"></Label>
+            <Picker Grid.Column="1" Grid.Row="0" Title="{x:Static ui:Strings.SortModePickerTitle}" ItemsSource="{Binding SortOptions}"
                     SelectedItem="{Binding SelectedSortOption}" />
             <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
                     <ListView x:Name="BarrierView" ItemsSource="{Binding SearchResults}" HasUnevenRows="True" ItemTapped="onItemTapped">
@@ -47,7 +47,7 @@
                                                 <Label Grid.Column="0" Grid.Row="2">
                                                     <Label.FormattedText>
                                                         <FormattedString>
-                                                            <Span Text="Distanz: " FontAttributes="Bold" />
+                                                            <Span Text="{x:Static ui:Strings.Distance}" FontAttributes="Bold" />
                                                             <Span Text="{Binding DistanceToLocation}" />
                                                             <Span Text="m" />
                                                         </FormattedString>
@@ -56,7 +56,7 @@
                                                 <Label Grid.Column="0" Grid.Row="3">
                                                     <Label.FormattedText>
                                                         <FormattedString>
-                                                            <Span Text="Hinzugefügt von: " FontAttributes="Italic" />
+                                                            <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
                                                             <Span Text="{Binding UserName}" />
                                                         </FormattedString>
                                                     </Label.FormattedText>
@@ -71,9 +71,9 @@
                                                     <ColumnDefinition Width="*" />
                                                     <ColumnDefinition Width="*" />
                                                 </Grid.ColumnDefinitions>
-                                            <Button Grid.Row="0" Grid.Column="0" FontSize="Small" Text="Bearbeiten" Clicked="OnModifyBarrierButtonClicked" 
+                                            <Button Grid.Row="0" Grid.Column="0" FontSize="Small" Text="{x:Static ui:Strings.Edit}" Clicked="OnModifyBarrierButtonClicked" 
                                                     IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
-                                            <Button Grid.Row="0" Grid.Column="1" FontSize="Small" Text="Löschen"
+                                            <Button Grid.Row="0" Grid.Column="1" FontSize="Small" Text="{x:Static ui:Strings.Delete}"
                                                     Command="{Binding BindingContext.DeleteBarrierCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}"
                                                     IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
                                         </Grid>
@@ -83,7 +83,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                    <Button Text="Barriere hinzufügen" Clicked="OnAddBarrierButtonClicked" />
+                    <Button Text="{x:Static ui:Strings.AddBarrier}" Clicked="OnAddBarrierButtonClicked" />
                 </StackLayout>
             </Grid>
     </ContentPage.Content>

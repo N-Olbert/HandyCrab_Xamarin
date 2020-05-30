@@ -10,7 +10,7 @@ namespace HandyCrab.Business.ViewModels
         public ICommand OpenGitHubLinkCommand { get; }
         public AboutViewModel()
         {
-            OpenGitHubLinkCommand = new Command(async () => await Browser.OpenAsync("http://example.com"));
+            OpenGitHubLinkCommand = new Command<string>(async (string GithubProjectLink) => await Browser.OpenAsync(GithubProjectLink));
         }
     }
 }

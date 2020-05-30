@@ -118,10 +118,19 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AboutPageContentText" xml:space="preserve">
-    <value>Lorem Ipsum</value>
+    <value>Diese App ist im Rahmen einer Prüfungsleistung an der DHBW Stuttgart Campus Horb entstanden. Der Quellcode ist unter folgender URL verfügbar.</value>
   </data>
   <data name="AboutPageTitle" xml:space="preserve">
     <value>Über</value>
+  </data>
+  <data name="AddBarrier" xml:space="preserve">
+    <value>Barriere hinzufügen</value>
+  </data>
+  <data name="AddedBy" xml:space="preserve">
+    <value>Hinzugefügt von: </value>
+  </data>
+  <data name="AddSolution" xml:space="preserve">
+    <value>Lösung hinzufügen</value>
   </data>
   <data name="BarrierDescriptionPlaceholder" xml:space="preserve">
     <value>Beschreibung</value>
@@ -143,6 +152,21 @@
   </data>
   <data name="CityLabel" xml:space="preserve">
     <value>Stadt: </value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="CurrentPosition" xml:space="preserve">
+    <value>Aktuelle Position</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="Distance" xml:space="preserve">
+    <value>Distanz: </value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Bearbeiten</value>
   </data>
   <data name="EmailOrUsernamePlaceholder" xml:space="preserve">
     <value>E-Mail oder Benutzername</value>
@@ -192,8 +216,11 @@
   <data name="Error_WrongLogin" xml:space="preserve">
     <value>Der Benutzername oder das Passwort ist falsch.</value>
   </data>
+  <data name="GitHubButtonLabel" xml:space="preserve">
+    <value>Github Projekt</value>
+  </data>
   <data name="GitHubProjectLink" xml:space="preserve">
-    <value>https://www.github.com/</value>
+    <value>https://github.com/N-Olbert/HandyCrab_Xamarin</value>
   </data>
   <data name="LatitudeLabel" xml:space="preserve">
     <value>Breitengrad: </value>
@@ -203,6 +230,9 @@
   </data>
   <data name="LoginButtonText" xml:space="preserve">
     <value>Login</value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Ausloggen</value>
   </data>
   <data name="LongitudeLabel" xml:space="preserve">
     <value>Längengrad: </value>
@@ -216,17 +246,38 @@
   <data name="PasswordPlaceholder" xml:space="preserve">
     <value>Passwort</value>
   </data>
+  <data name="PickSearchMode" xml:space="preserve">
+    <value>Suchmodus auswählen</value>
+  </data>
+  <data name="PickSearchRadius" xml:space="preserve">
+    <value>Suchradius auswählen</value>
+  </data>
+  <data name="Postcode" xml:space="preserve">
+    <value>Postleitzahl</value>
+  </data>
   <data name="PostcodeLabel" xml:space="preserve">
     <value>PLZ: </value>
   </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Änderungen speichern</value>
+  </data>
   <data name="SearchButtonText" xml:space="preserve">
     <value>Suchen</value>
+  </data>
+  <data name="SearchMode" xml:space="preserve">
+    <value>Suchmodus</value>
   </data>
   <data name="SearchRadiusPickerTitle" xml:space="preserve">
     <value>Suchradius</value>
   </data>
   <data name="SignUpButtonText" xml:space="preserve">
     <value>Registrieren</value>
+  </data>
+  <data name="SortMode" xml:space="preserve">
+    <value>Sortierkriterium: </value>
+  </data>
+  <data name="SortModePickerTitle" xml:space="preserve">
+    <value>Sortierkriterium</value>
   </data>
   <data name="StreetLabel" xml:space="preserve">
     <value>Straße: </value>

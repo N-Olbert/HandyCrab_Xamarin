@@ -11,8 +11,8 @@
              x:Class="HandyCrab.UI.Views.SearchPage">
     <ContentPage.Content>
         <StackLayout Margin="10">
-            <Label Text="Suchmodus auswählen" FontAttributes="Bold"/>
-            <Picker x:Name="searchModePicker" Title="Suchmodus" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
+            <Label Text="{x:Static ui:Strings.PickSearchMode}" FontAttributes="Bold"/>
+            <Picker x:Name="searchModePicker" Title="{x:Static ui:Strings.SearchMode}" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
             <Grid RowSpacing="20" IsVisible="{Binding SearchWithPostcode, Converter={x:Static ui:InverseBoolConverter.Converter}}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -61,18 +61,18 @@
                     </Label>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Grid.Row="0">
-                    <Button x:Name="CurrentLocationButton" Text="Aktuelle Position" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>
+                    <Button x:Name="CurrentLocationButton" Text="{x:Static ui:Strings.CurrentPosition}" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>
                     <Button x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
                         Clicked="ChangeLocationButton_OnClicked" />
                 </StackLayout>
                 <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Label Text="Suchradius auswählen" FontAttributes="Bold"/>
+                    <Label Text="{x:Static ui:Strings.PickSearchRadius}" FontAttributes="Bold"/>
                     <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" 
                             ItemsSource="{Binding SearchRadiusInMeters}" SelectedItem="{Binding SelectedSearchRadius}" 
                             ItemDisplayBinding="{Binding StringFormat='{0}m'}"/>
                 </StackLayout>
             </Grid>
-            <Entry Placeholder="Postleitzahl" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
+            <Entry Placeholder="{x:Static ui:Strings.Postcode}" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
             <Button x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>
         </StackLayout>
     </ContentPage.Content>

@@ -25,6 +25,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Ausloggen" Command="{Binding LogoutCommand}" IsVisible="{Binding CurrentUser, Converter={x:Static ui:NullValueBoolConverter.Converter}}"/>
+        <Button Text="{x:Static ui:Strings.Logout}" Command="{Binding LogoutCommand}" IsVisible="{Binding CurrentUser, Converter={x:Static ui:NullValueBoolConverter.Converter}}"/>
     </StackLayout>
 </ContentPage>
