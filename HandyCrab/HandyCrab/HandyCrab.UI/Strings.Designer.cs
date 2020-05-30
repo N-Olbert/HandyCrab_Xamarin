@@ -232,6 +232,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler ähnelt.
+        /// </summary>
+        internal static string Error {
+            get {
+                return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Die Barriere konnte nicht gefunden werden. ähnelt.
         /// </summary>
         internal static string Error_BarrierNotFound {
@@ -331,7 +340,7 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Fehler:  ähnelt.
         /// </summary>
         internal static string Error_UnknownError {
             get {

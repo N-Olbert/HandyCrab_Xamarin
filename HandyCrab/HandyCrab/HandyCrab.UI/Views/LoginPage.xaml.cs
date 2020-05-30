@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Resources;
 using HandyCrab.Common.Interfaces;
 using HandyCrab.Common.Entitys;
-using HandyCrab.UI;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class LoginPage : BaseContentPage
     {
         public LoginPage()
         {
@@ -19,6 +16,7 @@ namespace HandyCrab.UI.Views
             //Bind vm events
             vm.LoginSucceeded += (sender, args) => NavigationHelper.GoTo(new SearchPage());
             vm.LoginRejected += new EventHandler<Failable>(OnLoginRejected);
+            vm.OnError += OnError;
         }
 
         private void NoAccountButton_Clicked(object sender, EventArgs e)

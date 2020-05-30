@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using HandyCrab.Common.Interfaces;
-using HandyCrab.UI.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HamburgerMenuMasterPage : ContentPage
+    public partial class HamburgerMenuMasterPage : BaseContentPage
     {
         private ObservableCollection<MasterPageItem> MenuWhileNotLoggedIn = new ObservableCollection<MasterPageItem>();
 

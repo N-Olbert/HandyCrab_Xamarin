@@ -1,11 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
              xmlns:entities="clr-namespace:HandyCrab.Common.Entitys;assembly=HandyCrab.Common"
              xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
+             xmlns:views="clr-namespace:HandyCrab.UI.Views;assembly=HandyCrab.UI"
              mc:Ignorable="d"
              BindingContext="{x:Static ui:ModelViewLocator.SearchResultsViewModel}"
              x:Name="Root"
@@ -87,4 +88,4 @@
                 </StackLayout>
             </Grid>
     </ContentPage.Content>
-</ContentPage>
+</views:BaseContentPage>

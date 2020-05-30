@@ -1,79 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:interfaces="clr-namespace:HandyCrab.Common.Interfaces;assembly=HandyCrab.Common"
              xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             xmlns:views="clr-namespace:HandyCrab.UI.Views;assembly=HandyCrab.UI"
              mc:Ignorable="d"
              BindingContext="{x:Static ui:ModelViewLocator.SearchViewModel}"
              x:DataType="{x:Type interfaces:ISearchViewModel}"
              x:Class="HandyCrab.UI.Views.SearchPage">
     <ContentPage.Content>
-        <StackLayout Margin="10">
-            <Label Text="{x:Static ui:Strings.PickSearchMode}" FontAttributes="Bold"/>
-            <Picker x:Name="searchModePicker" Title="{x:Static ui:Strings.SearchMode}" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
-            <Grid RowSpacing="20" IsVisible="{Binding SearchWithPostcode, Converter={x:Static ui:InverseBoolConverter.Converter}}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-                <StackLayout Grid.Column="0" Grid.Row="0">
-                    <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
-                                <Span Text="{Binding CurrentPlacemark.Location.Longitude}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+        <ListView x:Name="refreshView" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}" >
+            <ListView.Header>
+                <StackLayout Margin="10" >
+                    <Label Text="{x:Static ui:Strings.PickSearchMode}" FontAttributes="Bold"/>
+                    <Picker x:Name="searchModePicker" Title="{x:Static ui:Strings.SearchMode}" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
+                    <Grid RowSpacing="20" IsVisible="{Binding SearchWithPostcode, Converter={x:Static ui:InverseBoolConverter.Converter}}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0" Grid.Row="0">
+                            <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
+                                        <Span Text="{Binding CurrentPlacemark.Location.Longitude}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
-                                <Span Text="{Binding CurrentPlacemark.Location.Latitude}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
+                                        <Span Text="{Binding CurrentPlacemark.Location.Latitude}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
-                                <Span Text="{Binding CurrentPlacemark.PostalCode}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
+                                        <Span Text="{Binding CurrentPlacemark.PostalCode}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
 
-                    <Label>
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
-                                <Span Text="{Binding CurrentPlacemark.Locality}"/>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
+                            <Label>
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
+                                        <Span Text="{Binding CurrentPlacemark.Locality}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        </StackLayout>
+                        <StackLayout Grid.Column="1" Grid.Row="0">
+                            <Button x:Name="CurrentLocationButton" Text="{x:Static ui:Strings.CurrentPosition}" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>
+                            <Button x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
+                                Clicked="ChangeLocationButton_OnClicked" />
+                        </StackLayout>
+                        <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                            <Label Text="{x:Static ui:Strings.PickSearchRadius}" FontAttributes="Bold"/>
+                            <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" 
+                                    ItemsSource="{Binding SearchRadiusInMeters}" SelectedItem="{Binding SelectedSearchRadius}" 
+                                    ItemDisplayBinding="{Binding StringFormat='{0}m'}"/>
+                        </StackLayout>
+                    </Grid>
+                    <Entry Placeholder="{x:Static ui:Strings.Postcode}" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
+                    <Button x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>
                 </StackLayout>
-                <StackLayout Grid.Column="1" Grid.Row="0">
-                    <Button x:Name="CurrentLocationButton" Text="{x:Static ui:Strings.CurrentPosition}" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>
-                    <Button x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
-                        Clicked="ChangeLocationButton_OnClicked" />
-                </StackLayout>
-                <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
-                    <Label Text="{x:Static ui:Strings.PickSearchRadius}" FontAttributes="Bold"/>
-                    <Picker Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Title="{x:Static ui:Strings.SearchRadiusPickerTitle}" 
-                            ItemsSource="{Binding SearchRadiusInMeters}" SelectedItem="{Binding SelectedSearchRadius}" 
-                            ItemDisplayBinding="{Binding StringFormat='{0}m'}"/>
-                </StackLayout>
-            </Grid>
-            <Entry Placeholder="{x:Static ui:Strings.Postcode}" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
-            <Button x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>
-        </StackLayout>
+            </ListView.Header>
+        </ListView>
     </ContentPage.Content>
-</ContentPage>
+</views:BaseContentPage>

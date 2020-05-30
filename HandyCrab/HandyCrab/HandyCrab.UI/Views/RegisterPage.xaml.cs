@@ -1,14 +1,12 @@
-﻿using System;
-using HandyCrab.Common.Interfaces;
+﻿using HandyCrab.Common.Interfaces;
 using HandyCrab.Common.Entitys;
-using HandyCrab.UI;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RegisterPage : ContentPage
+    public partial class RegisterPage : BaseContentPage
     {
         public RegisterPage()
         {
@@ -18,6 +16,7 @@ namespace HandyCrab.UI.Views
             //Bind vm events
             vm.RegisterSucceeded += (sender, args) => NavigationHelper.GoTo(new SearchPage());
             vm.RegisterRejected += onRegisterRejected;
+            vm.OnError += OnError;
         }
 
         private void onRegisterRejected(object sender, Failable e)

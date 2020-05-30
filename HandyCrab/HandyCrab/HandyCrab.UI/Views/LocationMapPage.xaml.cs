@@ -1,12 +1,11 @@
 ﻿using HandyCrab.Common.Interfaces;
 using System;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace HandyCrab.UI.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LocationMapPage : ContentPage
+    public partial class LocationMapPage : BaseContentPage
     {
         public LocationMapPage()
         {
@@ -29,6 +28,7 @@ namespace HandyCrab.UI.Views
 
             vm.OnConfirm += (sender, args) => NavigationHelper.GoTo(new SearchPage());
             vm.OnCancel += (sender, args) => NavigationHelper.GoTo(new SearchPage());
+            vm.OnError += OnError;
         }
 
         private void OnVmRefreshMapRequest(object sender, EventArgs args)

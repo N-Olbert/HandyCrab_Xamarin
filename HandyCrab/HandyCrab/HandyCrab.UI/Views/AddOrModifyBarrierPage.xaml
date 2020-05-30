@@ -1,9 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<views:BaseContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:ui="clr-namespace:HandyCrab.UI;assembly=HandyCrab.UI"
+             xmlns:views="clr-namespace:HandyCrab.UI.Views;assembly=HandyCrab.UI"
              BindingContext="{x:Static ui:ModelViewLocator.AddOrModifyBarrierViewModel}"
              mc:Ignorable="d"
              x:Class="HandyCrab.UI.Views.AddOrModifyBarrierPage">
@@ -66,4 +67,4 @@
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
-</ContentPage>
+</views:BaseContentPage>

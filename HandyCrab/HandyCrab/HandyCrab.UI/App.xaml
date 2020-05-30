@@ -6,6 +6,26 @@
              mc:Ignorable="d"
              x:Class="HandyCrab.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <!--Primary: #ff503c
+                Secondary: #8c00e2
+                Akzent dunkel: #680b00
+                Akzent hell: #ffa499-->
+            <!--etc-->
+            <!--<Style
+                TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" x:DataType="Color">
+                    <Setter.Value>#ff503c</Setter.Value>
+                </Setter>
+            </Style>-->
+            <Color x:Key="BackgroundColor">Black</Color>
+            <Color x:Key="NavigationBarColor">#ff503c</Color>
+            <Color x:Key="PrimaryColor">#ff503c</Color>
+            <Color x:Key="SecondaryColor">#8c00e2</Color>
+            <Color x:Key="PrimaryTextColor">White</Color>
+            <Color x:Key="SecondaryTextColor">White</Color>
+            <Color x:Key="TertiaryTextColor">#ffa499</Color>
+            <Color x:Key="TransparentColor">Transparent</Color>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
