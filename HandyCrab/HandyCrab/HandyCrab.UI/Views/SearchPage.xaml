@@ -13,7 +13,7 @@
     <ContentPage.Content>
         <ListView x:Name="refreshView" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsBusy}" >
             <ListView.Header>
-                <StackLayout Margin="10" >
+                <StackLayout>
                     <Label Text="{x:Static ui:Strings.PickSearchMode}" FontAttributes="Bold"/>
                     <Picker x:Name="searchModePicker" Title="{x:Static ui:Strings.SearchMode}" ItemsSource="{Binding SearchOptions}" SelectedItem="{Binding SelectedSearchOption}" />
                     <Grid RowSpacing="20" IsVisible="{Binding SearchWithPostcode, Converter={x:Static ui:InverseBoolConverter.Converter}}">

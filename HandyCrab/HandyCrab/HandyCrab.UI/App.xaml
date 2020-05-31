@@ -12,12 +12,38 @@
                 Akzent dunkel: #680b00
                 Akzent hell: #ffa499-->
             <!--etc-->
-            <!--<Style
-                TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
                 <Setter Property="BackgroundColor" x:DataType="Color">
+                    <Setter.Value>White</Setter.Value>
+                </Setter>
+                <Setter Property="Padding" x:DataType="Thickness">
+                    <Setter.Value>10</Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="NavigationPage" ApplyToDerivedTypes="True">
+                <Setter Property="BarBackgroundColor" x:DataType="Color">
                     <Setter.Value>#ff503c</Setter.Value>
                 </Setter>
-            </Style>-->
+            </Style>
+            <Style TargetType="Button" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundColor" x:DataType="Color">
+                    <Setter.Value>#ffa499</Setter.Value>
+                </Setter>
+            </Style>
+            <Style TargetType="Frame" ApplyToDerivedTypes="True">
+                <Setter Property="BorderColor" x:DataType="Color">
+                    <Setter.Value>LightGray</Setter.Value>
+                </Setter>
+                <Setter Property="HasShadow" x:DataType="x:Boolean">
+                    <Setter.Value>True</Setter.Value>
+                </Setter>
+                <Setter Property="Margin" x:DataType="Thickness">
+                    <Setter.Value>0, 5, 0, 0</Setter.Value>
+                </Setter>
+                <Setter Property="Padding" x:DataType="Thickness">
+                    <Setter.Value>10</Setter.Value>
+                </Setter>
+            </Style>
             <Color x:Key="BackgroundColor">Black</Color>
             <Color x:Key="NavigationBarColor">#ff503c</Color>
             <Color x:Key="PrimaryColor">#ff503c</Color>
@@ -26,6 +52,8 @@
             <Color x:Key="SecondaryTextColor">White</Color>
             <Color x:Key="TertiaryTextColor">#ffa499</Color>
             <Color x:Key="TransparentColor">Transparent</Color>
+            <Color x:Key="DarkAccent">#680b00</Color>
+            <Color x:Key="BrightAccent">#ffa499</Color>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

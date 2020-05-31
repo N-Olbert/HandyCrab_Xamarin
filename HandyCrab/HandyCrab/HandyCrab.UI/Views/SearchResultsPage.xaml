@@ -13,16 +13,16 @@
              x:DataType="{x:Type interfaces:ISearchResultsViewModel}"
              x:Class="HandyCrab.UI.Views.SearchResultsPage">
     <ContentPage.Content>
-        <Grid Margin="10">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Label Grid.Column="0" Grid.Row="0" Text="{x:Static ui:Strings.SortMode}"></Label>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Grid.Row="0" Text="{x:Static ui:Strings.SortMode}"></Label>
             <Picker Grid.Column="1" Grid.Row="0" Title="{x:Static ui:Strings.SortModePickerTitle}" ItemsSource="{Binding SortOptions}"
                     SelectedItem="{Binding SelectedSortOption}" />
             <StackLayout Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Margin="10">
@@ -31,54 +31,59 @@
                             <DataTemplate x:DataType="entities:IReadOnlyBarrier">
                                 <ViewCell>
                                     <ViewCell.View>
-                                        <StackLayout BackgroundColor="LightGray" Margin="2" Padding="2">
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="20" />
-                                                    <RowDefinition Height="100" />
-                                                    <RowDefinition Height="Auto" />
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="100" />
-                                                </Grid.ColumnDefinitions>
-                                                <Label Grid.Column="0" Grid.Row="0" Text="{Binding Title}" FontAttributes="Bold"/>
-                                                <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" />
-                                                <Label Grid.Column="0" Grid.Row="2">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{x:Static ui:Strings.Distance}" FontAttributes="Bold" />
-                                                            <Span Text="{Binding DistanceToLocation}" />
-                                                            <Span Text="m" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                                <Label Grid.Column="0" Grid.Row="3">
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
-                                                            <Span Text="{Binding UserName}" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                                <Image Grid.Column="1" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Picture}"></Image>
-                                            </Grid>
-                                            <Grid>
-                                                <Grid.RowDefinitions>
-                                                    <RowDefinition Height="Auto" />
-                                                </Grid.RowDefinitions>
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*" />
-                                                    <ColumnDefinition Width="*" />
-                                                </Grid.ColumnDefinitions>
-                                            <Button Grid.Row="0" Grid.Column="0" FontSize="Small" Text="{x:Static ui:Strings.Edit}" Clicked="OnModifyBarrierButtonClicked" 
-                                                    IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
-                                            <Button Grid.Row="0" Grid.Column="1" FontSize="Small" Text="{x:Static ui:Strings.Delete}"
-                                                    Command="{Binding BindingContext.DeleteBarrierCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}"
-                                                    IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
-                                        </Grid>
-                                        </StackLayout>
+                                        <Frame>
+                                            <StackLayout>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="25" />
+                                                        <RowDefinition Height="100" />
+                                                        <RowDefinition Height="Auto" />
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="100" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackLayout Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">
+                                                        <Label Text="{Binding Title}" FontAttributes="Bold"/>
+                                                        <BoxView BackgroundColor="Gray" HeightRequest="1" HorizontalOptions="FillAndExpand" />
+                                                    </StackLayout>
+                                                    <Label Grid.Column="0" Grid.Row="1" Text="{Binding Description}" />
+                                                    <Label Grid.Column="0" Grid.Row="2">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{x:Static ui:Strings.Distance}" FontAttributes="Bold" />
+                                                                <Span Text="{Binding DistanceToLocation}" />
+                                                                <Span Text="m" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Label Grid.Column="0" Grid.Row="3">
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
+                                                                <Span Text="{Binding UserName}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                    <Image Grid.Column="1" Grid.Row="1" Grid.RowSpan="3" Source="{Binding Picture}"></Image>
+                                                </Grid>
+                                                <Grid>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto" />
+                                                    </Grid.RowDefinitions>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                <Button Grid.Row="0" Grid.Column="0" FontSize="Small" Text="{x:Static ui:Strings.Edit}" Clicked="OnModifyBarrierButtonClicked" 
+                                                        IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
+                                                <Button Grid.Row="0" Grid.Column="1" FontSize="Small" Text="{x:Static ui:Strings.Delete}"
+                                                        Command="{Binding BindingContext.DeleteBarrierCommand, Source={x:Reference Root}}" CommandParameter="{Binding Id}"
+                                                        IsVisible="{Binding UserId, Converter={x:Static ui:IdToBoolConverter.Converter}}"/>
+                                                </Grid>
+                                            </StackLayout>
+                                        </Frame>
                                     </ViewCell.View>
                                 </ViewCell>
                             </DataTemplate>

@@ -12,7 +12,7 @@
              x:Name="Root">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="10" x:Name="PageContent">
+            <StackLayout x:Name="PageContent">
                 <ListView x:Name="SolutionsView" ItemsSource="{Binding Solutions}" HasUnevenRows="True" SelectionMode="None">
                     <ListView.Header>
                         <StackLayout>
@@ -26,17 +26,19 @@
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray" Padding="2">
-                                    <Label Text="{Binding Description}" VerticalOptions="FillAndExpand"/>
-                                    <Label>
-                                        <Label.FormattedText>
-                                            <FormattedString>
-                                                <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
-                                                <Span Text="{Binding Author}" />
-                                            </FormattedString>
-                                        </Label.FormattedText>
-                                    </Label>
-                                </StackLayout>
+                                <Frame>
+                                    <StackLayout Grid.Row="0" Grid.Column="0" Padding="2">
+                                        <Label Text="{Binding Description}" VerticalOptions="FillAndExpand"/>
+                                        <Label>
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
+                                                    <Span Text="{Binding Author}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                    </StackLayout>
+                                </Frame>
                                 <StackLayout Grid.Row="0" Grid.Column="1">
                                     <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
                                IsVisible="{Binding UserVote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
@@ -80,17 +82,19 @@
                                                 <ColumnDefinition Width="*" />
                                                 <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <StackLayout Grid.Row="0" Grid.Column="0" BackgroundColor="LightGray">
-                                                <Label Text="{Binding Text}" Padding="2" VerticalOptions="FillAndExpand" />
-                                                <Label>
-                                                    <Label.FormattedText>
-                                                        <FormattedString>
-                                                            <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
-                                                            <Span Text="{Binding UserName}" />
-                                                        </FormattedString>
-                                                    </Label.FormattedText>
-                                                </Label>
-                                            </StackLayout>
+                                            <Frame>
+                                                <StackLayout Grid.Row="0" Grid.Column="0">
+                                                    <Label Text="{Binding Text}" Padding="2" VerticalOptions="FillAndExpand" />
+                                                    <Label>
+                                                        <Label.FormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{x:Static ui:Strings.AddedBy}" FontAttributes="Italic" />
+                                                                <Span Text="{Binding UserName}" />
+                                                            </FormattedString>
+                                                        </Label.FormattedText>
+                                                    </Label>
+                                                </StackLayout>
+                                            </Frame>
                                             <StackLayout Grid.Row="0" Grid.Column="1">
                                                 <Image Source="upvotearrow.png" HeightRequest="20" WidthRequest="20" HorizontalOptions="Center"
                                                    IsVisible="{Binding Vote, Converter={x:Static ui:VoteToBoolConverter.Converter}, ConverterParameter=UpArrow}">
@@ -128,7 +132,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                     <ListView.Footer>
-                        <StackLayout>
+                        <StackLayout Margin="0, 5, 0, 0">
                             <Button x:Name="addSolutionButton" Text="{x:Static ui:Strings.AddSolution}" Clicked="OnAddSolutionButtonClicked"></Button>
                             <Editor x:Name="addSolutionTextField" Text="{Binding NewSolutionText}" AutoSize="TextChanges" IsVisible="False"/>
                             <Button x:Name="confirmAddSolutionButton" Text="{x:Static ui:Strings.Confirm}" IsVisible="False" Command="{Binding AddSolutionCommand}" />

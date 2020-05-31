@@ -10,7 +10,7 @@
              x:Class="HandyCrab.UI.Views.AddOrModifyBarrierPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Margin="10">
+            <StackLayout>
                 <Entry Placeholder="{x:Static ui:Strings.BarrierTitlePlaceholder}" Text="{Binding Title}"></Entry>
                 <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
                 <Label>
