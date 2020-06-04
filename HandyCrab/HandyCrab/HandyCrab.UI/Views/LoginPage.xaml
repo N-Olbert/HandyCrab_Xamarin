@@ -11,11 +11,13 @@
              x:DataType="{x:Type interfaces:ILoginViewModel}"
              x:Class="HandyCrab.UI.Views.LoginPage">
     <ContentPage.Content>
-        <StackLayout>
-            <Entry Placeholder="{x:Static ui:Strings.EmailOrUsernamePlaceholder}" Text="{Binding UserName}"></Entry>
-            <Entry Placeholder="{x:Static ui:Strings.PasswordPlaceholder}" IsPassword="True" Text="{Binding Password}"></Entry>
-            <Button x:Name="LoginButton" Text="{x:Static ui:Strings.LoginButtonText}" Command="{Binding LoginCommand}" ></Button>
-            <Button x:Name="NoAccountButton" Text="{x:Static ui:Strings.NoAccountButtonText}" Clicked="NoAccountButton_Clicked" ></Button>
-        </StackLayout>
+        <RefreshView IsRefreshing="{Binding IsBusy}">
+            <StackLayout>
+                <Entry Placeholder="{x:Static ui:Strings.EmailOrUsernamePlaceholder}" Text="{Binding UserName}"></Entry>
+                <Entry Placeholder="{x:Static ui:Strings.PasswordPlaceholder}" IsPassword="True" Text="{Binding Password}"></Entry>
+                <Button x:Name="LoginButton" Text="{x:Static ui:Strings.LoginButtonText}" Command="{Binding LoginCommand}" ></Button>
+                <Button x:Name="NoAccountButton" Text="{x:Static ui:Strings.NoAccountButtonText}" Clicked="NoAccountButton_Clicked" ></Button>
+            </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </views:BaseContentPage>

@@ -10,8 +10,9 @@ namespace HandyCrab.Business.Services.BusinessObjects
         private static ConcurrentDictionary<string, string> iOSEmulatorStorage => iOSEmulatorStorageInstance.Value;
         public async Task StoreAsync(string key, string value)
         {
-            if(Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS &&
-               Xamarin.Essentials.DeviceInfo.DeviceType == Xamarin.Essentials.DeviceType.Virtual)
+            value = value ?? string.Empty; //null not supported by Xamarin.Essentials.SecureStorage
+            if (Xamarin.Essentials.DeviceInfo.Platform == Xamarin.Essentials.DevicePlatform.iOS &&
+                Xamarin.Essentials.DeviceInfo.DeviceType == Xamarin.Essentials.DeviceType.Virtual)
             {
                 iOSEmulatorStorage.AddOrUpdate(key, value, (currentKey, oldValue) => value);
                 return;

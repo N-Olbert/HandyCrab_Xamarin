@@ -565,6 +565,15 @@ namespace HandyCrab.UI {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zum Aktualisieren der Position von oben nach unten ziehen ähnelt.
+        /// </summary>
+        internal static string SwipeToUpdatePosition {
+            get {
+                return ResourceManager.GetString("SwipeToUpdatePosition", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Bild aufnehmen ähnelt.
         /// </summary>
         internal static string TakePictureButtonText {

@@ -285,6 +285,9 @@
   <data name="StreetLabel" xml:space="preserve">
     <value>Straße: </value>
   </data>
+  <data name="SwipeToUpdatePosition" xml:space="preserve">
+    <value>Zum Aktualisieren der Position von oben nach unten ziehen</value>
+  </data>
   <data name="TakePictureButtonText" xml:space="preserve">
     <value>Bild aufnehmen</value>
   </data>

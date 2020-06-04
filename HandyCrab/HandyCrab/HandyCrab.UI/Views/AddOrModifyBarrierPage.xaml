@@ -10,61 +10,63 @@
              x:Class="HandyCrab.UI.Views.AddOrModifyBarrierPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <Entry Placeholder="{x:Static ui:Strings.BarrierTitlePlaceholder}" Text="{Binding Title}"></Entry>
-                <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
-                            <Span Text="{Binding Longitude}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+            <RefreshView IsRefreshing="{Binding IsBusy}">
+                <StackLayout>
+                    <Entry Placeholder="{x:Static ui:Strings.BarrierTitlePlaceholder}" Text="{Binding Title}"></Entry>
+                    <Label Text="{x:Static ui:Strings.LocationToSearchLabel}" FontAttributes="Bold"/>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static ui:Strings.LongitudeLabel}" FontAttributes="Bold"/>
+                                <Span Text="{Binding Longitude}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
-                            <Span Text="{Binding Latitude}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static ui:Strings.LatitudeLabel}" FontAttributes="Bold"/>
+                                <Span Text="{Binding Latitude}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
-                            <Span Text="{Binding Postcode}"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static ui:Strings.PostcodeLabel}" FontAttributes="Bold"/>
+                                <Span Text="{Binding Postcode}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
 
-                <Label>
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
-                            <Span Text="City"/>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Button Grid.Row="0" Grid.Column="0" Command="{Binding TakeImageAsync}" Text="{x:Static ui:Strings.TakePictureButtonText}"></Button>
-                    <Button Grid.Row="0" Grid.Column="1" Command="{Binding SelectImageAsync}" Text="{x:Static ui:Strings.ChoosePictureButtonText}"></Button>
-                </Grid>
-                <Image x:Name="ImageView" Source="{Binding Image}"></Image>
-                <Editor Placeholder="{x:Static ui:Strings.BarrierDescriptionPlaceholder}" AutoSize="TextChanges" Text="{Binding Description}"></Editor>
-                <Editor Placeholder="{x:Static ui:Strings.BarrierInitialSolutionPlaceholder}" AutoSize="TextChanges" 
+                    <Label>
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{x:Static ui:Strings.CityLabel}" FontAttributes="Bold"/>
+                                <Span Text="City"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Row="0" Grid.Column="0" Command="{Binding TakeImageAsync}" Text="{x:Static ui:Strings.TakePictureButtonText}"></Button>
+                        <Button Grid.Row="0" Grid.Column="1" Command="{Binding SelectImageAsync}" Text="{x:Static ui:Strings.ChoosePictureButtonText}"></Button>
+                    </Grid>
+                    <Image x:Name="ImageView" Source="{Binding Image}"></Image>
+                    <Editor Placeholder="{x:Static ui:Strings.BarrierDescriptionPlaceholder}" AutoSize="TextChanges" Text="{Binding Description}"></Editor>
+                    <Editor Placeholder="{x:Static ui:Strings.BarrierInitialSolutionPlaceholder}" AutoSize="TextChanges" 
                         Text="{Binding InitialSolutionText}" IsVisible="{Binding ModifiedBarrierId, Converter={x:Static ui:StringEmptyToBoolConverter.Converter}}"></Editor>
-                <Button x:Name="SubmitButton" Text="{x:Static ui:Strings.SaveChanges}" Command="{Binding AddOrModifyBarrierCommand}"></Button>
-            </StackLayout>
+                    <Button x:Name="SubmitButton" Text="{x:Static ui:Strings.SaveChanges}" Command="{Binding AddOrModifyBarrierCommand}"></Button>
+                </StackLayout>
+            </RefreshView>
         </ScrollView>
     </ContentPage.Content>
 </views:BaseContentPage>

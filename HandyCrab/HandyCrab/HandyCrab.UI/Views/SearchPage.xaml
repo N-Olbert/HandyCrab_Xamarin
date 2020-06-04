@@ -64,7 +64,7 @@
                             </Label>
                         </StackLayout>
                         <StackLayout Grid.Column="1" Grid.Row="0">
-                            <Button x:Name="CurrentLocationButton" Text="{x:Static ui:Strings.CurrentPosition}" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>
+                            <!--<Button x:Name="CurrentLocationButton" Text="{x:Static ui:Strings.CurrentPosition}" VerticalOptions="Center" Command="{Binding SetCurrentLocationCommand}"/>-->
                             <Button x:Name="ChangeLocationButton" Text="{x:Static ui:Strings.ChangeLocationButtonText}" VerticalOptions="Center"
                                 Clicked="ChangeLocationButton_OnClicked" />
                         </StackLayout>
@@ -77,6 +77,8 @@
                     </Grid>
                     <Entry Placeholder="{x:Static ui:Strings.Postcode}" Text="{Binding Postcode}" IsVisible="{Binding SearchWithPostcode}" />
                     <Button x:Name="SearchButton" Text="{x:Static ui:Strings.SearchButtonText}" Command="{Binding PerformSearchCommand}"></Button>
+                    <Label Text="{x:Static ui:Strings.SwipeToUpdatePosition}" FontSize="Small" HorizontalOptions="CenterAndExpand"
+                           VerticalOptions="EndAndExpand"/>
                 </StackLayout>
             </ListView.Header>
         </ListView>

@@ -60,28 +60,36 @@ namespace HandyCrab.Business.ViewModels
         private async void RegisterAction()
         {
             //async void is ok here (event handler)
-            if (CanExecuteRegisterAction())
+            try
             {
-                var client = Factory.Get<IRegisterClient>();
-                var newUser = new UserWithPassword
+                if (CanExecuteRegisterAction())
                 {
-                    Username = UserName,
-                    Password = Password,
-                    Email = Email
-                };
+                    IsBusy = true;
+                    var client = Factory.Get<IRegisterClient>();
+                    var newUser = new UserWithPassword
+                    {
+                        Username = UserName,
+                        Password = Password,
+                        Email = Email
+                    };
 
-                var user = await client.RegisterAsync(newUser);
-                if (user.IsSucceeded())
-                {
-                    RegisterSucceeded?.Invoke(this, EventArgs.Empty);
+                    var user = await client.RegisterAsync(newUser);
+                    if (user.IsSucceeded())
+                    {
+                        RegisterSucceeded?.Invoke(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        RegisterRejected?.Invoke(this, user);
+                    }
                 }
-                else
-                {
-                    RegisterRejected?.Invoke(this, user);
-                }
+
+                this.registerCommand.ChangeCanExecute();
             }
-
-            this.registerCommand.ChangeCanExecute();
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

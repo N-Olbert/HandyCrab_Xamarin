@@ -98,7 +98,7 @@ namespace HandyCrab.Business.ViewModels
 
         public SearchViewModel()
         {
-            SelectedSearchRadius = SearchRadiusInMeters.Last();
+            SelectedSearchRadius = SearchRadiusInMeters.ElementAt(1);
             this.executeSearchCommand = new Command(ExecuteSearch, CanExecuteSearch);
             PropertyChanged += (sender, args) => this.executeSearchCommand.ChangeCanExecute();
             PerformSearchCommand = this.executeSearchCommand;
@@ -125,15 +125,20 @@ namespace HandyCrab.Business.ViewModels
                 try
                 {
                     IsBusy = true;
-                    var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
-                    var locationTask = Factory.Get<IGeolocationService>().GetLocationAsync(request);
-                    await UpdatePlacemarkAsync(locationTask);
+                    await UpdateExactGeoPosition();
                 }
                 finally
                 {
                     IsBusy = false;
                 }
             }
+        }
+
+        private async Task UpdateExactGeoPosition()
+        {
+            var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
+            var locationTask = Factory.Get<IGeolocationService>().GetLocationAsync(request);
+            await UpdatePlacemarkAsync(locationTask);
         }
 
         private async void ExecuteSearch()
@@ -185,7 +190,7 @@ namespace HandyCrab.Business.ViewModels
             await UpdatePlacemarkAsync(locationTask);
 
             //very accurate, but takes time
-            UpdateCurrentGeolocationAsync(); 
+            UpdateExactGeoPosition();
         }
 
         private async Task UpdatePlacemarkAsync([NotNull]Task<Location> locationTask)

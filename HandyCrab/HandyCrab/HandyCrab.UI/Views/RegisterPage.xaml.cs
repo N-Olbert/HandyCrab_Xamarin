@@ -37,12 +37,9 @@ namespace HandyCrab.UI.Views
                     break;
                 case 13:
                     DisplayAlert("Fehler", Strings.Error_InvalidPassword, "OK");
-                    break; 
-                case 2147483647:
-                    DisplayAlert("Fehler", Strings.Error_NetworkTimeout, "OK");
                     break;
                 default:
-                    DisplayAlert("Fehler", Strings.Error_UnknownError, "OK");
+                    OnError(sender, e);
                     break;
             }
         }

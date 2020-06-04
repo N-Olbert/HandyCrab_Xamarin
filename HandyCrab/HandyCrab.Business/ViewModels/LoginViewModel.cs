@@ -79,29 +79,37 @@ namespace HandyCrab.Business.ViewModels
         private async void LoginAction()
         {
             //async void is ok here (event handler)
-            if (CanExecuteLoginAction())
+            try
             {
-                var client = Factory.Get<ILoginClient>();
-                var login = new Login
+                if (CanExecuteLoginAction())
                 {
-                    Username = UserName,
-                    Password = Password
-                };
+                    IsBusy = true;
+                    var client = Factory.Get<ILoginClient>();
+                    var login = new Login
+                    {
+                        Username = UserName,
+                        Password = Password
+                    };
 
-                var user = await client.LoginAsync(login);
-                if (user.IsSucceeded())
-                {
-                    LoginSucceeded?.Invoke(this, EventArgs.Empty);
-                }
-                else
-                {
-                    LoginRejected?.Invoke(this, user);
+                    var user = await client.LoginAsync(login);
+                    if (user.IsSucceeded())
+                    {
+                        LoginSucceeded?.Invoke(this, EventArgs.Empty);
+                    }
+                    else
+                    {
+                        LoginRejected?.Invoke(this, user);
+                    }
+
+                    RaiseUserChanged();
                 }
 
-                RaiseUserChanged();
+                this.loginCommand.ChangeCanExecute();
             }
-
-            this.loginCommand.ChangeCanExecute();
+            finally
+            {
+                IsBusy = false;
+            }
         }
     }
 }

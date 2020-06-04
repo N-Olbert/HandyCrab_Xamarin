@@ -10,12 +10,14 @@
              BindingContext="{x:Static ui:ModelViewLocator.RegisterViewModel}"
              x:DataType="{x:Type interfaces:IRegisterViewModel}"
              x:Class="HandyCrab.UI.Views.RegisterPage">
-  <ContentPage.Content>
-      <StackLayout>
-          <Entry Placeholder="{x:Static ui:Strings.EmailPlaceholder}" Text="{Binding Email}"></Entry>
-          <Entry Placeholder="{x:Static ui:Strings.UsernamePlaceHolder}" Text="{Binding UserName}"></Entry>
-          <Entry Placeholder="{x:Static ui:Strings.PasswordPlaceholder}" Text="{Binding Password}" IsPassword="True"></Entry>
-          <Button x:Name="SignUpButton" Text="{x:Static ui:Strings.SignUpButtonText}" Command="{Binding RegisterCommand}" ></Button>
-        </StackLayout>
+    <ContentPage.Content>
+        <RefreshView IsRefreshing="{Binding IsBusy}">
+            <StackLayout>
+                <Entry Placeholder="{x:Static ui:Strings.EmailPlaceholder}" Text="{Binding Email}"></Entry>
+                <Entry Placeholder="{x:Static ui:Strings.UsernamePlaceHolder}" Text="{Binding UserName}"></Entry>
+                <Entry Placeholder="{x:Static ui:Strings.PasswordPlaceholder}" Text="{Binding Password}" IsPassword="True"></Entry>
+                <Button x:Name="SignUpButton" Text="{x:Static ui:Strings.SignUpButtonText}" Command="{Binding RegisterCommand}" ></Button>
+            </StackLayout>
+        </RefreshView>
     </ContentPage.Content>
 </views:BaseContentPage>
