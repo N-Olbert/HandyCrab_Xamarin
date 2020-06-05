@@ -17,7 +17,7 @@ namespace HandyCrab.UI.Views
         {
             InitializeComponent();
             listView.ItemSelected += OnItemSelected;
-            Title = "Hamburger";
+            Title = "Menu";
 
             MenuWhileNotLoggedIn.Add(new MasterPageItem { Title = "Login", TargetType = typeof(LoginPage) });
             MenuWhileNotLoggedIn.Add(new MasterPageItem { Title = "Registrieren", TargetType = typeof(RegisterPage) });
