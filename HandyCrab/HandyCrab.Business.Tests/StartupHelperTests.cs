@@ -23,7 +23,7 @@ namespace HandyCrab.Business.Tests
         {
             var viewModelInterfaceTypes = typeof(IAboutViewModel)
                                           .Assembly.GetTypes()
-                                          .Where(x => x.Name.EndsWith("ViewModel") && x != typeof(IViewModel))
+                                          .Where(x => x.Name.EndsWith("ViewModel") && x != typeof(IViewModel) && x != typeof(IImagePickerViewModel))
                                           .ToList();
             foreach (var interfaceType in viewModelInterfaceTypes)
             {

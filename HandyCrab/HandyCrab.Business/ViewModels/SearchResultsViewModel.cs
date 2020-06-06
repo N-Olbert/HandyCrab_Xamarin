@@ -50,13 +50,13 @@ namespace HandyCrab.Business.ViewModels
                     switch(value)
                     {
                         case "Distanz":
-                            SearchResults = SearchResults.OrderBy(x => x.DistanceToLocation);
+                            SearchResults = SearchResults?.OrderBy(x => x.DistanceToLocation);
                             break;
                         case "Datum":
-                            SearchResults = SearchResults.OrderByDescending(x => x.Id);
+                            SearchResults = SearchResults?.OrderByDescending(x => x.Id);
                             break;
                         case "Alphabetisch":
-                            SearchResults = SearchResults.OrderBy(x => x.Title);
+                            SearchResults = SearchResults?.OrderBy(x => x.Title);
                             break;
                         default:
                             break;
